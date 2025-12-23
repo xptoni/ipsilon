@@ -13,8 +13,10 @@ import {
 } from "@/components/ui/select";
 import { Truck, Package, User } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const Signup = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const initialType = searchParams.get("type") === "carrier" ? "carrier" : "shipper";
@@ -41,7 +43,7 @@ const Signup = () => {
     // Simulate signup
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    toast.success("Account created successfully!");
+    toast.success(t('common.welcome') + "!");
     navigate("/dashboard");
     setIsLoading(false);
   };
@@ -61,16 +63,16 @@ const Signup = () => {
           </Link>
 
           <h1 className="font-display text-2xl font-bold text-foreground mb-2">
-            Create your account
+            {t('signup.createAccount')}
           </h1>
           <p className="text-muted-foreground mb-8">
-            Join the Balkans' largest transport marketplace
+            {t('signup.joinMarketplace')}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* User Type Selection */}
             <div className="space-y-3">
-              <Label>I want to</Label>
+              <Label>{t('signup.iWantTo')}</Label>
               <RadioGroup
                 value={userType}
                 onValueChange={(value) => setUserType(value as "shipper" | "carrier")}
@@ -87,8 +89,8 @@ const Signup = () => {
                   <RadioGroupItem value="shipper" id="shipper" className="sr-only" />
                   <Package className={`h-8 w-8 ${userType === "shipper" ? "text-primary" : "text-muted-foreground"}`} />
                   <div className="text-center">
-                    <div className="font-medium text-foreground">Ship cargo</div>
-                    <div className="text-xs text-muted-foreground">Post listings & receive quotes</div>
+                    <div className="font-medium text-foreground">{t('signup.shipCargo')}</div>
+                    <div className="text-xs text-muted-foreground">{t('signup.shipCargoDescription')}</div>
                   </div>
                 </Label>
 
@@ -103,8 +105,8 @@ const Signup = () => {
                   <RadioGroupItem value="carrier" id="carrier" className="sr-only" />
                   <Truck className={`h-8 w-8 ${userType === "carrier" ? "text-primary" : "text-muted-foreground"}`} />
                   <div className="text-center">
-                    <div className="font-medium text-foreground">Transport cargo</div>
-                    <div className="text-xs text-muted-foreground">Browse listings & submit quotes</div>
+                    <div className="font-medium text-foreground">{t('signup.transportCargo')}</div>
+                    <div className="text-xs text-muted-foreground">{t('signup.transportCargoDescription')}</div>
                   </div>
                 </Label>
               </RadioGroup>
@@ -113,7 +115,7 @@ const Signup = () => {
             {/* Common Fields */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">First name</Label>
+                <Label htmlFor="firstName">{t('signup.firstName')}</Label>
                 <Input
                   id="firstName"
                   value={firstName}
@@ -122,7 +124,7 @@ const Signup = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">Last name</Label>
+                <Label htmlFor="lastName">{t('signup.lastName')}</Label>
                 <Input
                   id="lastName"
                   value={lastName}
@@ -133,7 +135,7 @@ const Signup = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('signup.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -145,11 +147,11 @@ const Signup = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone number</Label>
+              <Label htmlFor="phone">{t('signup.phone')}</Label>
               <Input
                 id="phone"
                 type="tel"
-                placeholder="+381 64 123 4567"
+                placeholder={t('signup.phonePlaceholder')}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
@@ -157,7 +159,7 @@ const Signup = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('signup.password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -168,7 +170,7 @@ const Signup = () => {
                 minLength={8}
               />
               <p className="text-xs text-muted-foreground">
-                At least 8 characters
+                {t('signup.passwordHint')}
               </p>
             </div>
 
@@ -178,70 +180,70 @@ const Signup = () => {
                 <hr className="border-border" />
                 <h3 className="font-medium text-foreground flex items-center gap-2">
                   <Truck className="h-4 w-4" />
-                  Vehicle Information
+                  {t('signup.vehicleInfo')}
                 </h3>
 
                 <div className="space-y-2">
-                  <Label htmlFor="vehicleType">Vehicle type</Label>
+                  <Label htmlFor="vehicleType">{t('signup.vehicleType')}</Label>
                   <Select value={vehicleType} onValueChange={setVehicleType}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select vehicle type" />
+                      <SelectValue placeholder={t('signup.selectVehicleType')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="car_transporter">Car Transporter</SelectItem>
-                      <SelectItem value="enclosed">Enclosed Trailer</SelectItem>
-                      <SelectItem value="flatbed">Flatbed Truck</SelectItem>
-                      <SelectItem value="van">Van</SelectItem>
-                      <SelectItem value="truck">Truck</SelectItem>
+                      <SelectItem value="car_transporter">{t('signup.carTransporter')}</SelectItem>
+                      <SelectItem value="enclosed">{t('signup.enclosedTrailer')}</SelectItem>
+                      <SelectItem value="flatbed">{t('signup.flatbedTruck')}</SelectItem>
+                      <SelectItem value="van">{t('signup.van')}</SelectItem>
+                      <SelectItem value="truck">{t('signup.truck')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="vehicleRegistration">Vehicle registration</Label>
+                  <Label htmlFor="vehicleRegistration">{t('signup.vehicleRegistration')}</Label>
                   <Input
                     id="vehicleRegistration"
-                    placeholder="BG 123-AB"
+                    placeholder={t('signup.vehicleRegPlaceholder')}
                     value={vehicleRegistration}
                     onChange={(e) => setVehicleRegistration(e.target.value)}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="routes">Usual routes</Label>
+                  <Label htmlFor="routes">{t('signup.usualRoutes')}</Label>
                   <Input
                     id="routes"
-                    placeholder="e.g., Belgrade - Munich, Zagreb - Stuttgart"
+                    placeholder={t('signup.usualRoutesPlaceholder')}
                     value={routes}
                     onChange={(e) => setRoutes(e.target.value)}
                   />
                   <p className="text-xs text-muted-foreground">
-                    Separate multiple routes with commas
+                    {t('signup.routesSeparator')}
                   </p>
                 </div>
               </>
             )}
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Creating account..." : "Create account"}
+              {isLoading ? t('signup.creatingAccount') : t('signup.createAccount')}
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">
-              By signing up, you agree to our{" "}
+              {t('signup.termsAgreement')}{" "}
               <Link to="/terms" className="text-primary hover:underline">
-                Terms of Service
+                {t('signup.termsOfService')}
               </Link>{" "}
-              and{" "}
+              {t('signup.and')}{" "}
               <Link to="/privacy" className="text-primary hover:underline">
-                Privacy Policy
+                {t('signup.privacyPolicy')}
               </Link>
             </p>
           </form>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Already have an account?{" "}
+            {t('signup.alreadyHaveAccount')}{" "}
             <Link to="/login" className="text-primary font-medium hover:underline">
-              Sign in
+              {t('common.signIn')}
             </Link>
           </p>
         </div>
@@ -257,14 +259,14 @@ const Signup = () => {
           </div>
           <h2 className="font-display text-3xl font-bold text-primary-foreground mb-4">
             {userType === "shipper" 
-              ? "Ship with confidence"
-              : "Grow your transport business"
+              ? t('signup.shipWithConfidence')
+              : t('signup.growBusiness')
             }
           </h2>
           <p className="text-primary-foreground/80 text-lg">
             {userType === "shipper"
-              ? "Post your transport needs and receive competitive quotes from verified carriers across the Balkans."
-              : "Access thousands of transport listings and grow your business with our trusted marketplace."
+              ? t('signup.shipperDescription')
+              : t('signup.carrierDescription')
             }
           </p>
         </div>

@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Truck } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +21,7 @@ const Login = () => {
     // Simulate login
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    toast.success("Welcome back!");
+    toast.success(t('common.welcome') + "!");
     navigate("/dashboard");
     setIsLoading(false);
   };
@@ -39,15 +41,15 @@ const Login = () => {
           </Link>
 
           <h1 className="font-display text-2xl font-bold text-foreground mb-2">
-            Welcome back
+            {t('login.welcomeBack')}
           </h1>
           <p className="text-muted-foreground mb-8">
-            Sign in to your account to continue
+            {t('login.signInToContinue')}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('login.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -60,12 +62,12 @@ const Login = () => {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('login.password')}</Label>
                 <Link 
                   to="/forgot-password" 
                   className="text-sm text-primary hover:underline"
                 >
-                  Forgot password?
+                  {t('login.forgotPassword')}
                 </Link>
               </div>
               <Input
@@ -79,14 +81,14 @@ const Login = () => {
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? t('login.signingIn') : t('common.signIn')}
             </Button>
           </form>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Don't have an account?{" "}
+            {t('login.dontHaveAccount')}{" "}
             <Link to="/signup" className="text-primary font-medium hover:underline">
-              Sign up
+              {t('login.signUp')}
             </Link>
           </p>
         </div>
@@ -101,11 +103,10 @@ const Login = () => {
             </div>
           </div>
           <h2 className="font-display text-3xl font-bold text-primary-foreground mb-4">
-            Transport made simple
+            {t('login.transportMadeSimple')}
           </h2>
           <p className="text-primary-foreground/80 text-lg">
-            Connect with verified carriers across the Balkans and get your vehicles 
-            transported safely and affordably.
+            {t('login.transportDescription')}
           </p>
         </div>
       </div>

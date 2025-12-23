@@ -36,8 +36,10 @@ import {
   type Quote,
 } from "@/lib/mockData";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const ListingDetail = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const listing = getListingById(id || "");
@@ -59,9 +61,9 @@ const ListingDetail = () => {
       <Layout>
         <div className="container py-12 text-center">
           <h1 className="text-2xl font-bold text-foreground mb-4">
-            Listing not found
+            {t('listingDetail.listingNotFound')}
           </h1>
-          <Button onClick={() => navigate("/dashboard")}>Back to Dashboard</Button>
+          <Button onClick={() => navigate("/dashboard")}>{t('listingDetail.backToDashboard')}</Button>
         </div>
       </Layout>
     );
@@ -77,7 +79,7 @@ const ListingDetail = () => {
   };
 
   const handleMaskedCall = (quote: Quote) => {
-    toast.info("Masked call feature will be integrated with Twilio");
+    toast.info(t('listingDetail.maskedCallInfo'));
   };
 
   const handleAcceptQuote = (quote: Quote) => {
@@ -86,20 +88,20 @@ const ListingDetail = () => {
   };
 
   const handlePayDeposit = () => {
-    toast.success("Payment successful! Carrier will contact you shortly.");
+    toast.success(t('listingDetail.paymentSuccess'));
     setPaymentOpen(false);
     navigate("/dashboard");
   };
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
-    toast.success("Message sent!");
+    toast.success(t('listingDetail.messageSent'));
     setNewMessage("");
   };
 
   const handleSubmitQuote = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Quote submitted successfully!");
+    toast.success(t('listingDetail.quoteSubmitted'));
     navigate("/carrier-dashboard");
   };
 
@@ -112,7 +114,7 @@ const ListingDetail = () => {
           onClick={() => navigate(isShipper ? "/dashboard" : "/carrier-dashboard")}
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Dashboard
+          {t('listingDetail.backToDashboard')}
         </Button>
 
         <div className="grid lg:grid-cols-3 gap-6">
@@ -127,15 +129,14 @@ const ListingDetail = () => {
                       variant="outline"
                       className="bg-success/10 text-success border-success/20"
                     >
-                      {listing.status.charAt(0).toUpperCase() + listing.status.slice(1)}
+                      {t(`status.${listing.status === 'in_transit' ? 'inTransit' : listing.status}`)}
                     </Badge>
                     <Badge variant="secondary">
-                      {listing.cargoType.charAt(0).toUpperCase() +
-                        listing.cargoType.slice(1)}
+                      {t(`cargo.${listing.cargoType}`)}
                     </Badge>
                   </div>
                   <span className="text-sm text-muted-foreground">
-                    Posted {formatDate(listing.createdAt)}
+                    {t('listingDetail.posted')} {formatDate(listing.createdAt)}
                   </span>
                 </div>
               </CardHeader>
@@ -155,7 +156,7 @@ const ListingDetail = () => {
                   <div className="flex items-center gap-3 p-4 rounded-lg border border-border">
                     <Calendar className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="text-sm text-muted-foreground">Pickup Date</p>
+                      <p className="text-sm text-muted-foreground">{t('listingDetail.pickupDate')}</p>
                       <p className="font-medium text-foreground">
                         {formatDate(listing.pickupDate)}
                       </p>
@@ -164,23 +165,23 @@ const ListingDetail = () => {
                   <div className="flex items-center gap-3 p-4 rounded-lg border border-border">
                     <Package className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="text-sm text-muted-foreground">Dimensions</p>
+                      <p className="text-sm text-muted-foreground">{t('createListing.dimensions')}</p>
                       <p className="font-medium text-foreground">{listing.dimensions}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-4 rounded-lg border border-border">
                     <Scale className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="text-sm text-muted-foreground">Weight</p>
+                      <p className="text-sm text-muted-foreground">{t('listingDetail.weight')}</p>
                       <p className="font-medium text-foreground">{listing.weight}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-4 rounded-lg border border-border">
                     <Truck className="h-5 w-5 text-primary" />
                     <div>
-                      <p className="text-sm text-muted-foreground">Cargo Type</p>
+                      <p className="text-sm text-muted-foreground">{t('listingDetail.cargoType')}</p>
                       <p className="font-medium text-foreground capitalize">
-                        {listing.cargoType}
+                        {t(`cargo.${listing.cargoType}`)}
                       </p>
                     </div>
                   </div>
@@ -191,7 +192,7 @@ const ListingDetail = () => {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                       <FileText className="h-4 w-4" />
-                      Notes
+                      {t('listingDetail.notes')}
                     </div>
                     <p className="text-foreground">{listing.notes}</p>
                   </div>
@@ -204,7 +205,7 @@ const ListingDetail = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">
-                    Quotes Received ({quotes.length}/5)
+                    {t('listingDetail.quotesReceived')} ({quotes.length}/5)
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -242,7 +243,7 @@ const ListingDetail = () => {
                             €{quote.price}
                           </div>
                           <p className="text-sm text-muted-foreground">
-                            10% deposit: €{Math.round(quote.price * 0.1)}
+                            10% {t('listingDetail.deposit')}: €{Math.round(quote.price * 0.1)}
                           </p>
                         </div>
                       </div>
@@ -258,7 +259,7 @@ const ListingDetail = () => {
                           onClick={() => handleMaskedCall(quote)}
                         >
                           <Phone className="h-4 w-4 mr-2" />
-                          Masked Call
+                          {t('listingDetail.maskedCall')}
                         </Button>
 
                         <Dialog open={chatOpen} onOpenChange={setChatOpen}>
@@ -269,14 +270,14 @@ const ListingDetail = () => {
                               onClick={() => setSelectedQuote(quote)}
                             >
                               <MessageSquare className="h-4 w-4 mr-2" />
-                              Message
+                              {t('listingDetail.message')}
                             </Button>
                           </DialogTrigger>
                           <DialogContent>
                             <DialogHeader>
-                              <DialogTitle>Chat with {quote.carrierName}</DialogTitle>
+                              <DialogTitle>{t('listingDetail.chatWith')} {quote.carrierName}</DialogTitle>
                               <DialogDescription>
-                                Discuss details before accepting the quote
+                                {t('listingDetail.discussDetails')}
                               </DialogDescription>
                             </DialogHeader>
                             <div className="space-y-4">
@@ -296,17 +297,17 @@ const ListingDetail = () => {
                                   ))
                                 ) : (
                                   <p className="text-center text-muted-foreground text-sm">
-                                    No messages yet. Start the conversation!
+                                    {t('listingDetail.noMessagesYet')}
                                   </p>
                                 )}
                               </div>
                               <div className="flex gap-2">
                                 <Input
-                                  placeholder="Type a message..."
+                                  placeholder={t('listingDetail.typeMessage')}
                                   value={newMessage}
                                   onChange={(e) => setNewMessage(e.target.value)}
                                 />
-                                <Button onClick={handleSendMessage}>Send</Button>
+                                <Button onClick={handleSendMessage}>{t('common.send')}</Button>
                               </div>
                             </div>
                           </DialogContent>
@@ -314,7 +315,7 @@ const ListingDetail = () => {
 
                         <Button size="sm" onClick={() => handleAcceptQuote(quote)}>
                           <CreditCard className="h-4 w-4 mr-2" />
-                          Accept & Pay Deposit
+                          {t('listingDetail.acceptAndPayDeposit')}
                         </Button>
                       </div>
                     </div>
@@ -327,33 +328,33 @@ const ListingDetail = () => {
             {!isShipper && listing.quotesCount < 5 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Submit Your Quote</CardTitle>
+                  <CardTitle className="text-lg">{t('listingDetail.submitYourQuote')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmitQuote} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="price">Your price (EUR)</Label>
+                      <Label htmlFor="price">{t('listingDetail.yourPrice')}</Label>
                       <Input
                         id="price"
                         type="number"
-                        placeholder="e.g., 650"
+                        placeholder={t('listingDetail.pricePlaceholder')}
                         value={quotePrice}
                         onChange={(e) => setQuotePrice(e.target.value)}
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="quoteNotes">Notes</Label>
+                      <Label htmlFor="quoteNotes">{t('listingDetail.quoteNotes')}</Label>
                       <Textarea
                         id="quoteNotes"
-                        placeholder="Add details about your service, vehicle, availability..."
+                        placeholder={t('listingDetail.quoteNotesPlaceholder')}
                         value={quoteNotes}
                         onChange={(e) => setQuoteNotes(e.target.value)}
                         rows={3}
                       />
                     </div>
                     <Button type="submit" className="w-full">
-                      Submit Quote
+                      {t('carrierDashboard.submitQuote')}
                     </Button>
                   </form>
                 </CardContent>
@@ -374,7 +375,7 @@ const ListingDetail = () => {
                   <h3 className="font-semibold text-foreground">
                     {listing.shipperName}
                   </h3>
-                  <p className="text-sm text-muted-foreground">Shipper</p>
+                  <p className="text-sm text-muted-foreground">{t('listingDetail.shipper')}</p>
                 </div>
               </CardContent>
             </Card>
@@ -382,23 +383,23 @@ const ListingDetail = () => {
             <Card>
               <CardContent className="pt-6 space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Quotes received</span>
+                  <span className="text-muted-foreground">{t('listingDetail.quotesReceivedCount')}</span>
                   <span className="font-medium text-foreground">
                     {quotes.length}/5
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Status</span>
+                  <span className="text-muted-foreground">{t('listingDetail.status')}</span>
                   <Badge
                     variant="outline"
                     className="bg-success/10 text-success border-success/20"
                   >
-                    {listing.status}
+                    {t(`status.${listing.status === 'in_transit' ? 'inTransit' : listing.status}`)}
                   </Badge>
                 </div>
                 {quotes.length > 0 && (
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Price range</span>
+                    <span className="text-muted-foreground">{t('listingDetail.priceRange')}</span>
                     <span className="font-medium text-foreground">
                       €{Math.min(...quotes.map((q) => q.price))} - €
                       {Math.max(...quotes.map((q) => q.price))}
@@ -414,36 +415,36 @@ const ListingDetail = () => {
         <Dialog open={paymentOpen} onOpenChange={setPaymentOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Pay Deposit & Book Carrier</DialogTitle>
+              <DialogTitle>{t('listingDetail.payDepositTitle')}</DialogTitle>
               <DialogDescription>
-                Pay a 10% deposit to confirm your booking with{" "}
+                {t('listingDetail.payDepositDescription')}{" "}
                 {selectedQuote?.carrierName}
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
               <div className="p-4 rounded-lg bg-secondary">
                 <div className="flex justify-between mb-2">
-                  <span className="text-muted-foreground">Quote price</span>
+                  <span className="text-muted-foreground">{t('listingDetail.quotePrice')}</span>
                   <span className="font-medium">€{selectedQuote?.price}</span>
                 </div>
                 <div className="flex justify-between text-lg font-semibold">
-                  <span>Deposit (10%)</span>
+                  <span>{t('listingDetail.depositAmount')}</span>
                   <span className="text-primary">
                     €{selectedQuote ? Math.round(selectedQuote.price * 0.1) : 0}
                   </span>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground">
-                After payment, you'll receive the carrier's real contact details and
-                booking confirmation via SMS.
-              </p>
-              <Button className="w-full" onClick={handlePayDeposit}>
-                <CreditCard className="h-4 w-4 mr-2" />
-                Pay with Stripe
+
+              <div className="p-4 rounded-lg border border-dashed border-border text-center">
+                <CreditCard className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">
+                  {t('listingDetail.stripeIntegration')}
+                </p>
+              </div>
+
+              <Button onClick={handlePayDeposit} className="w-full">
+                {t('listingDetail.payDeposit')} (€{selectedQuote ? Math.round(selectedQuote.price * 0.1) : 0})
               </Button>
-              <p className="text-xs text-center text-muted-foreground">
-                Stripe integration placeholder - will be connected
-              </p>
             </div>
           </DialogContent>
         </Dialog>

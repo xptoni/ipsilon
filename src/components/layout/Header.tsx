@@ -3,21 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Truck, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Header = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  // For demo, we'll show different nav based on route
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
   const isDashboard = location.pathname.startsWith('/dashboard') || 
                       location.pathname.startsWith('/listings') ||
-                      location.pathname.startsWith('/create-listing');
+                      location.pathname.startsWith('/create-listing') ||
+                      location.pathname.startsWith('/carrier-dashboard');
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/how-it-works', label: 'How It Works' },
-    { href: '/about', label: 'About' },
+    { href: '/', label: t('common.home') },
+    { href: '/how-it-works', label: t('common.howItWorks') },
+    { href: '/about', label: t('common.about') },
   ];
 
   return (
@@ -65,7 +68,7 @@ const Header = () => {
                   : "text-muted-foreground"
               )}
             >
-              Dashboard
+              {t('common.dashboard')}
             </Link>
             <Link
               to="/listings"
@@ -76,47 +79,51 @@ const Header = () => {
                   : "text-muted-foreground"
               )}
             >
-              Browse Listings
+              {t('common.browseListings')}
             </Link>
           </nav>
         )}
 
-        {/* Auth Buttons */}
+        {/* Auth Buttons + Language Switcher */}
         <div className="hidden md:flex items-center gap-3">
+          <LanguageSwitcher />
           {isAuthPage ? (
             <Button variant="ghost" asChild>
-              <Link to="/">Back to Home</Link>
+              <Link to="/">{t('common.backToHome')}</Link>
             </Button>
           ) : isDashboard ? (
             <>
-              <span className="text-sm text-muted-foreground">Welcome, Marko</span>
+              <span className="text-sm text-muted-foreground">{t('common.welcome')}, Marko</span>
               <Button variant="outline" size="sm" asChild>
-                <Link to="/">Logout</Link>
+                <Link to="/">{t('common.logout')}</Link>
               </Button>
             </>
           ) : (
             <>
               <Button variant="ghost" asChild>
-                <Link to="/login">Sign In</Link>
+                <Link to="/login">{t('common.signIn')}</Link>
               </Button>
               <Button asChild>
-                <Link to="/signup">Get Started</Link>
+                <Link to="/signup">{t('common.getStarted')}</Link>
               </Button>
             </>
           )}
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <LanguageSwitcher />
+          <button
+            className="p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -141,11 +148,11 @@ const Header = () => {
                   className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Sign In
+                  {t('common.signIn')}
                 </Link>
                 <Button asChild className="mt-2">
                   <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
-                    Get Started
+                    {t('common.getStarted')}
                   </Link>
                 </Button>
               </>
@@ -156,14 +163,14 @@ const Header = () => {
                   className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Dashboard
+                  {t('common.dashboard')}
                 </Link>
                 <Link
                   to="/listings"
                   className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Browse Listings
+                  {t('common.browseListings')}
                 </Link>
                 <hr className="border-border" />
                 <Link
@@ -171,7 +178,7 @@ const Header = () => {
                   className="py-2 text-sm font-medium text-destructive"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Logout
+                  {t('common.logout')}
                 </Link>
               </>
             )}

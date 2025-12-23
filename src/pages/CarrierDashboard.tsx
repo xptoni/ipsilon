@@ -22,8 +22,10 @@ import {
 import Layout from "@/components/layout/Layout";
 import { getActiveListings, mockQuotes, type Listing } from "@/lib/mockData";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const CarrierDashboard = () => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [cargoFilter, setCargoFilter] = useState("all");
 
@@ -60,16 +62,25 @@ const CarrierDashboard = () => {
     }
   };
 
+  const getQuoteStatusLabel = (status: string) => {
+    switch (status) {
+      case "pending": return t('status.pending');
+      case "accepted": return t('status.accepted');
+      case "rejected": return t('status.rejected');
+      default: return status;
+    }
+  };
+
   return (
     <Layout hideFooter>
       <div className="container py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-            Carrier Dashboard
+            {t('carrierDashboard.title')}
           </h1>
           <p className="text-muted-foreground mt-1">
-            Browse available listings and manage your quotes
+            {t('carrierDashboard.description')}
           </p>
         </div>
 
@@ -81,7 +92,7 @@ const CarrierDashboard = () => {
                 {listings.length}
               </div>
               <p className="text-sm text-muted-foreground">
-                Available Listings
+                {t('carrierDashboard.availableListings')}
               </p>
             </CardContent>
           </Card>
@@ -90,7 +101,7 @@ const CarrierDashboard = () => {
               <div className="text-2xl font-bold text-foreground">
                 {myQuotes.length}
               </div>
-              <p className="text-sm text-muted-foreground">My Quotes</p>
+              <p className="text-sm text-muted-foreground">{t('carrierDashboard.myQuotes')}</p>
             </CardContent>
           </Card>
           <Card>
@@ -98,7 +109,7 @@ const CarrierDashboard = () => {
               <div className="text-2xl font-bold text-foreground">
                 {myQuotes.filter((q) => q.status === "pending").length}
               </div>
-              <p className="text-sm text-muted-foreground">Pending</p>
+              <p className="text-sm text-muted-foreground">{t('carrierDashboard.pending')}</p>
             </CardContent>
           </Card>
           <Card>
@@ -106,7 +117,7 @@ const CarrierDashboard = () => {
               <div className="text-2xl font-bold text-foreground">
                 {myQuotes.filter((q) => q.status === "accepted").length}
               </div>
-              <p className="text-sm text-muted-foreground">Accepted</p>
+              <p className="text-sm text-muted-foreground">{t('carrierDashboard.accepted')}</p>
             </CardContent>
           </Card>
         </div>
@@ -115,7 +126,7 @@ const CarrierDashboard = () => {
         {myQuotes.length > 0 && (
           <div className="mb-8">
             <h2 className="font-display text-lg font-semibold text-foreground mb-4">
-              My Recent Quotes
+              {t('carrierDashboard.myRecentQuotes')}
             </h2>
             <div className="grid gap-3">
               {myQuotes.slice(0, 3).map((quote) => (
@@ -127,8 +138,7 @@ const CarrierDashboard = () => {
                           variant="outline"
                           className={getQuoteStatusColor(quote.status)}
                         >
-                          {quote.status.charAt(0).toUpperCase() +
-                            quote.status.slice(1)}
+                          {getQuoteStatusLabel(quote.status)}
                         </Badge>
                         <div>
                           <p className="font-medium text-foreground">
@@ -140,7 +150,7 @@ const CarrierDashboard = () => {
                         </div>
                       </div>
                       <Button variant="ghost" size="sm" asChild>
-                        <Link to={`/listings/${quote.listingId}`}>View</Link>
+                        <Link to={`/listings/${quote.listingId}`}>{t('common.view')}</Link>
                       </Button>
                     </div>
                   </CardContent>
@@ -154,13 +164,13 @@ const CarrierDashboard = () => {
         <div>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
             <h2 className="font-display text-lg font-semibold text-foreground">
-              Available Listings
+              {t('carrierDashboard.availableListings')}
             </h2>
             <div className="flex gap-3 w-full sm:w-auto">
               <div className="relative flex-1 sm:w-64">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search by location..."
+                  placeholder={t('carrierDashboard.searchByLocation')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-9"
@@ -168,14 +178,14 @@ const CarrierDashboard = () => {
               </div>
               <Select value={cargoFilter} onValueChange={setCargoFilter}>
                 <SelectTrigger className="w-32">
-                  <SelectValue placeholder="Cargo type" />
+                  <SelectValue placeholder={t('carrierDashboard.cargoType')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All types</SelectItem>
-                  <SelectItem value="car">Car</SelectItem>
-                  <SelectItem value="van">Van</SelectItem>
-                  <SelectItem value="truck">Truck</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="all">{t('carrierDashboard.allTypes')}</SelectItem>
+                  <SelectItem value="car">{t('carrierDashboard.car')}</SelectItem>
+                  <SelectItem value="van">{t('carrierDashboard.van')}</SelectItem>
+                  <SelectItem value="truck">{t('carrierDashboard.truck')}</SelectItem>
+                  <SelectItem value="other">{t('carrierDashboard.other')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -183,7 +193,7 @@ const CarrierDashboard = () => {
 
           <div className="grid gap-4">
             {filteredListings.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} formatDate={formatDate} />
+              <ListingCard key={listing.id} listing={listing} formatDate={formatDate} t={t} />
             ))}
           </div>
 
@@ -192,10 +202,10 @@ const CarrierDashboard = () => {
               <CardContent>
                 <Truck className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-foreground mb-2">
-                  No listings found
+                  {t('carrierDashboard.noListingsFound')}
                 </h3>
                 <p className="text-muted-foreground">
-                  Try adjusting your filters or check back later
+                  {t('carrierDashboard.tryAdjustingFilters')}
                 </p>
               </CardContent>
             </Card>
@@ -209,9 +219,11 @@ const CarrierDashboard = () => {
 const ListingCard = ({
   listing,
   formatDate,
+  t,
 }: {
   listing: Listing;
   formatDate: (date: string) => string;
+  t: any;
 }) => {
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
@@ -221,11 +233,10 @@ const ListingCard = ({
           <div className="flex-1 space-y-3">
             <div className="flex items-center gap-3 flex-wrap">
               <Badge variant="secondary">
-                {listing.cargoType.charAt(0).toUpperCase() +
-                  listing.cargoType.slice(1)}
+                {t(`cargo.${listing.cargoType}`)}
               </Badge>
               <span className="text-sm text-muted-foreground">
-                Posted by {listing.shipperName}
+                {t('carrierDashboard.postedBy')} {listing.shipperName}
               </span>
             </div>
 
@@ -247,7 +258,7 @@ const ListingCard = ({
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                {listing.quotesCount}/5 quotes
+                {listing.quotesCount}/5 {t('shipperDashboard.quotes')}
               </div>
             </div>
 
@@ -262,12 +273,12 @@ const ListingCard = ({
           <div className="flex items-center gap-3">
             {listing.quotesCount >= 5 ? (
               <Badge variant="outline" className="text-muted-foreground">
-                Max quotes reached
+                {t('carrierDashboard.maxQuotesReached')}
               </Badge>
             ) : (
               <Button asChild>
                 <Link to={`/listings/${listing.id}`}>
-                  Submit Quote
+                  {t('carrierDashboard.submitQuote')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

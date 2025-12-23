@@ -13,8 +13,10 @@ import {
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { getListingsForShipper, getQuotesForListing, type Listing, type Quote } from "@/lib/mockData";
+import { useTranslation } from "react-i18next";
 
 const ShipperDashboard = () => {
+  const { t } = useTranslation();
   const listings = getListingsForShipper('shipper-1');
   
   const getStatusColor = (status: Listing['status']) => {
@@ -24,6 +26,16 @@ const ShipperDashboard = () => {
       case 'in_transit': return 'bg-warning/10 text-warning border-warning/20';
       case 'completed': return 'bg-muted text-muted-foreground border-muted';
       default: return 'bg-muted text-muted-foreground';
+    }
+  };
+
+  const getStatusLabel = (status: Listing['status']) => {
+    switch (status) {
+      case 'active': return t('status.active');
+      case 'booked': return t('status.booked');
+      case 'in_transit': return t('status.inTransit');
+      case 'completed': return t('status.completed');
+      default: return status;
     }
   };
 
@@ -42,16 +54,16 @@ const ShipperDashboard = () => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
             <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-              My Shipments
+              {t('shipperDashboard.myShipments')}
             </h1>
             <p className="text-muted-foreground mt-1">
-              Manage your transport listings and quotes
+              {t('shipperDashboard.manageListings')}
             </p>
           </div>
           <Button asChild>
             <Link to="/create-listing">
               <Plus className="h-4 w-4 mr-2" />
-              Create New Listing
+              {t('shipperDashboard.createNewListing')}
             </Link>
           </Button>
         </div>
@@ -63,7 +75,7 @@ const ShipperDashboard = () => {
               <div className="text-2xl font-bold text-foreground">
                 {listings.filter(l => l.status === 'active').length}
               </div>
-              <p className="text-sm text-muted-foreground">Active Listings</p>
+              <p className="text-sm text-muted-foreground">{t('shipperDashboard.activeListings')}</p>
             </CardContent>
           </Card>
           <Card>
@@ -71,7 +83,7 @@ const ShipperDashboard = () => {
               <div className="text-2xl font-bold text-foreground">
                 {listings.reduce((acc, l) => acc + l.quotesCount, 0)}
               </div>
-              <p className="text-sm text-muted-foreground">Total Quotes</p>
+              <p className="text-sm text-muted-foreground">{t('shipperDashboard.totalQuotes')}</p>
             </CardContent>
           </Card>
           <Card>
@@ -79,7 +91,7 @@ const ShipperDashboard = () => {
               <div className="text-2xl font-bold text-foreground">
                 {listings.filter(l => l.status === 'booked' || l.status === 'in_transit').length}
               </div>
-              <p className="text-sm text-muted-foreground">In Progress</p>
+              <p className="text-sm text-muted-foreground">{t('shipperDashboard.inProgress')}</p>
             </CardContent>
           </Card>
           <Card>
@@ -87,7 +99,7 @@ const ShipperDashboard = () => {
               <div className="text-2xl font-bold text-foreground">
                 {listings.filter(l => l.status === 'completed').length}
               </div>
-              <p className="text-sm text-muted-foreground">Completed</p>
+              <p className="text-sm text-muted-foreground">{t('shipperDashboard.completed')}</p>
             </CardContent>
           </Card>
         </div>
@@ -105,10 +117,10 @@ const ShipperDashboard = () => {
                     <div className="flex-1 space-y-3">
                       <div className="flex items-center gap-3 flex-wrap">
                         <Badge variant="outline" className={getStatusColor(listing.status)}>
-                          {listing.status.charAt(0).toUpperCase() + listing.status.slice(1).replace('_', ' ')}
+                          {getStatusLabel(listing.status)}
                         </Badge>
                         <Badge variant="secondary">
-                          {listing.cargoType.charAt(0).toUpperCase() + listing.cargoType.slice(1)}
+                          {t(`cargo.${listing.cargoType}`)}
                         </Badge>
                       </div>
 
@@ -136,17 +148,17 @@ const ShipperDashboard = () => {
                       <div className="text-right">
                         <div className="flex items-center gap-1 text-sm text-muted-foreground">
                           <MessageSquare className="h-4 w-4" />
-                          {quotes.length} quote{quotes.length !== 1 ? 's' : ''}
+                          {quotes.length} {quotes.length !== 1 ? t('shipperDashboard.quotes') : t('shipperDashboard.quote')}
                         </div>
                         {quotes.length > 0 && (
                           <div className="text-sm">
-                            From <span className="font-semibold text-primary">€{Math.min(...quotes.map(q => q.price))}</span>
+                            {t('shipperDashboard.from')} <span className="font-semibold text-primary">€{Math.min(...quotes.map(q => q.price))}</span>
                           </div>
                         )}
                       </div>
                       <Button variant="outline" asChild>
                         <Link to={`/listings/${listing.id}`}>
-                          View Details
+                          {t('shipperDashboard.viewDetails')}
                         </Link>
                       </Button>
                     </div>
@@ -156,18 +168,18 @@ const ShipperDashboard = () => {
                   {listing.status === 'active' && quotes.length > 0 && (
                     <div className="mt-4 pt-4 border-t border-border">
                       <p className="text-sm font-medium text-muted-foreground mb-3">
-                        Recent Quotes
+                        {t('shipperDashboard.recentQuotes')}
                       </p>
                       <div className="grid gap-2">
                         {quotes.slice(0, 3).map((quote) => (
-                          <QuotePreviewCard key={quote.id} quote={quote} listingId={listing.id} />
+                          <QuotePreviewCard key={quote.id} quote={quote} listingId={listing.id} t={t} />
                         ))}
                         {quotes.length > 3 && (
                           <Link 
                             to={`/listings/${listing.id}`}
                             className="text-sm text-primary hover:underline"
                           >
-                            View all {quotes.length} quotes →
+                            {t('shipperDashboard.viewAllQuotes').replace('{count}', String(quotes.length))}
                           </Link>
                         )}
                       </div>
@@ -184,15 +196,15 @@ const ShipperDashboard = () => {
             <CardContent>
               <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-medium text-foreground mb-2">
-                No listings yet
+                {t('shipperDashboard.noListingsYet')}
               </h3>
               <p className="text-muted-foreground mb-4">
-                Create your first transport listing to start receiving quotes
+                {t('shipperDashboard.createFirstListing')}
               </p>
               <Button asChild>
                 <Link to="/create-listing">
                   <Plus className="h-4 w-4 mr-2" />
-                  Create Listing
+                  {t('shipperDashboard.createListing')}
                 </Link>
               </Button>
             </CardContent>
@@ -203,7 +215,7 @@ const ShipperDashboard = () => {
   );
 };
 
-const QuotePreviewCard = ({ quote, listingId }: { quote: Quote; listingId: string }) => {
+const QuotePreviewCard = ({ quote, listingId, t }: { quote: Quote; listingId: string; t: any }) => {
   return (
     <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
       <div className="flex items-center gap-3">
@@ -227,7 +239,7 @@ const QuotePreviewCard = ({ quote, listingId }: { quote: Quote; listingId: strin
         <div className="font-semibold text-foreground">€{quote.price}</div>
         <Button size="sm" variant="ghost" className="h-7 text-xs" asChild>
           <Link to={`/listings/${listingId}?quote=${quote.id}`}>
-            View
+            {t('common.view')}
           </Link>
         </Button>
       </div>

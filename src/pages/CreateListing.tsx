@@ -15,8 +15,10 @@ import {
 import { MapPin, Package, Calendar, FileText, ArrowLeft } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const CreateListing = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +37,7 @@ const CreateListing = () => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast.success("Listing created successfully! You'll start receiving quotes soon.");
+    toast.success(t('listingDetail.quoteSubmitted'));
     navigate("/dashboard");
     setIsLoading(false);
   };
@@ -49,14 +51,14 @@ const CreateListing = () => {
           onClick={() => navigate("/dashboard")}
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Dashboard
+          {t('createListing.backToDashboard')}
         </Button>
 
         <Card>
           <CardHeader>
-            <CardTitle className="font-display text-2xl">Create New Listing</CardTitle>
+            <CardTitle className="font-display text-2xl">{t('createListing.title')}</CardTitle>
             <CardDescription>
-              Describe your transport needs and receive up to 5 competitive quotes from verified carriers
+              {t('createListing.description')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -65,24 +67,24 @@ const CreateListing = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                   <MapPin className="h-4 w-4" />
-                  Route
+                  {t('createListing.route')}
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="origin">Origin city</Label>
+                    <Label htmlFor="origin">{t('createListing.originCity')}</Label>
                     <Input
                       id="origin"
-                      placeholder="e.g., Belgrade, Serbia"
+                      placeholder={t('createListing.originPlaceholder')}
                       value={origin}
                       onChange={(e) => setOrigin(e.target.value)}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="destination">Destination city</Label>
+                    <Label htmlFor="destination">{t('createListing.destinationCity')}</Label>
                     <Input
                       id="destination"
-                      placeholder="e.g., Munich, Germany"
+                      placeholder={t('createListing.destinationPlaceholder')}
                       value={destination}
                       onChange={(e) => setDestination(e.target.value)}
                       required
@@ -95,39 +97,39 @@ const CreateListing = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                   <Package className="h-4 w-4" />
-                  Cargo Details
+                  {t('createListing.cargoDetails')}
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="cargoType">Cargo type</Label>
+                  <Label htmlFor="cargoType">{t('carrierDashboard.cargoType')}</Label>
                   <Select value={cargoType} onValueChange={setCargoType} required>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select cargo type" />
+                      <SelectValue placeholder={t('createListing.cargoTypePlaceholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="car">Car</SelectItem>
-                      <SelectItem value="van">Van</SelectItem>
-                      <SelectItem value="truck">Truck</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
+                      <SelectItem value="car">{t('cargo.car')}</SelectItem>
+                      <SelectItem value="van">{t('cargo.van')}</SelectItem>
+                      <SelectItem value="truck">{t('cargo.truck')}</SelectItem>
+                      <SelectItem value="other">{t('cargo.other')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="dimensions">Dimensions</Label>
+                    <Label htmlFor="dimensions">{t('createListing.dimensions')}</Label>
                     <Input
                       id="dimensions"
-                      placeholder="e.g., 4.5m x 1.8m x 1.4m"
+                      placeholder={t('createListing.dimensionsPlaceholder')}
                       value={dimensions}
                       onChange={(e) => setDimensions(e.target.value)}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="weight">Weight</Label>
+                    <Label htmlFor="weight">{t('createListing.weight')}</Label>
                     <Input
                       id="weight"
-                      placeholder="e.g., 1,500 kg"
+                      placeholder={t('createListing.weightPlaceholder')}
                       value={weight}
                       onChange={(e) => setWeight(e.target.value)}
                       required
@@ -140,10 +142,10 @@ const CreateListing = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                   <Calendar className="h-4 w-4" />
-                  Timing
+                  {t('createListing.timing')}
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="pickupDate">Pickup date</Label>
+                  <Label htmlFor="pickupDate">{t('createListing.pickupDate')}</Label>
                   <Input
                     id="pickupDate"
                     type="date"
@@ -159,13 +161,13 @@ const CreateListing = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                   <FileText className="h-4 w-4" />
-                  Additional Information
+                  {t('createListing.additionalInfo')}
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="notes">Notes for carriers</Label>
+                  <Label htmlFor="notes">{t('createListing.notesForCarriers')}</Label>
                   <Textarea
                     id="notes"
-                    placeholder="Add any special requirements, vehicle condition notes, or other details carriers should know..."
+                    placeholder={t('createListing.notesPlaceholder')}
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     rows={4}
@@ -176,10 +178,10 @@ const CreateListing = () => {
               {/* Submit */}
               <div className="pt-4">
                 <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
-                  {isLoading ? "Creating listing..." : "Post Listing"}
+                  {isLoading ? t('createListing.creatingListing') : t('createListing.postListing')}
                 </Button>
                 <p className="text-xs text-center text-muted-foreground mt-3">
-                  Your listing will be visible to verified carriers immediately
+                  {t('createListing.listingVisibility')}
                 </p>
               </div>
             </form>
