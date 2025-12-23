@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { Truck } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="container py-12">
@@ -17,27 +20,27 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              The fastest way to transport vehicles and cargo across the Balkans.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* For Shippers */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">For Shippers</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.forShippers')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/signup" className="text-sm text-muted-foreground hover:text-primary">
-                  Post a Shipment
+                  {t('footer.postShipment')}
                 </Link>
               </li>
               <li>
                 <Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-primary">
-                  How It Works
+                  {t('footer.howItWorks')}
                 </Link>
               </li>
               <li>
                 <Link to="/pricing" className="text-sm text-muted-foreground hover:text-primary">
-                  Pricing
+                  {t('footer.pricing')}
                 </Link>
               </li>
             </ul>
@@ -45,21 +48,21 @@ const Footer = () => {
 
           {/* For Carriers */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">For Carriers</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.forCarriers')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/signup?type=carrier" className="text-sm text-muted-foreground hover:text-primary">
-                  Become a Carrier
+                  {t('footer.becomeCarrier')}
                 </Link>
               </li>
               <li>
                 <Link to="/listings" className="text-sm text-muted-foreground hover:text-primary">
-                  Browse Listings
+                  {t('footer.browseListings')}
                 </Link>
               </li>
               <li>
                 <Link to="/carrier-faq" className="text-sm text-muted-foreground hover:text-primary">
-                  Carrier FAQ
+                  {t('footer.carrierFaq')}
                 </Link>
               </li>
             </ul>
@@ -67,26 +70,26 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Company</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.company')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/about" className="text-sm text-muted-foreground hover:text-primary">
-                  About Us
+                  {t('footer.aboutUs')}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary">
-                  Contact
+                  {t('footer.contact')}
                 </Link>
               </li>
               <li>
                 <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary">
-                  Privacy Policy
+                  {t('footer.privacyPolicy')}
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary">
-                  Terms of Service
+                  {t('footer.termsOfService')}
                 </Link>
               </li>
             </ul>
@@ -95,11 +98,11 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Ipsilon. All rights reserved.
+            © {new Date().getFullYear()} Ipsilon. {t('footer.allRightsReserved')}
           </p>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">
-              Serving: Serbia • Croatia • Bosnia • North Macedonia • Slovenia • Montenegro
+              {t('footer.serving')}
             </span>
           </div>
         </div>

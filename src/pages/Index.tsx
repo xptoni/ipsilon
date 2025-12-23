@@ -11,41 +11,44 @@ import {
   Star
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
+
   const steps = [
     {
       icon: FileText,
-      title: "Post Your Transport",
-      description: "Describe what you need to ship, set your pickup date, and post your listing in minutes.",
+      title: t('home.step1Title'),
+      description: t('home.step1Description'),
     },
     {
       icon: MessageSquare,
-      title: "Receive & Compare Quotes",
-      description: "Get up to 5 competitive quotes from verified carriers. Chat and call to discuss details.",
+      title: t('home.step2Title'),
+      description: t('home.step2Description'),
     },
     {
       icon: CheckCircle,
-      title: "Book & Track",
-      description: "Choose your carrier, pay a small deposit, and track your shipment until delivery.",
+      title: t('home.step3Title'),
+      description: t('home.step3Description'),
     },
   ];
 
   const features = [
     {
       icon: Shield,
-      title: "Verified Carriers",
-      description: "All carriers are verified with valid licenses and insurance.",
+      title: t('home.feature1Title'),
+      description: t('home.feature1Description'),
     },
     {
       icon: Clock,
-      title: "Fast Quotes",
-      description: "Receive quotes within hours, not days.",
+      title: t('home.feature2Title'),
+      description: t('home.feature2Description'),
     },
     {
       icon: Star,
-      title: "Rated & Reviewed",
-      description: "Choose based on real reviews from other shippers.",
+      title: t('home.feature3Title'),
+      description: t('home.feature3Description'),
     },
   ];
 
@@ -67,29 +70,28 @@ const Index = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary animate-fade-in">
               <Truck className="h-4 w-4" />
-              Trusted by 5,000+ shippers across the Balkans
+              {t('home.heroTrust')}
             </div>
             
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              The fastest way to transport vehicles and cargo in the{" "}
-              <span className="text-primary">Balkans</span>
+              {t('home.heroTitle')}{" "}
+              <span className="text-primary">{t('home.heroBalkans')}</span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Connect with verified carriers, compare quotes, and ship your vehicles 
-              across borders with confidence. Simple, secure, and affordable.
+              {t('home.heroDescription')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button size="lg" className="text-base px-8" asChild>
                 <Link to="/signup">
-                  Ship Now
+                  {t('home.shipNow')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="text-base px-8" asChild>
                 <Link to="/signup?type=carrier">
-                  Become a Carrier
+                  {t('home.becomeCarrier')}
                 </Link>
               </Button>
             </div>
@@ -102,10 +104,10 @@ const Index = () => {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              How It Works
+              {t('home.howItWorksTitle')}
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Get your vehicle or cargo transported in three simple steps
+              {t('home.howItWorksDescription')}
             </p>
           </div>
 
@@ -140,10 +142,10 @@ const Index = () => {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Popular Routes
+              {t('home.popularRoutesTitle')}
             </h2>
             <p className="text-muted-foreground text-lg">
-              We cover all major routes across the Balkans and Central Europe
+              {t('home.popularRoutesDescription')}
             </p>
           </div>
 
@@ -165,7 +167,7 @@ const Index = () => {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Why Choose Ipsilon?
+              {t('home.whyChooseTitle')}
             </h2>
           </div>
 
@@ -192,15 +194,15 @@ const Index = () => {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-              Ready to ship?
+              {t('home.ctaTitle')}
             </h2>
             <p className="text-primary-foreground/80 text-lg mb-8">
-              Join thousands of satisfied shippers and carriers across the Balkans.
+              {t('home.ctaDescription')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" className="text-base px-8" asChild>
                 <Link to="/signup">
-                  Post Your First Listing
+                  {t('home.postFirstListing')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -211,7 +213,7 @@ const Index = () => {
                 asChild
               >
                 <Link to="/signup?type=carrier">
-                  Register as Carrier
+                  {t('home.registerAsCarrier')}
                 </Link>
               </Button>
             </div>
