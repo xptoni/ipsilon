@@ -27,13 +27,34 @@ export const en = {
 
   // Homepage
   home: {
-    heroTrust: "Trusted by 5,000+ shippers across the Balkans",
+    heroTrust: "Trusted by 50,000+ shippers across Europe",
     heroTitle: "The fastest way to transport vehicles and cargo in the",
     heroBalkans: "Balkans",
+    heroTitleNew: "Get Your Item Delivered Across Europe - Receive Multiple Quotes Fast",
     heroDescription:
       "Connect with verified carriers, compare quotes, and ship your vehicles across borders with confidence. Simple, secure, and affordable.",
+    heroDescriptionNew:
+      "Post what you need to move, receive competitive quotes from verified carriers, and choose the best option for your delivery.",
     shipNow: "Ship Now",
     becomeCarrier: "Become a Carrier",
+
+    // Quick Quote Form
+    quickCategory: "What are you moving?",
+    selectCategory: "Select category",
+    quickPickup: "Pickup",
+    pickupPlaceholder: "City or postcode",
+    quickDelivery: "Delivery",
+    deliveryPlaceholder: "City or postcode",
+    getFreeQuotes: "Get Free Quotes",
+
+    // Stats
+    statsDeliveries: "Successful deliveries",
+    statsCarriers: "Verified carriers",
+    statsCountries: "Countries covered",
+    statsRating: "Average rating",
+
+    // Trusted By
+    trustedByTitle: "Trusted by thousands of businesses across Europe",
 
     // Steps
     howItWorksTitle: "How It Works",
@@ -67,9 +88,130 @@ export const en = {
     // CTA
     ctaTitle: "Ready to ship?",
     ctaDescription:
-      "Join thousands of satisfied shippers and carriers across the Balkans.",
+      "Join thousands of satisfied shippers and carriers across Europe.",
     postFirstListing: "Post Your First Listing",
     registerAsCarrier: "Register as Carrier",
+  },
+
+  // Wizard
+  wizard: {
+    backToHome: "Back to Home",
+    previous: "Previous",
+    continue: "Continue",
+    skip: "Skip",
+    submitting: "Submitting...",
+    submitButton: "Submit & Start Getting Quotes",
+    confirm: "Confirm",
+    optional: "optional",
+    listingCreated: "Listing created successfully!",
+
+    // Steps
+    steps: {
+      category: "Category",
+      description: "Description",
+      photos: "Photos",
+      pickup: "Pickup",
+      delivery: "Delivery",
+      timeframe: "Timeframe",
+      contact: "Contact",
+    },
+
+    // Categories
+    categories: {
+      furniture: "Furniture",
+      boxes: "Boxes",
+      cars: "Cars",
+      motorcycles: "Motorcycles",
+      vans: "Vans",
+      boats: "Boats",
+      vehicleParts: "Vehicle Parts",
+      pets: "Pets",
+      other: "Other",
+    },
+
+    // Step 1
+    categoryTitle: "What are you looking to move?",
+    categorySubtitle: "Select the category that best describes your item",
+
+    // Step 2
+    descriptionTitle: "Tell us about your item",
+    descriptionSubtitle: "Add details to help carriers provide accurate quotes",
+    make: "Make",
+    makePlaceholder: "e.g., BMW, Toyota",
+    model: "Model",
+    modelPlaceholder: "e.g., 3 Series, Camry",
+    year: "Year",
+    yearPlaceholder: "e.g., 2020",
+    petType: "Pet Type",
+    petTypePlaceholder: "Select pet type",
+    petDog: "Dog",
+    petCat: "Cat",
+    petOther: "Other",
+    petWeight: "Weight (kg)",
+    petWeightPlaceholder: "e.g., 25",
+    description: "Description",
+    descriptionPlaceholder: "Add any details about your item that carriers should know...",
+    hasPurchaseLink: "Do you have a purchase link?",
+    purchaseLinkPlaceholder: "https://...",
+
+    // Step 3
+    photosTitle: "Upload photos of your item",
+    photosSubtitle: "Optional but helps carriers provide more accurate quotes",
+    dropPhotos: "Drag and drop your photos here",
+    orClickToUpload: "or click to upload",
+    selectFiles: "Select Files",
+    maxPhotos: "{{current}} of {{max}} photos uploaded",
+
+    // Step 4 & 5
+    pickupTitle: "Where does the item need collecting from?",
+    pickupSubtitle: "Enter the pickup location details",
+    deliveryTitle: "Where should the item be delivered?",
+    deliverySubtitle: "Enter the delivery location details",
+    country: "Country",
+    selectCountry: "Select country",
+    cityPostcode: "Town / Postcode",
+    cityPostcodePlaceholder: "e.g., London, SW1A 1AA",
+    locationNote: "We'll match you with carriers covering this route",
+
+    // Step 6
+    timeframeTitle: "When would you like the job carried out?",
+    timeframeSubtitle: "This helps carriers check their availability",
+    selectTimeframe: "Select timeframe",
+    timeframeWithinWeek: "Within a Week",
+    timeframeWithin2Weeks: "Within 2 Weeks",
+    timeframeSpecificDate: "On a Specific Date",
+    timeframeBetweenDates: "Between Specific Dates",
+    timeframeFlexible: "Flexible",
+    timeframeNoDate: "Don't Have a Date Yet",
+    selectDate: "Select date",
+    startDate: "Start date",
+    endDate: "End date",
+
+    // Step 7
+    contactTitle: "What's your contact information?",
+    contactSubtitle: "We'll use this to send you quotes and updates",
+    emailAddress: "Email Address",
+    emailPlaceholder: "you@example.com",
+    phoneNumber: "Phone Number",
+    phonePlaceholder: "Your phone number",
+    contactPrivacy: "Your contact details are only shared with carriers you choose to work with",
+    agreeToTerms: "I agree to the",
+    termsOfService: "Terms of Service",
+    and: "and",
+    privacyPolicy: "Privacy Policy",
+  },
+
+  // Success Page
+  success: {
+    title: "Your Listing is Live!",
+    subtitle: "Carriers are now reviewing your request and will send quotes shortly.",
+    listingId: "Listing ID",
+    expectQuotes: "Expect quotes soon",
+    expectQuotesDesc: "Most listings receive their first quote within a few hours",
+    notifications: "Stay notified",
+    notificationsDesc: "We'll email and text you when new quotes arrive",
+    viewDashboard: "View Dashboard",
+    createAnother: "Create Another Listing",
   },
 
   // Login
@@ -90,7 +232,7 @@ export const en = {
   // Signup
   signup: {
     createAccount: "Create your account",
-    joinMarketplace: "Join the Balkans' largest transport marketplace",
+    joinMarketplace: "Join Europe's largest transport marketplace",
     iWantTo: "I want to",
     shipCargo: "Ship cargo",
     shipCargoDescription: "Post listings & receive quotes",
@@ -100,7 +242,7 @@ export const en = {
     lastName: "Last name",
     email: "Email",
     phone: "Phone number",
-    phonePlaceholder: "+381 64 123 4567",
+    phonePlaceholder: "+44 20 1234 5678",
     password: "Password",
     passwordHint: "At least 8 characters",
     vehicleInfo: "Vehicle Information",
@@ -112,9 +254,9 @@ export const en = {
     van: "Van",
     truck: "Truck",
     vehicleRegistration: "Vehicle registration",
-    vehicleRegPlaceholder: "BG 123-AB",
+    vehicleRegPlaceholder: "AB12 CDE",
     usualRoutes: "Usual routes",
-    usualRoutesPlaceholder: "e.g., Belgrade - Munich, Zagreb - Stuttgart",
+    usualRoutesPlaceholder: "e.g., London - Paris, Manchester - Berlin",
     routesSeparator: "Separate multiple routes with commas",
     creatingAccount: "Creating account...",
     termsAgreement: "By signing up, you agree to our",
@@ -125,7 +267,7 @@ export const en = {
     shipWithConfidence: "Ship with confidence",
     growBusiness: "Grow your transport business",
     shipperDescription:
-      "Post your transport needs and receive competitive quotes from verified carriers across the Balkans.",
+      "Post your transport needs and receive competitive quotes from verified carriers across Europe.",
     carrierDescription:
       "Access thousands of transport listings and grow your business with our trusted marketplace.",
   },
@@ -174,7 +316,7 @@ export const en = {
     tryAdjustingFilters: "Try adjusting your filters or check back later",
   },
 
-  // Create Listing
+  // Create Listing (legacy - keeping for compatibility)
   createListing: {
     backToDashboard: "Back to Dashboard",
     title: "Create New Listing",
@@ -182,9 +324,9 @@ export const en = {
       "Describe your transport needs and receive up to 5 competitive quotes from verified carriers",
     route: "Route",
     originCity: "Origin city",
-    originPlaceholder: "e.g., Belgrade, Serbia",
+    originPlaceholder: "e.g., London, UK",
     destinationCity: "Destination city",
-    destinationPlaceholder: "e.g., Munich, Germany",
+    destinationPlaceholder: "e.g., Paris, France",
     cargoDetails: "Cargo Details",
     cargoTypePlaceholder: "Select cargo type",
     dimensions: "Dimensions",
@@ -247,7 +389,7 @@ export const en = {
   // Footer
   footer: {
     tagline:
-      "The fastest way to transport vehicles and cargo across the Balkans.",
+      "The fastest way to transport vehicles and cargo across Europe.",
     forShippers: "For Shippers",
     postShipment: "Post a Shipment",
     howItWorks: "How It Works",
@@ -262,7 +404,7 @@ export const en = {
     privacyPolicy: "Privacy Policy",
     termsOfService: "Terms of Service",
     allRightsReserved: "All rights reserved.",
-    serving: "Serving: Serbia • Croatia • Bosnia • North Macedonia • Slovenia • Montenegro",
+    serving: "Serving: UK • Germany • France • Italy • Spain • Netherlands • Poland • and 25+ more countries",
   },
 
   // Status labels
