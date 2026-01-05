@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { 
   Truck, 
   FileText, 
@@ -8,13 +10,32 @@ import {
   ArrowRight,
   Shield,
   Clock,
-  Star
+  Star,
+  MapPin,
+  Users,
+  Package
 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Layout from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [quickCategory, setQuickCategory] = useState("");
+  const [quickPickup, setQuickPickup] = useState("");
+  const [quickDelivery, setQuickDelivery] = useState("");
+
+  const handleQuickQuote = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate('/create-listing');
+  };
 
   const steps = [
     {
@@ -52,13 +73,22 @@ const Index = () => {
     },
   ];
 
-  const routes = [
-    "Belgrade → Munich",
-    "Zagreb → Stuttgart",
-    "Skopje → Vienna",
-    "Sarajevo → Frankfurt",
-    "Ljubljana → Milan",
-    "Podgorica → Zurich",
+  const stats = [
+    { value: "50,000+", label: t('home.statsDeliveries') },
+    { value: "10,000+", label: t('home.statsCarriers') },
+    { value: "30+", label: t('home.statsCountries') },
+    { value: "4.8/5", label: t('home.statsRating') },
+  ];
+
+  const categories = [
+    { value: 'furniture', label: t('wizard.categories.furniture') },
+    { value: 'boxes', label: t('wizard.categories.boxes') },
+    { value: 'cars', label: t('wizard.categories.cars') },
+    { value: 'motorcycles', label: t('wizard.categories.motorcycles') },
+    { value: 'vans', label: t('wizard.categories.vans') },
+    { value: 'boats', label: t('wizard.categories.boats') },
+    { value: 'pets', label: t('wizard.categories.pets') },
+    { value: 'other', label: t('wizard.categories.other') },
   ];
 
   return (
@@ -66,35 +96,88 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-secondary via-background to-background">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.08),transparent_50%)]" />
-        <div className="container relative py-20 md:py-32">
-          <div className="max-w-3xl mx-auto text-center">
+        <div className="container relative py-16 md:py-24">
+          <div className="max-w-4xl mx-auto text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary animate-fade-in">
               <Truck className="h-4 w-4" />
               {t('home.heroTrust')}
             </div>
             
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              {t('home.heroTitle')}{" "}
-              <span className="text-primary">{t('home.heroBalkans')}</span>
+              {t('home.heroTitleNew')}
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              {t('home.heroDescription')}
+              {t('home.heroDescriptionNew')}
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <Button size="lg" className="text-base px-8" asChild>
-                <Link to="/signup">
-                  {t('home.shipNow')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="text-base px-8" asChild>
-                <Link to="/signup?type=carrier">
-                  {t('home.becomeCarrier')}
-                </Link>
-              </Button>
-            </div>
+          </div>
+
+          {/* Quick Quote Form */}
+          <div className="max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <form onSubmit={handleQuickQuote} className="bg-card border border-border rounded-2xl p-6 shadow-lg">
+              <div className="grid sm:grid-cols-4 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <Package className="h-4 w-4" />
+                    {t('home.quickCategory')}
+                  </label>
+                  <Select value={quickCategory} onValueChange={setQuickCategory}>
+                    <SelectTrigger>
+                      <SelectValue placeholder={t('home.selectCategory')} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map((cat) => (
+                        <SelectItem key={cat.value} value={cat.value}>
+                          {cat.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <MapPin className="h-4 w-4" />
+                    {t('home.quickPickup')}
+                  </label>
+                  <Input
+                    placeholder={t('home.pickupPlaceholder')}
+                    value={quickPickup}
+                    onChange={(e) => setQuickPickup(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <MapPin className="h-4 w-4" />
+                    {t('home.quickDelivery')}
+                  </label>
+                  <Input
+                    placeholder={t('home.deliveryPlaceholder')}
+                    value={quickDelivery}
+                    onChange={(e) => setQuickDelivery(e.target.value)}
+                  />
+                </div>
+                <div className="flex items-end">
+                  <Button type="submit" className="w-full" size="lg">
+                    {t('home.getFreeQuotes')}
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Stats */}
+      <section className="py-12 bg-primary text-primary-foreground">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-3xl md:text-4xl font-bold mb-1">{stat.value}</div>
+                <div className="text-primary-foreground/80 text-sm">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -137,33 +220,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Popular Routes */}
-      <section className="py-20 bg-secondary/50">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t('home.popularRoutesTitle')}
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              {t('home.popularRoutesDescription')}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {routes.map((route, index) => (
-              <div
-                key={index}
-                className="px-5 py-3 rounded-full bg-card border border-border text-foreground font-medium hover:border-primary hover:bg-primary/5 transition-colors cursor-pointer"
-              >
-                {route}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Features */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-secondary/50">
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -189,6 +247,26 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Trusted By */}
+      <section className="py-16 bg-background">
+        <div className="container">
+          <div className="text-center mb-8">
+            <p className="text-muted-foreground font-medium flex items-center justify-center gap-2">
+              <Users className="h-5 w-5" />
+              {t('home.trustedByTitle')}
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 opacity-50">
+            {/* Placeholder for partner logos */}
+            <div className="h-8 w-32 bg-muted rounded" />
+            <div className="h-8 w-28 bg-muted rounded" />
+            <div className="h-8 w-36 bg-muted rounded" />
+            <div className="h-8 w-24 bg-muted rounded" />
+            <div className="h-8 w-32 bg-muted rounded" />
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-primary">
         <div className="container">
@@ -201,7 +279,7 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" className="text-base px-8" asChild>
-                <Link to="/signup">
+                <Link to="/create-listing">
                   {t('home.postFirstListing')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

@@ -27,15 +27,32 @@ export const hr = {
 
   // Homepage
   home: {
-    heroTrust: "Više od 5.000+ pošiljatelja nam vjeruje na Balkanu",
+    heroTrust: "Više od 50.000+ pošiljatelja nam vjeruje diljem Europe",
     heroTitle: "Najbrži način za transport vozila i tereta na",
     heroBalkans: "Balkanu",
+    heroTitleNew: "Dostavite svoju pošiljku diljem Europe - Primite više ponuda brzo",
     heroDescription:
-      "Povežite se s verificiranim prijevoznicima, usporedite ponude i transportirajte svoja vozila preko granica s povjerenjem. Jednostavno, sigurno i povoljno.",
+      "Povežite se s verificiranim prijevoznicima, usporedite ponude i transportirajte svoja vozila preko granica s povjerenjem.",
+    heroDescriptionNew:
+      "Objavite što trebate prevesti, primite konkurentne ponude od verificiranih prijevoznika i odaberite najbolju opciju.",
     shipNow: "Pošalji odmah",
     becomeCarrier: "Postani prijevoznik",
 
-    // Steps
+    quickCategory: "Što prevozite?",
+    selectCategory: "Odaberite kategoriju",
+    quickPickup: "Preuzimanje",
+    pickupPlaceholder: "Grad ili poštanski broj",
+    quickDelivery: "Dostava",
+    deliveryPlaceholder: "Grad ili poštanski broj",
+    getFreeQuotes: "Besplatne ponude",
+
+    statsDeliveries: "Uspješnih dostava",
+    statsCarriers: "Verificiranih prijevoznika",
+    statsCountries: "Pokrivenih zemalja",
+    statsRating: "Prosječna ocjena",
+
+    trustedByTitle: "Tisuće tvrtki diljem Europe nam vjeruje",
+
     howItWorksTitle: "Kako funkcionira",
     howItWorksDescription:
       "Transportirajte svoje vozilo ili teret u tri jednostavna koraka",
@@ -44,17 +61,15 @@ export const hr = {
       "Opišite što trebate prevesti, postavite datum preuzimanja i objavite oglas u nekoliko minuta.",
     step2Title: "Primaj i usporedi ponude",
     step2Description:
-      "Dobijte do 5 konkurentnih ponuda od verificiranih prijevoznika. Razgovarajte i dogovarajte detalje.",
+      "Dobijte do 5 konkurentnih ponuda od verificiranih prijevoznika.",
     step3Title: "Rezerviraj i prati",
     step3Description:
-      "Odaberite prijevoznika, platite mali polog i pratite svoju pošiljku do isporuke.",
+      "Odaberite prijevoznika, platite mali polog i pratite svoju pošiljku.",
 
-    // Popular Routes
     popularRoutesTitle: "Popularne rute",
     popularRoutesDescription:
-      "Pokrivamo sve glavne rute preko Balkana i Srednje Europe",
+      "Pokrivamo sve glavne rute preko Europe",
 
-    // Features
     whyChooseTitle: "Zašto odabrati Ipsilon?",
     feature1Title: "Verificirani prijevoznici",
     feature1Description:
@@ -65,12 +80,123 @@ export const hr = {
     feature3Description:
       "Birajte na temelju stvarnih recenzija od drugih pošiljatelja.",
 
-    // CTA
     ctaTitle: "Spremni za transport?",
     ctaDescription:
-      "Pridružite se tisućama zadovoljnih pošiljatelja i prijevoznika na Balkanu.",
+      "Pridružite se tisućama zadovoljnih pošiljatelja i prijevoznika diljem Europe.",
     postFirstListing: "Objavi prvi oglas",
     registerAsCarrier: "Registriraj se kao prijevoznik",
+  },
+
+  // Wizard
+  wizard: {
+    backToHome: "Natrag na početnu",
+    previous: "Prethodno",
+    continue: "Nastavi",
+    skip: "Preskoči",
+    submitting: "Slanje...",
+    submitButton: "Pošalji i počni primati ponude",
+    confirm: "Potvrdi",
+    optional: "neobavezno",
+    listingCreated: "Oglas uspješno kreiran!",
+
+    steps: {
+      category: "Kategorija",
+      description: "Opis",
+      photos: "Fotografije",
+      pickup: "Preuzimanje",
+      delivery: "Dostava",
+      timeframe: "Vrijeme",
+      contact: "Kontakt",
+    },
+
+    categories: {
+      furniture: "Namještaj",
+      boxes: "Kutije",
+      cars: "Automobili",
+      motorcycles: "Motocikli",
+      vans: "Kombiji",
+      boats: "Brodovi",
+      vehicleParts: "Dijelovi vozila",
+      pets: "Kućni ljubimci",
+      other: "Ostalo",
+    },
+
+    categoryTitle: "Što želite prevesti?",
+    categorySubtitle: "Odaberite kategoriju koja najbolje opisuje vašu pošiljku",
+
+    descriptionTitle: "Recite nam o svojoj pošiljci",
+    descriptionSubtitle: "Dodajte detalje za točnije ponude",
+    make: "Marka",
+    makePlaceholder: "npr., BMW, Toyota",
+    model: "Model",
+    modelPlaceholder: "npr., Serija 3, Camry",
+    year: "Godina",
+    yearPlaceholder: "npr., 2020",
+    petType: "Vrsta ljubimca",
+    petTypePlaceholder: "Odaberite vrstu",
+    petDog: "Pas",
+    petCat: "Mačka",
+    petOther: "Ostalo",
+    petWeight: "Težina (kg)",
+    petWeightPlaceholder: "npr., 25",
+    description: "Opis",
+    descriptionPlaceholder: "Dodajte detalje o pošiljci...",
+    hasPurchaseLink: "Imate li link za kupnju?",
+    purchaseLinkPlaceholder: "https://...",
+
+    photosTitle: "Dodajte fotografije",
+    photosSubtitle: "Neobavezno, ali pomaže za točnije ponude",
+    dropPhotos: "Povucite i ispustite fotografije ovdje",
+    orClickToUpload: "ili kliknite za prijenos",
+    selectFiles: "Odaberi datoteke",
+    maxPhotos: "{{current}} od {{max}} fotografija",
+
+    pickupTitle: "Odakle treba preuzeti pošiljku?",
+    pickupSubtitle: "Unesite detalje lokacije preuzimanja",
+    deliveryTitle: "Kamo treba dostaviti pošiljku?",
+    deliverySubtitle: "Unesite detalje lokacije dostave",
+    country: "Država",
+    selectCountry: "Odaberite državu",
+    cityPostcode: "Grad / Poštanski broj",
+    cityPostcodePlaceholder: "npr., Zagreb, 10000",
+    locationNote: "Spojit ćemo vas s prijevoznicima na ovoj ruti",
+
+    timeframeTitle: "Kada želite obaviti prijevoz?",
+    timeframeSubtitle: "Ovo pomaže prijevoznicima provjeriti dostupnost",
+    selectTimeframe: "Odaberite vremenski okvir",
+    timeframeWithinWeek: "Unutar tjedna",
+    timeframeWithin2Weeks: "Unutar 2 tjedna",
+    timeframeSpecificDate: "Na određeni datum",
+    timeframeBetweenDates: "Između određenih datuma",
+    timeframeFlexible: "Fleksibilno",
+    timeframeNoDate: "Još nemam datum",
+    selectDate: "Odaberite datum",
+    startDate: "Početni datum",
+    endDate: "Završni datum",
+
+    contactTitle: "Koji su vaši kontakt podaci?",
+    contactSubtitle: "Koristit ćemo ih za slanje ponuda i ažuriranja",
+    emailAddress: "Email adresa",
+    emailPlaceholder: "vi@primjer.com",
+    phoneNumber: "Broj telefona",
+    phonePlaceholder: "Vaš broj telefona",
+    contactPrivacy: "Vaši kontakt podaci dijele se samo s prijevoznicima s kojima odlučite surađivati",
+    agreeToTerms: "Slažem se s",
+    termsOfService: "Uvjetima korištenja",
+    and: "i",
+    privacyPolicy: "Pravilima privatnosti",
+  },
+
+  success: {
+    title: "Vaš oglas je objavljen!",
+    subtitle: "Prijevoznici pregledavaju vaš zahtjev i uskoro će poslati ponude.",
+    listingId: "ID oglasa",
+    expectQuotes: "Očekujte ponude uskoro",
+    expectQuotesDesc: "Većina oglasa primi prvu ponudu unutar nekoliko sati",
+    notifications: "Ostanite obaviješteni",
+    notificationsDesc: "Poslat ćemo vam email i SMS kad stignu nove ponude",
+    viewDashboard: "Pogledaj nadzornu ploču",
+    createAnother: "Kreiraj još jedan oglas",
   },
 
   // Login
@@ -85,13 +211,13 @@ export const hr = {
     signUp: "Registrirajte se",
     transportMadeSimple: "Transport jednostavno",
     transportDescription:
-      "Povežite se s verificiranim prijevoznicima na Balkanu i transportirajte svoja vozila sigurno i povoljno.",
+      "Povežite se s verificiranim prijevoznicima i transportirajte svoja vozila sigurno i povoljno.",
   },
 
   // Signup
   signup: {
     createAccount: "Kreirajte svoj račun",
-    joinMarketplace: "Pridružite se najvećem transportnom tržištu na Balkanu",
+    joinMarketplace: "Pridružite se najvećem europskom transportnom tržištu",
     iWantTo: "Želim",
     shipCargo: "Slati teret",
     shipCargoDescription: "Objavljuj oglase i primaj ponude",
@@ -126,9 +252,9 @@ export const hr = {
     shipWithConfidence: "Šaljite s povjerenjem",
     growBusiness: "Razvijajte svoj prijevoznički posao",
     shipperDescription:
-      "Objavite svoje transportne potrebe i primajte konkurentne ponude od verificiranih prijevoznika na Balkanu.",
+      "Objavite svoje transportne potrebe i primajte konkurentne ponude od verificiranih prijevoznika.",
     carrierDescription:
-      "Pristupite tisućama transportnih oglasa i razvijajte svoj posao s našim pouzdanim tržištem.",
+      "Pristupite tisućama transportnih oglasa i razvijajte svoj posao.",
   },
 
   // Shipper Dashboard
@@ -176,12 +302,11 @@ export const hr = {
       "Pokušajte prilagoditi filtere ili provjerite kasnije",
   },
 
-  // Create Listing
   createListing: {
     backToDashboard: "Natrag na nadzornu ploču",
     title: "Kreiraj novi oglas",
     description:
-      "Opišite svoje transportne potrebe i primite do 5 konkurentnih ponuda od verificiranih prijevoznika",
+      "Opišite svoje transportne potrebe i primite do 5 konkurentnih ponuda",
     route: "Ruta",
     originCity: "Polazni grad",
     originPlaceholder: "npr., Zagreb, Hrvatska",
@@ -197,15 +322,12 @@ export const hr = {
     pickupDate: "Datum preuzimanja",
     additionalInfo: "Dodatne informacije",
     notesForCarriers: "Napomene za prijevoznike",
-    notesPlaceholder:
-      "Dodajte posebne zahtjeve, napomene o stanju vozila ili druge detalje koje prijevoznici trebaju znati...",
+    notesPlaceholder: "Dodajte posebne zahtjeve ili detalje...",
     postListing: "Objavi oglas",
     creatingListing: "Kreiranje oglasa...",
-    listingVisibility:
-      "Vaš oglas će biti odmah vidljiv verificiranim prijevoznicima",
+    listingVisibility: "Vaš oglas će biti odmah vidljiv verificiranim prijevoznicima",
   },
 
-  // Listing Detail
   listingDetail: {
     listingNotFound: "Oglas nije pronađen",
     backToDashboard: "Natrag na nadzornu ploču",
@@ -227,8 +349,7 @@ export const hr = {
     yourPrice: "Vaša cijena (EUR)",
     pricePlaceholder: "npr., 650",
     quoteNotes: "Napomene",
-    quoteNotesPlaceholder:
-      "Dodajte detalje o svojoj usluzi, vozilu, dostupnosti...",
+    quoteNotesPlaceholder: "Dodajte detalje o svojoj usluzi...",
     shipper: "Pošiljatelj",
     quotesReceivedCount: "Primljene ponude",
     status: "Status",
@@ -237,18 +358,16 @@ export const hr = {
     payDepositDescription: "Platite 10% pologa za potvrdu rezervacije s",
     quotePrice: "Cijena ponude",
     depositAmount: "Polog (10%)",
-    stripeIntegration:
-      "Stripe integracija plaćanja bit će dodana ovdje. Za sada je ovo rezervirano mjesto.",
+    stripeIntegration: "Stripe integracija plaćanja bit će dodana ovdje.",
     payDeposit: "Plati polog",
-    paymentSuccess: "Plaćanje uspješno! Prijevoznik će vas uskoro kontaktirati.",
+    paymentSuccess: "Plaćanje uspješno!",
     messageSent: "Poruka poslana!",
     quoteSubmitted: "Ponuda uspješno poslana!",
     maskedCallInfo: "Funkcija maskiranog poziva bit će integrirana s Twilio",
   },
 
-  // Footer
   footer: {
-    tagline: "Najbrži način za transport vozila i tereta na Balkanu.",
+    tagline: "Najbrži način za transport vozila i tereta diljem Europe.",
     forShippers: "Za pošiljatelje",
     postShipment: "Objavi pošiljku",
     howItWorks: "Kako funkcionira",
@@ -263,11 +382,9 @@ export const hr = {
     privacyPolicy: "Pravila privatnosti",
     termsOfService: "Uvjeti korištenja",
     allRightsReserved: "Sva prava pridržana.",
-    serving:
-      "Pokrivamo: Srbija • Hrvatska • Bosna • Sjeverna Makedonija • Slovenija • Crna Gora",
+    serving: "Pokrivamo: UK • Njemačka • Francuska • Italija • Španjolska • i 25+ zemalja",
   },
 
-  // Status labels
   status: {
     active: "Aktivno",
     booked: "Rezervirano",
@@ -278,7 +395,6 @@ export const hr = {
     rejected: "Odbijeno",
   },
 
-  // Cargo types
   cargo: {
     car: "Automobil",
     van: "Kombi",
@@ -286,7 +402,6 @@ export const hr = {
     other: "Ostalo",
   },
 
-  // Language selector
   language: {
     select: "Odaberite jezik",
     en: "Engleski",
