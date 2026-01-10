@@ -23,6 +23,8 @@ export const hr = {
   // Header
   header: {
     backToHome: "Natrag na početnu",
+    getQuotes: "Dobij ponude",
+    becomeCarrier: "Postani prijevoznik",
   },
 
   // Homepage
@@ -50,6 +52,11 @@ export const hr = {
     statsCarriers: "Verificiranih prijevoznika",
     statsCountries: "Pokrivenih zemalja",
     statsRating: "Prosječna ocjena",
+
+    // Carrier CTA
+    carrierCtaTitle: "Jeste li prijevoznik?",
+    carrierCtaDescription: "Pridružite se tisućama verificiranih prijevoznika i dobivajte nove poslove svakodnevno",
+    becomeCarrierButton: "Postani prijevoznik",
 
     trustedByTitle: "Tisuće tvrtki diljem Europe nam vjeruje",
 
@@ -195,6 +202,7 @@ export const hr = {
     expectQuotesDesc: "Većina oglasa primi prvu ponudu unutar nekoliko sati",
     notifications: "Ostanite obaviješteni",
     notificationsDesc: "Poslat ćemo vam email i SMS kad stignu nove ponude",
+    prefilledBanner: "Unaprijed smo ispunili vašu rutu i kategoriju s početne stranice",
     viewDashboard: "Pogledaj nadzornu ploču",
     createAnother: "Kreiraj još jedan oglas",
   },

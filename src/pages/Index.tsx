@@ -34,6 +34,14 @@ const Index = () => {
 
   const handleQuickQuote = (e: React.FormEvent) => {
     e.preventDefault();
+    // Save prefill data to localStorage
+    const prefillData = {
+      category: quickCategory,
+      pickupCity: quickPickup,
+      deliveryCity: quickDelivery,
+      prefilled: true
+    };
+    localStorage.setItem('ipsilon_quick_quote', JSON.stringify(prefillData));
     navigate('/create-listing');
   };
 
@@ -178,6 +186,29 @@ const Index = () => {
                 <div className="text-primary-foreground/80 text-sm">{stat.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Carrier CTA Section */}
+      <section className="py-16 bg-secondary/50">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-primary/10 mb-4">
+              <Truck className="h-7 w-7 text-primary" />
+            </div>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
+              {t('home.carrierCtaTitle')}
+            </h2>
+            <p className="text-muted-foreground text-lg mb-6">
+              {t('home.carrierCtaDescription')}
+            </p>
+            <Button size="lg" asChild>
+              <Link to="/signup?type=carrier">
+                {t('home.becomeCarrierButton')}
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

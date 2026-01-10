@@ -23,6 +23,8 @@ export const en = {
   // Header
   header: {
     backToHome: "Back to Home",
+    getQuotes: "Get Quotes",
+    becomeCarrier: "Become a Carrier",
   },
 
   // Homepage
@@ -52,6 +54,11 @@ export const en = {
     statsCarriers: "Verified carriers",
     statsCountries: "Countries covered",
     statsRating: "Average rating",
+
+    // Carrier CTA
+    carrierCtaTitle: "Are you a Transport Provider?",
+    carrierCtaDescription: "Join thousands of verified carriers and get new jobs daily",
+    becomeCarrierButton: "Become a Carrier",
 
     // Trusted By
     trustedByTitle: "Trusted by thousands of businesses across Europe",
@@ -210,6 +217,7 @@ export const en = {
     expectQuotesDesc: "Most listings receive their first quote within a few hours",
     notifications: "Stay notified",
     notificationsDesc: "We'll email and text you when new quotes arrive",
+    prefilledBanner: "We've prefilled your route and category from the homepage",
     viewDashboard: "View Dashboard",
     createAnother: "Create Another Listing",
   },

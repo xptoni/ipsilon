@@ -99,12 +99,15 @@ const Header = () => {
               </Button>
             </>
           ) : (
-            <>
+          <>
               <Button variant="ghost" asChild>
                 <Link to="/login">{t('common.signIn')}</Link>
               </Button>
+              <Button variant="outline" asChild>
+                <Link to="/signup?type=carrier">{t('header.becomeCarrier')}</Link>
+              </Button>
               <Button asChild>
-                <Link to="/signup">{t('common.getStarted')}</Link>
+                <Link to="/create-listing">{t('header.getQuotes')}</Link>
               </Button>
             </>
           )}
@@ -150,9 +153,14 @@ const Header = () => {
                 >
                   {t('common.signIn')}
                 </Link>
+                <Button variant="outline" asChild className="mt-2">
+                  <Link to="/signup?type=carrier" onClick={() => setMobileMenuOpen(false)}>
+                    {t('header.becomeCarrier')}
+                  </Link>
+                </Button>
                 <Button asChild className="mt-2">
-                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
-                    {t('common.getStarted')}
+                  <Link to="/create-listing" onClick={() => setMobileMenuOpen(false)}>
+                    {t('header.getQuotes')}
                   </Link>
                 </Button>
               </>
