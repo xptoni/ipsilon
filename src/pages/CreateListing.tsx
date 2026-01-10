@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Info } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 import WizardStepper from "@/components/create-listing/WizardStepper";
 import CategoryStep from "@/components/create-listing/steps/CategoryStep";
@@ -17,12 +18,14 @@ import ContactStep from "@/components/create-listing/steps/ContactStep";
 import { ListingFormData, initialFormData, Category } from "@/components/create-listing/types";
 
 const STORAGE_KEY = 'ipsilon_listing_draft';
+const QUICK_QUOTE_KEY = 'ipsilon_quick_quote';
 
 const CreateListing = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [wasPrefilled, setWasPrefilled] = useState(false);
   const [formData, setFormData] = useState<ListingFormData>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -35,6 +38,50 @@ const CreateListing = () => {
     }
     return initialFormData;
   });
+
+  // Check for quick quote prefill on mount
+  useEffect(() => {
+    const quickQuote = localStorage.getItem(QUICK_QUOTE_KEY);
+    if (quickQuote) {
+      try {
+        const prefill = JSON.parse(quickQuote);
+        if (prefill.prefilled) {
+          const updates: Partial<ListingFormData> = {};
+          let shouldSkipSteps = false;
+          
+          if (prefill.category) {
+            updates.category = prefill.category as Category;
+            shouldSkipSteps = true;
+          }
+          if (prefill.pickupCity) {
+            updates.pickupCity = prefill.pickupCity;
+            updates.pickupCountry = 'uk'; // Default to UK if not specified
+          }
+          if (prefill.deliveryCity) {
+            updates.deliveryCity = prefill.deliveryCity;
+            updates.deliveryCountry = 'uk'; // Default to UK if not specified
+          }
+          
+          if (Object.keys(updates).length > 0) {
+            setFormData((prev) => ({ ...prev, ...updates }));
+            setWasPrefilled(true);
+            
+            // Determine which step to start from
+            if (shouldSkipSteps) {
+              // If category is prefilled, skip to description step
+              setCurrentStep(2);
+            }
+          }
+          
+          // Clear the quick quote data
+          localStorage.removeItem(QUICK_QUOTE_KEY);
+        }
+      } catch {
+        // Invalid JSON, ignore
+        localStorage.removeItem(QUICK_QUOTE_KEY);
+      }
+    }
+  }, []);
 
   // Save to localStorage on change
   useEffect(() => {
@@ -90,8 +137,9 @@ const CreateListing = () => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
     
-    // Clear saved draft
+    // Clear saved draft and quick quote
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(QUICK_QUOTE_KEY);
     
     // Generate fake listing ID
     const listingId = `LST-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
@@ -177,6 +225,15 @@ const CreateListing = () => {
           <ArrowLeft className="h-4 w-4 mr-2" />
           {t('wizard.backToHome')}
         </Button>
+
+        {wasPrefilled && (
+          <Alert className="mb-6 bg-primary/5 border-primary/20">
+            <Info className="h-4 w-4 text-primary" />
+            <AlertDescription className="text-primary">
+              {t('success.prefilledBanner')}
+            </AlertDescription>
+          </Alert>
+        )}
 
         <WizardStepper currentStep={currentStep} totalSteps={7} />
 
