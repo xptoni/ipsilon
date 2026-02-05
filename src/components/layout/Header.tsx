@@ -5,11 +5,13 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LoginModal from "@/components/auth/LoginModal";
 
 const Header = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
   const isDashboard = location.pathname.startsWith('/dashboard') || 
@@ -24,6 +26,7 @@ const Header = () => {
   ];
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
@@ -100,8 +103,8 @@ const Header = () => {
             </>
           ) : (
           <>
-              <Button variant="ghost" asChild>
-                <Link to="/login">{t('common.signIn')}</Link>
+              <Button variant="ghost" onClick={() => setLoginModalOpen(true)}>
+                {t('common.login')}
               </Button>
               <Button variant="outline" asChild>
                 <Link to="/signup?type=carrier">{t('header.becomeCarrier')}</Link>
@@ -146,13 +149,15 @@ const Header = () => {
                   </Link>
                 ))}
                 <hr className="border-border" />
-                <Link
-                  to="/login"
-                  className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
+                <button
+                  className="py-2 text-sm font-medium text-muted-foreground hover:text-primary text-left"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setLoginModalOpen(true);
+                  }}
                 >
-                  {t('common.signIn')}
-                </Link>
+                  {t('common.login')}
+                </button>
                 <Button variant="outline" asChild className="mt-2">
                   <Link to="/signup?type=carrier" onClick={() => setMobileMenuOpen(false)}>
                     {t('header.becomeCarrier')}
@@ -194,6 +199,9 @@ const Header = () => {
         </div>
       )}
     </header>
+    
+    <LoginModal open={loginModalOpen} onOpenChange={setLoginModalOpen} />
+    </>
   );
 };
 

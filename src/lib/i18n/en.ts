@@ -6,6 +6,7 @@ export const en = {
     howItWorks: "How It Works",
     about: "About",
     signIn: "Sign In",
+    login: "Login",
     getStarted: "Get Started",
     logout: "Logout",
     dashboard: "Dashboard",
@@ -18,6 +19,25 @@ export const en = {
     cancel: "Cancel",
     save: "Save",
     loading: "Loading...",
+  },
+
+  // Login Modal
+  loginModal: {
+    title: "Log in as",
+    shipper: "Shipper",
+    carrier: "Carrier",
+    shipperDescription: "Ship items across Europe",
+    carrierDescription: "Transport goods & earn",
+    back: "Back",
+    emailAddress: "Email address",
+    sendLoginLink: "Send login link",
+    sending: "Sending...",
+    linkDescription: "We'll send you a secure link to log in instantly",
+    or: "or",
+    usePassword: "Use username & password instead",
+    useMagicLink: "Use magic link instead",
+    linkSent: "Login link sent! Check your email.",
+    loginAs: "Log in as {{role}}",
   },
 
   // Header

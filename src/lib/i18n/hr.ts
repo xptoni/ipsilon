@@ -6,6 +6,7 @@ export const hr = {
     howItWorks: "Kako funkcionira",
     about: "O nama",
     signIn: "Prijava",
+    login: "Prijava",
     getStarted: "Započnite",
     logout: "Odjava",
     dashboard: "Nadzorna ploča",
@@ -18,6 +19,25 @@ export const hr = {
     cancel: "Odustani",
     save: "Spremi",
     loading: "Učitavanje...",
+  },
+
+  // Login Modal
+  loginModal: {
+    title: "Prijavite se kao",
+    shipper: "Pošiljatelj",
+    carrier: "Prijevoznik",
+    shipperDescription: "Šaljite pošiljke diljem Europe",
+    carrierDescription: "Prevozite teret i zarađujte",
+    back: "Natrag",
+    emailAddress: "Email adresa",
+    sendLoginLink: "Pošalji link za prijavu",
+    sending: "Slanje...",
+    linkDescription: "Poslat ćemo vam siguran link za trenutnu prijavu",
+    or: "ili",
+    usePassword: "Koristi korisničko ime i lozinku",
+    useMagicLink: "Koristi magic link",
+    linkSent: "Link za prijavu poslan! Provjerite email.",
+    loginAs: "Prijavite se kao {{role}}",
   },
 
   // Header
