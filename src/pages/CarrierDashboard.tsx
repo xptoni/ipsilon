@@ -245,7 +245,7 @@ const QuoteCard = ({
 
           <div className="flex items-center gap-3">
             <Button variant="outline" asChild>
-              <Link to={`/listings/${listing.id}`}>{t("common.viewDetails")}</Link>
+              <Link to={`/carrier/delivery-details/${listing.id}`}>{t("common.viewDetails")}</Link>
             </Button>
           </div>
         </div>
