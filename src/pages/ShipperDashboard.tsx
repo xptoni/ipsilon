@@ -157,7 +157,7 @@ const ShipperDashboard = () => {
                         )}
                       </div>
                       <Button variant="outline" asChild>
-                        <Link to={`/listings/${listing.id}`}>
+                        <Link to={`/delivery-details/${listing.id}`}>
                           {t('shipperDashboard.viewDetails')}
                         </Link>
                       </Button>
@@ -176,7 +176,7 @@ const ShipperDashboard = () => {
                         ))}
                         {quotes.length > 3 && (
                           <Link 
-                            to={`/listings/${listing.id}`}
+                            to={`/delivery-details/${listing.id}`}
                             className="text-sm text-primary hover:underline"
                           >
                             {t('shipperDashboard.viewAllQuotes').replace('{count}', String(quotes.length))}
@@ -238,7 +238,7 @@ const QuotePreviewCard = ({ quote, listingId, t }: { quote: Quote; listingId: st
       <div className="text-right">
         <div className="font-semibold text-foreground">€{quote.price}</div>
         <Button size="sm" variant="ghost" className="h-7 text-xs" asChild>
-          <Link to={`/listings/${listingId}?quote=${quote.id}`}>
+          <Link to={`/delivery-details/${listingId}?quote=${quote.id}`}>
             {t('common.view')}
           </Link>
         </Button>

@@ -111,7 +111,7 @@ const ListingDetail = () => {
         <Button
           variant="ghost"
           className="mb-6"
-          onClick={() => navigate(isShipper ? "/dashboard" : "/carrier-dashboard")}
+          onClick={() => navigate(isShipper ? "/shipper-dashboard" : "/carrier-dashboard")}
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           {t('listingDetail.backToDashboard')}

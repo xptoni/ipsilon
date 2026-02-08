@@ -25,13 +25,14 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/homepage" element={<Index />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<ShipperDashboard />} />
+          <Route path="/shipper-dashboard" element={<ShipperDashboard />} />
           <Route path="/carrier-dashboard" element={<CarrierDashboard />} />
           <Route path="/create-listing" element={<CreateListing />} />
-          <Route path="/listings" element={<Listings />} />
+          <Route path="/search-deliveries" element={<Listings />} />
           <Route path="/listing-success" element={<ListingSuccess />} />
-          <Route path="/listings/:id" element={<ListingDetail />} />
+          <Route path="/delivery-details/:id" element={<ListingDetail />} />
           <Route path="/become-carrier" element={<BecomeCarrier />} />
           <Route path="/carrier-registration" element={<CarrierRegistration />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
