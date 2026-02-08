@@ -16,6 +16,7 @@ export const en = {
     submit: "Submit",
     send: "Send",
     view: "View",
+    viewDetails: "View Details",
     cancel: "Cancel",
     save: "Save",
     loading: "Loading...",
@@ -324,24 +325,101 @@ export const en = {
   // Carrier Dashboard
   carrierDashboard: {
     title: "Carrier Dashboard",
-    description: "Browse available listings and manage your quotes",
-    availableListings: "Available Listings",
-    myQuotes: "My Quotes",
+    description: "Manage your quotes and find new transport jobs",
+    browseListings: "Browse Listings",
+    totalQuotes: "Total Quotes",
     pending: "Pending",
     accepted: "Accepted",
-    myRecentQuotes: "My Recent Quotes",
-    searchByLocation: "Search by location...",
-    cargoType: "Cargo type",
-    allTypes: "All types",
-    car: "Car",
-    van: "Van",
-    truck: "Truck",
-    other: "Other",
-    postedBy: "Posted by",
-    maxQuotesReached: "Max quotes reached",
-    submitQuote: "Submit Quote",
-    noListingsFound: "No listings found",
-    tryAdjustingFilters: "Try adjusting your filters or check back later",
+    pendingQuotes: "Pending Quotes",
+    acceptedQuotes: "Accepted Quotes",
+    noPendingQuotes: "No pending quotes",
+    noPendingQuotesDesc: "Browse listings and submit quotes to get started",
+    noAcceptedQuotes: "No accepted quotes yet",
+    noAcceptedQuotesDesc: "Keep submitting competitive quotes to win jobs",
+    submittedOn: "Submitted on",
+    totalValue: "Total Value",
+  },
+
+  // Listings / Search Deliveries
+  listings: {
+    title: "Search Deliveries",
+
+    // Info cards
+    infoCards: {
+      browseShipments: "Browse thousands of shipments waiting for quotes",
+      useFilters: "Use search by country, cargo category, dates, and keywords",
+      routeSearch: "Local and route search — find jobs near you or on your route (great for backloads)",
+      sendQuote: "When you find an interesting shipment, send a quote — after acceptance you get direct contacts",
+    },
+
+    // Tabs
+    tabs: {
+      local: "Local Search",
+      country: "Country Search",
+      route: "Route Search",
+    },
+
+    // Local search
+    localSearch: {
+      location: "Location",
+      locationPlaceholder: "City or postcode",
+      radius: "Search Radius",
+      originInRadius: "Origin must be in local area",
+      destinationInRadius: "Destination must be in local area",
+    },
+
+    // Country search
+    countrySearch: {
+      country: "Country",
+      selectCountry: "Select a country",
+    },
+
+    // Route search
+    routeSearch: {
+      origin: "Collection Town/Postcode",
+      originPlaceholder: "e.g., Zagreb",
+      destination: "Delivery Town/Postcode",
+      destinationPlaceholder: "e.g., Munich",
+      maxDeviation: "Max Route Deviation",
+      searchBackloads: "Search backloads (return route)",
+    },
+
+    // Categories
+    categories: {
+      vehicles: "Cars / Motorcycles / Vehicles",
+      furniture: "Furniture / Household Items",
+      packages: "Boxes / Packages / Small Cargo",
+      pallets: "Pallets / Euro Pallets",
+      moving: "Full House/Apartment Moves",
+      pets: "Live Cargo (Pets)",
+      passengers: "Passengers (Van Transport)",
+      construction: "Debris / Construction Waste",
+      other: "Other",
+    },
+
+    // Filters
+    filters: {
+      categories: "Categories",
+      reset: "Reset Filters",
+      search: "Search",
+    },
+
+    // Save search
+    saveSearch: {
+      title: "Save This Search",
+      description: "Save this search and get an email when a new shipment matching your criteria is published!",
+      emailNotifications: "I want to receive email notifications for new listings",
+      saveButton: "Save Search",
+    },
+
+    // Results
+    results: {
+      title: "Results",
+      quotes: "quotes",
+      viewDetails: "View Details",
+      noResults: "No results for these filters",
+      noResultsDesc: "Try expanding your search or resetting filters",
+    },
   },
 
   // Create Listing (legacy - keeping for compatibility)

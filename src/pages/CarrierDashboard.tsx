@@ -2,44 +2,29 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   MapPin,
-  Calendar,
-  Package,
   ArrowRight,
-  Search,
   Clock,
-  Truck,
+  Search,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import { getActiveListings, mockQuotes, type Listing } from "@/lib/mockData";
-import { useState } from "react";
+import { mockQuotes, mockListings, type Quote } from "@/lib/mockData";
 import { useTranslation } from "react-i18next";
 
 const CarrierDashboard = () => {
   const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [cargoFilter, setCargoFilter] = useState("all");
 
-  const listings = getActiveListings();
   const myQuotes = mockQuotes.filter((q) => q.carrierId === "carrier-1");
+  const pendingQuotes = myQuotes.filter((q) => q.status === "pending");
+  const acceptedQuotes = myQuotes.filter((q) => q.status === "accepted");
 
-  const filteredListings = listings.filter((listing) => {
-    const matchesSearch =
-      listing.origin.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      listing.destination.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCargo =
-      cargoFilter === "all" || listing.cargoType === cargoFilter;
-    return matchesSearch && matchesCargo;
-  });
+  const getListingForQuote = (listingId: string) => {
+    return mockListings.find((l) => l.id === listingId);
+  };
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString("en-US", {
@@ -64,10 +49,14 @@ const CarrierDashboard = () => {
 
   const getQuoteStatusLabel = (status: string) => {
     switch (status) {
-      case "pending": return t('status.pending');
-      case "accepted": return t('status.accepted');
-      case "rejected": return t('status.rejected');
-      default: return status;
+      case "pending":
+        return t("status.pending");
+      case "accepted":
+        return t("status.accepted");
+      case "rejected":
+        return t("status.rejected");
+      default:
+        return status;
     }
   };
 
@@ -75,13 +64,21 @@ const CarrierDashboard = () => {
     <Layout hideFooter>
       <div className="container py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-            {t('carrierDashboard.title')}
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            {t('carrierDashboard.description')}
-          </p>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              {t("carrierDashboard.title")}
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              {t("carrierDashboard.description")}
+            </p>
+          </div>
+          <Button size="lg" className="gap-2" asChild>
+            <Link to="/listings">
+              <Search className="h-5 w-5" />
+              {t("carrierDashboard.browseListings")}
+            </Link>
+          </Button>
         </div>
 
         {/* Stats Cards */}
@@ -89,155 +86,143 @@ const CarrierDashboard = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="text-2xl font-bold text-foreground">
-                {listings.length}
+                {myQuotes.length}
               </div>
               <p className="text-sm text-muted-foreground">
-                {t('carrierDashboard.availableListings')}
+                {t("carrierDashboard.totalQuotes")}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="text-2xl font-bold text-warning">
+                {pendingQuotes.length}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {t("carrierDashboard.pending")}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="text-2xl font-bold text-success">
+                {acceptedQuotes.length}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {t("carrierDashboard.accepted")}
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-6">
               <div className="text-2xl font-bold text-foreground">
-                {myQuotes.length}
+                €{myQuotes.reduce((sum, q) => sum + q.price, 0).toLocaleString()}
               </div>
-              <p className="text-sm text-muted-foreground">{t('carrierDashboard.myQuotes')}</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-foreground">
-                {myQuotes.filter((q) => q.status === "pending").length}
-              </div>
-              <p className="text-sm text-muted-foreground">{t('carrierDashboard.pending')}</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-foreground">
-                {myQuotes.filter((q) => q.status === "accepted").length}
-              </div>
-              <p className="text-sm text-muted-foreground">{t('carrierDashboard.accepted')}</p>
+              <p className="text-sm text-muted-foreground">
+                {t("carrierDashboard.totalValue")}
+              </p>
             </CardContent>
           </Card>
         </div>
 
-        {/* My Quotes Section */}
-        {myQuotes.length > 0 && (
-          <div className="mb-8">
-            <h2 className="font-display text-lg font-semibold text-foreground mb-4">
-              {t('carrierDashboard.myRecentQuotes')}
-            </h2>
-            <div className="grid gap-3">
-              {myQuotes.slice(0, 3).map((quote) => (
-                <Card key={quote.id}>
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <Badge
-                          variant="outline"
-                          className={getQuoteStatusColor(quote.status)}
-                        >
-                          {getQuoteStatusLabel(quote.status)}
-                        </Badge>
-                        <div>
-                          <p className="font-medium text-foreground">
-                            €{quote.price}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {quote.notes.slice(0, 50)}...
-                          </p>
-                        </div>
-                      </div>
-                      <Button variant="ghost" size="sm" asChild>
-                        <Link to={`/listings/${quote.listingId}`}>{t('common.view')}</Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* Quotes Tabs */}
+        <Tabs defaultValue="pending" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="pending" className="gap-2">
+              <Clock className="h-4 w-4" />
+              {t("carrierDashboard.pendingQuotes")} ({pendingQuotes.length})
+            </TabsTrigger>
+            <TabsTrigger value="accepted" className="gap-2">
+              <CheckCircle className="h-4 w-4" />
+              {t("carrierDashboard.acceptedQuotes")} ({acceptedQuotes.length})
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Available Listings Section */}
-        <div>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-            <h2 className="font-display text-lg font-semibold text-foreground">
-              {t('carrierDashboard.availableListings')}
-            </h2>
-            <div className="flex gap-3 w-full sm:w-auto">
-              <div className="relative flex-1 sm:w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder={t('carrierDashboard.searchByLocation')}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-9"
+          <TabsContent value="pending">
+            <div className="grid gap-4">
+              {pendingQuotes.length > 0 ? (
+                pendingQuotes.map((quote) => (
+                  <QuoteCard
+                    key={quote.id}
+                    quote={quote}
+                    listing={getListingForQuote(quote.listingId)}
+                    formatDate={formatDate}
+                    getQuoteStatusColor={getQuoteStatusColor}
+                    getQuoteStatusLabel={getQuoteStatusLabel}
+                    t={t}
+                  />
+                ))
+              ) : (
+                <EmptyState
+                  icon={<Clock className="h-12 w-12 text-muted-foreground" />}
+                  title={t("carrierDashboard.noPendingQuotes")}
+                  description={t("carrierDashboard.noPendingQuotesDesc")}
+                  t={t}
                 />
-              </div>
-              <Select value={cargoFilter} onValueChange={setCargoFilter}>
-                <SelectTrigger className="w-32">
-                  <SelectValue placeholder={t('carrierDashboard.cargoType')} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t('carrierDashboard.allTypes')}</SelectItem>
-                  <SelectItem value="car">{t('carrierDashboard.car')}</SelectItem>
-                  <SelectItem value="van">{t('carrierDashboard.van')}</SelectItem>
-                  <SelectItem value="truck">{t('carrierDashboard.truck')}</SelectItem>
-                  <SelectItem value="other">{t('carrierDashboard.other')}</SelectItem>
-                </SelectContent>
-              </Select>
+              )}
             </div>
-          </div>
+          </TabsContent>
 
-          <div className="grid gap-4">
-            {filteredListings.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} formatDate={formatDate} t={t} />
-            ))}
-          </div>
-
-          {filteredListings.length === 0 && (
-            <Card className="text-center py-12">
-              <CardContent>
-                <Truck className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-foreground mb-2">
-                  {t('carrierDashboard.noListingsFound')}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t('carrierDashboard.tryAdjustingFilters')}
-                </p>
-              </CardContent>
-            </Card>
-          )}
-        </div>
+          <TabsContent value="accepted">
+            <div className="grid gap-4">
+              {acceptedQuotes.length > 0 ? (
+                acceptedQuotes.map((quote) => (
+                  <QuoteCard
+                    key={quote.id}
+                    quote={quote}
+                    listing={getListingForQuote(quote.listingId)}
+                    formatDate={formatDate}
+                    getQuoteStatusColor={getQuoteStatusColor}
+                    getQuoteStatusLabel={getQuoteStatusLabel}
+                    t={t}
+                  />
+                ))
+              ) : (
+                <EmptyState
+                  icon={<CheckCircle className="h-12 w-12 text-muted-foreground" />}
+                  title={t("carrierDashboard.noAcceptedQuotes")}
+                  description={t("carrierDashboard.noAcceptedQuotesDesc")}
+                  t={t}
+                />
+              )}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </Layout>
   );
 };
 
-const ListingCard = ({
+interface QuoteCardProps {
+  quote: Quote;
+  listing: ReturnType<typeof mockListings.find>;
+  formatDate: (date: string) => string;
+  getQuoteStatusColor: (status: string) => string;
+  getQuoteStatusLabel: (status: string) => string;
+  t: any;
+}
+
+const QuoteCard = ({
+  quote,
   listing,
   formatDate,
+  getQuoteStatusColor,
+  getQuoteStatusLabel,
   t,
-}: {
-  listing: Listing;
-  formatDate: (date: string) => string;
-  t: any;
-}) => {
+}: QuoteCardProps) => {
+  if (!listing) return null;
+
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
       <CardContent className="p-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          {/* Listing Info */}
           <div className="flex-1 space-y-3">
             <div className="flex items-center gap-3 flex-wrap">
-              <Badge variant="secondary">
-                {t(`cargo.${listing.cargoType}`)}
+              <Badge variant="outline" className={getQuoteStatusColor(quote.status)}>
+                {getQuoteStatusLabel(quote.status)}
               </Badge>
-              <span className="text-sm text-muted-foreground">
-                {t('carrierDashboard.postedBy')} {listing.shipperName}
-              </span>
+              <span className="text-lg font-bold text-primary">€{quote.price}</span>
+              <Badge variant="secondary">{t(`cargo.${listing.cargoType}`)}</Badge>
             </div>
 
             <div className="flex items-center gap-2 text-foreground">
@@ -247,47 +232,49 @@ const ListingCard = ({
               <span className="font-medium">{listing.destination}</span>
             </div>
 
-            <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                {formatDate(listing.pickupDate)}
-              </div>
-              <div className="flex items-center gap-1">
-                <Package className="h-4 w-4" />
-                {listing.dimensions}
-              </div>
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                {listing.quotesCount}/5 {t('shipperDashboard.quotes')}
-              </div>
-            </div>
+            <p className="text-sm text-muted-foreground">
+              {t("carrierDashboard.submittedOn")} {formatDate(quote.createdAt)}
+            </p>
 
-            {listing.notes && (
+            {quote.notes && (
               <p className="text-sm text-muted-foreground line-clamp-2">
-                {listing.notes}
+                {quote.notes}
               </p>
             )}
           </div>
 
-          {/* Action */}
           <div className="flex items-center gap-3">
-            {listing.quotesCount >= 5 ? (
-              <Badge variant="outline" className="text-muted-foreground">
-                {t('carrierDashboard.maxQuotesReached')}
-              </Badge>
-            ) : (
-              <Button asChild>
-                <Link to={`/listings/${listing.id}`}>
-                  {t('carrierDashboard.submitQuote')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            )}
+            <Button variant="outline" asChild>
+              <Link to={`/listings/${listing.id}`}>{t("common.viewDetails")}</Link>
+            </Button>
           </div>
         </div>
       </CardContent>
     </Card>
   );
 };
+
+interface EmptyStateProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  t: any;
+}
+
+const EmptyState = ({ icon, title, description, t }: EmptyStateProps) => (
+  <Card className="text-center py-12">
+    <CardContent>
+      <div className="flex justify-center mb-4">{icon}</div>
+      <h3 className="text-lg font-medium text-foreground mb-2">{title}</h3>
+      <p className="text-muted-foreground mb-4">{description}</p>
+      <Button asChild>
+        <Link to="/listings">
+          <Search className="h-4 w-4 mr-2" />
+          {t("carrierDashboard.browseListings")}
+        </Link>
+      </Button>
+    </CardContent>
+  </Card>
+);
 
 export default CarrierDashboard;

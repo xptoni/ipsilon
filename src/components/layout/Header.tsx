@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Truck, Menu, X } from "lucide-react";
+import { Truck, Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
@@ -76,12 +76,13 @@ const Header = () => {
             <Link
               to="/listings"
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                location.pathname.startsWith('/listings')
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                "flex items-center gap-2 px-3 py-1.5 rounded-full font-medium transition-colors",
+                location.pathname === '/listings'
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-primary/10 text-primary hover:bg-primary/20"
               )}
             >
+              <Search className="h-4 w-4" />
               {t('common.browseListings')}
             </Link>
           </nav>

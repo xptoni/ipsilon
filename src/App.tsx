@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import ShipperDashboard from "./pages/ShipperDashboard";
 import CarrierDashboard from "./pages/CarrierDashboard";
 import CreateListing from "./pages/CreateListing";
+import Listings from "./pages/Listings";
 import ListingDetail from "./pages/ListingDetail";
 import ListingSuccess from "./pages/ListingSuccess";
 import BecomeCarrier from "./pages/BecomeCarrier";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/dashboard" element={<ShipperDashboard />} />
           <Route path="/carrier-dashboard" element={<CarrierDashboard />} />
           <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/listings" element={<Listings />} />
           <Route path="/listing-success" element={<ListingSuccess />} />
           <Route path="/listings/:id" element={<ListingDetail />} />
           <Route path="/become-carrier" element={<BecomeCarrier />} />
