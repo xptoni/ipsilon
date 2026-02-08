@@ -139,40 +139,29 @@ const Listings = () => {
           {t("listings.title")}
         </h1>
 
-        {/* Info Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-          <InfoCard
-            icon={<Package className="h-5 w-5 text-primary" />}
-            text={t("listings.infoCards.browseShipments")}
-          />
-          <InfoCard
-            icon={<Search className="h-5 w-5 text-primary" />}
-            text={t("listings.infoCards.useFilters")}
-          />
-          <InfoCard
-            icon={<Route className="h-5 w-5 text-primary" />}
-            text={t("listings.infoCards.routeSearch")}
-          />
-          <InfoCard
-            icon={<MessageSquare className="h-5 w-5 text-primary" />}
-            text={t("listings.infoCards.sendQuote")}
-          />
-        </div>
-
         {/* Search Tabs */}
         <Tabs value={searchTab} onValueChange={setSearchTab} className="mb-6">
-          <TabsList className="grid w-full grid-cols-3 h-auto">
-            <TabsTrigger value="local" className="flex items-center gap-2 py-3">
+          <TabsList className="grid w-full grid-cols-3 h-auto bg-muted/80 p-1.5 rounded-lg border border-border">
+            <TabsTrigger 
+              value="local" 
+              className="flex items-center gap-2 py-3 px-4 font-medium text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all"
+            >
               <MapPin className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("listings.tabs.local")}</span>
+              <span>{t("listings.tabs.local")}</span>
             </TabsTrigger>
-            <TabsTrigger value="country" className="flex items-center gap-2 py-3">
+            <TabsTrigger 
+              value="country" 
+              className="flex items-center gap-2 py-3 px-4 font-medium text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all"
+            >
               <Globe className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("listings.tabs.country")}</span>
+              <span>{t("listings.tabs.country")}</span>
             </TabsTrigger>
-            <TabsTrigger value="route" className="flex items-center gap-2 py-3">
+            <TabsTrigger 
+              value="route" 
+              className="flex items-center gap-2 py-3 px-4 font-medium text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all"
+            >
               <Route className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("listings.tabs.route")}</span>
+              <span>{t("listings.tabs.route")}</span>
             </TabsTrigger>
           </TabsList>
 
