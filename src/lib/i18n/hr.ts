@@ -49,14 +49,14 @@ export const hr = {
 
   // Homepage
   home: {
-    heroTrust: "Više od 50.000+ pošiljatelja nam vjeruje diljem Europe",
+    heroTrust: "Brzo, jednostavno i bez komplikacija",
     heroTitle: "Najbrži način za transport vozila i tereta na",
     heroBalkans: "Balkanu",
-    heroTitleNew: "Dostavite svoju pošiljku diljem Europe - Primite više ponuda brzo",
+    heroTitleNew: "Dobij 5 konkurentnih ponuda za prijevoz – brzo i jednostavno",
     heroDescription:
       "Povežite se s verificiranim prijevoznicima, usporedite ponude i transportirajte svoja vozila preko granica s povjerenjem.",
     heroDescriptionNew:
-      "Objavite što trebate prevesti, primite konkurentne ponude od verificiranih prijevoznika i odaberite najbolju opciju.",
+      "Objavi u 60 sekundi što trebaš prevesti, primi ponude od verificiranih prijevoznika i odaberi najbolju opciju.",
     shipNow: "Pošalji odmah",
     becomeCarrier: "Postani prijevoznik",
 
@@ -68,10 +68,13 @@ export const hr = {
     deliveryPlaceholder: "Grad ili poštanski broj",
     getFreeQuotes: "Besplatne ponude",
 
-    statsDeliveries: "Uspješnih dostava",
-    statsCarriers: "Verificiranih prijevoznika",
-    statsCountries: "Pokrivenih zemalja",
-    statsRating: "Prosječna ocjena",
+    // Benefits section (replaces stats)
+    benefit1Title: "Više ponuda",
+    benefit1Desc: "Usporedi cijene i uvjete od više prijevoznika",
+    benefit2Title: "Jednostavno",
+    benefit2Desc: "Sve na jednom mjestu, bez spama i gubljenja vremena",
+    benefit3Title: "Provjereni prijevoznici",
+    benefit3Desc: "Ocjene, recenzije i kontakt odmah nakon prihvaćanja",
 
     // Carrier CTA
     carrierCtaTitle: "Jeste li prijevoznik?",
