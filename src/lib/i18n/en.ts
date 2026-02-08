@@ -527,6 +527,8 @@ export const en = {
     step5Title: "What insurance do you have?",
     step6Title: "What can you transport?",
     step7Title: "How many vehicles do you have?",
+    step8Title: "What's your coverage area?",
+    step9Title: "Where is your base location?",
 
     stepOf: "Step {{current}} of {{total}}",
     back: "Back",
@@ -571,6 +573,18 @@ export const en = {
     vehicles4to9: "4-9 vehicles",
     vehicles10plus: "10+ vehicles",
     vehiclesFleet: "Fleet (20+ vehicles)",
+
+    // Coverage area
+    coverageArea: "Coverage Area",
+    coverageLocal: "Local (within city/region)",
+    coverageDomestic: "Domestic (within country)",
+    coverageInternational: "International (cross-border)",
+
+    // Base location
+    baseLocation: "Base / Headquarters",
+    city: "City",
+    cityPlaceholder: "e.g., Zagreb",
+    country: "Country",
 
     // Errors
     errorRequired: "This field is required",
