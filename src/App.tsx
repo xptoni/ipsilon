@@ -10,6 +10,7 @@ import CarrierDashboard from "./pages/CarrierDashboard";
 import CreateListing from "./pages/CreateListing";
 import Listings from "./pages/Listings";
 import ListingDetail from "./pages/ListingDetail";
+import CarrierDeliveryDetails from "./pages/CarrierDeliveryDetails";
 import ListingSuccess from "./pages/ListingSuccess";
 import BecomeCarrier from "./pages/BecomeCarrier";
 import CarrierRegistration from "./pages/CarrierRegistration";
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/search-deliveries" element={<Listings />} />
           <Route path="/listing-success" element={<ListingSuccess />} />
           <Route path="/delivery-details/:id" element={<ListingDetail />} />
+          <Route path="/carrier/delivery-details/:id" element={<CarrierDeliveryDetails />} />
           <Route path="/become-carrier" element={<BecomeCarrier />} />
           <Route path="/carrier-registration" element={<CarrierRegistration />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

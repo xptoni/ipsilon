@@ -20,6 +20,8 @@ export const en = {
     cancel: "Cancel",
     save: "Save",
     loading: "Loading...",
+    yes: "Yes",
+    no: "No",
   },
 
   // Login Modal
@@ -674,5 +676,29 @@ export const en = {
     successMessage: "We'll verify everything within 24 hours and activate your profile. Once done, you'll receive an email and can start hunting for jobs.",
     successToast: "Registration Complete!",
     successToastDesc: "We'll be in touch soon.",
+  },
+
+  // Carrier Delivery Details
+  carrierDeliveryDetails: {
+    origin: "Origin",
+    destination: "Destination",
+    earliestDelivery: "Earliest preferred delivery",
+    user: "User",
+    make: "Make",
+    model: "Model",
+    operable: "Operable (runs and drives)",
+    transportMode: "Mode of Transport",
+    transportedOpen: "Transported (open)",
+    transportedEnclosed: "Transported (enclosed)",
+    haveQuestion: "Have a question? Ask the shipper",
+    questionPlaceholder: "Type your question here...",
+    questionSent: "Question sent to shipper!",
+    quotes: "Quotes",
+    noQuotesYet: "No quotes submitted yet",
+    quoteInfo: "Quote Info",
+    providerNotes: "Transport Provider Notes",
+    quotedOn: "Quoted on",
+    conversation: "Conversation (visible to all)",
+    noConversation: "No messages yet",
   },
 };
