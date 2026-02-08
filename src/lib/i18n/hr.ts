@@ -52,7 +52,7 @@ export const hr = {
     heroTrust: "Brzo, jednostavno i bez komplikacija",
     heroTitle: "Najbrži način za transport vozila i tereta na",
     heroBalkans: "Balkanu",
-    heroTitleNew: "Dobij 5 konkurentnih ponuda za prijevoz – brzo i jednostavno",
+    heroTitleNew: "Dobij konkurentne ponude za prijevoz – brzo i jednostavno",
     heroDescription:
       "Povežite se s verificiranim prijevoznicima, usporedite ponude i transportirajte svoja vozila preko granica s povjerenjem.",
     heroDescriptionNew:
@@ -74,7 +74,7 @@ export const hr = {
     benefit2Title: "Jednostavno",
     benefit2Desc: "Sve na jednom mjestu, bez spama i gubljenja vremena",
     benefit3Title: "Provjereni prijevoznici",
-    benefit3Desc: "Ocjene, recenzije i kontakt odmah nakon prihvaćanja",
+    benefit3Desc: "Ocjene, recenzije i dokazana reputacija",
 
     // Carrier CTA
     carrierCtaTitle: "Jeste li prijevoznik?",
