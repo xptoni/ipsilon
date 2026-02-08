@@ -10,6 +10,8 @@ import CarrierDashboard from "./pages/CarrierDashboard";
 import CreateListing from "./pages/CreateListing";
 import ListingDetail from "./pages/ListingDetail";
 import ListingSuccess from "./pages/ListingSuccess";
+import BecomeCarrier from "./pages/BecomeCarrier";
+import CarrierRegistration from "./pages/CarrierRegistration";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/listing-success" element={<ListingSuccess />} />
           <Route path="/listings/:id" element={<ListingDetail />} />
+          <Route path="/become-carrier" element={<BecomeCarrier />} />
+          <Route path="/carrier-registration" element={<CarrierRegistration />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

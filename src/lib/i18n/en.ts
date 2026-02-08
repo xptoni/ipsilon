@@ -461,4 +461,126 @@ export const en = {
     hr: "Croatian",
     sl: "Slovenian",
   },
+
+  // Become Carrier Landing Page
+  becomeCarrier: {
+    badge: "Join Our Carrier Network",
+    heroTitle: "Grow Your Transport Business with Ipsilon",
+    heroDescription: "More and more people use Ipsilon to find transport for their cargo. From vehicles to furniture — create your account, fill out the questionnaire, and start earning today.",
+    ctaButton: "Create Account & Become a Carrier",
+    ctaTitle: "Ready to Start Earning?",
+    ctaDescription: "Join thousands of carriers who are already growing their business with Ipsilon. Registration takes just 5 minutes.",
+
+    // Stats
+    statShippers: "Active Shippers",
+    statListings: "Monthly Listings",
+    statCountries: "Countries Covered",
+    statRating: "Carrier Rating",
+
+    // Benefits
+    benefitsTitle: "Why Carriers Choose Ipsilon",
+    benefitsSubtitle: "Everything you need to grow your transport business in one platform",
+    benefit1Title: "Growing Customer Base",
+    benefit1Desc: "Access thousands of shippers looking for reliable transport services across Europe. New listings are posted daily.",
+    benefit2Title: "Smart Filters & Saved Searches",
+    benefit2Desc: "Filter listings by route, cargo type, and more. Save your preferred searches to quickly find relevant jobs.",
+    benefit3Title: "Instant Email Notifications",
+    benefit3Desc: "Get notified immediately when a new listing matches your saved filters. Never miss a job opportunity again.",
+    benefit4Title: "Verified & Secure",
+    benefit4Desc: "All transactions are secure. Shippers pay deposits upfront, so you know the job is confirmed before you start.",
+    benefit5Title: "Build Your Reputation",
+    benefit5Desc: "Collect reviews from satisfied customers and build a strong profile that attracts more business.",
+    benefit6Title: "Flexible Work",
+    benefit6Desc: "Choose the jobs that fit your schedule and routes. You're in control of your workload.",
+
+    // Categories
+    categoriesTitle: "Transport Categories We Cover",
+    categoriesSubtitle: "From small packages to heavy machinery — there's work for every type of carrier",
+    categoryCars: "Cars",
+    categoryMotorcycles: "Motorcycles",
+    categoryCommercial: "Commercial Vehicles",
+    categoryMachinery: "Machinery & Tools",
+    categoryFurniture: "Furniture & Household",
+    categoryBoxes: "Boxes & Packages",
+    categoryPallets: "Pallets",
+    categoryMoves: "Full House Moves",
+    categoryPets: "Pets",
+    categoryDebris: "Construction Debris",
+
+    // How It Works
+    howItWorksTitle: "How It Works",
+    step1Title: "Create Your Account",
+    step1Desc: "Fill out a quick questionnaire about your services and vehicles.",
+    step2Title: "Get Verified",
+    step2Desc: "Our team reviews your application within 24 hours.",
+    step3Title: "Start Earning",
+    step3Desc: "Browse listings, submit quotes, and grow your business.",
+  },
+
+  // Carrier Registration Wizard
+  carrierReg: {
+    // Step titles
+    step1Title: "What's your name?",
+    step2Title: "What's your email?",
+    step3Title: "What's your phone number?",
+    step4Title: "Are you an individual or business?",
+    step5Title: "What insurance do you have?",
+    step6Title: "What can you transport?",
+    step7Title: "How many vehicles do you have?",
+
+    stepOf: "Step {{current}} of {{total}}",
+    back: "Back",
+    next: "Continue",
+    submit: "Complete Registration",
+    submitting: "Submitting...",
+
+    // Form fields
+    fullName: "Full Name",
+    fullNamePlaceholder: "John Doe",
+    email: "Email Address",
+    emailPlaceholder: "you@example.com",
+    phoneNumber: "Phone Number",
+    phonePlaceholder: "91 234 5678",
+    userType: "User Type",
+    individual: "Individual (Private Person)",
+    business: "Business (Company / Sole Trader)",
+
+    // Insurance
+    insuranceType: "Insurance Type",
+    insuranceGIT: "Goods in Transit (GIT) Insurance",
+    insuranceCMR: "CMR Insurance (International Transport)",
+    insuranceNone: "I don't have cargo insurance",
+
+    // Categories
+    transportCategories: "Transport Categories",
+    catCars: "Cars",
+    catMotorcycles: "Motorcycles",
+    catCommercial: "Commercial Vehicles (Vans, Trucks)",
+    catMachinery: "Machinery & Tools",
+    catFurniture: "Furniture / Household Items",
+    catBoxes: "Boxes / Packages / Small Cargo",
+    catPallets: "Pallets",
+    catMoves: "Full House/Apartment Moves",
+    catPets: "Live Cargo (Pets)",
+    catDebris: "Debris / Construction Waste",
+
+    // Vehicle count
+    vehicleCount: "Number of Vehicles",
+    vehicles1: "1 vehicle",
+    vehicles2to3: "2-3 vehicles",
+    vehicles4to9: "4-9 vehicles",
+    vehicles10plus: "10+ vehicles",
+    vehiclesFleet: "Fleet (20+ vehicles)",
+
+    // Errors
+    errorRequired: "This field is required",
+    errorInvalidEmail: "Please enter a valid email address",
+    errorSelectOne: "Please select at least one option",
+
+    // Success
+    successTitle: "Awesome, your registration is submitted! 🚚",
+    successMessage: "We'll verify everything within 24 hours and activate your profile. Once done, you'll receive an email and can start hunting for jobs.",
+    successToast: "Registration Complete!",
+    successToastDesc: "We'll be in touch soon.",
+  },
 };
