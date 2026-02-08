@@ -55,7 +55,7 @@ export const en = {
     heroTrust: "Fast, simple, and hassle-free",
     heroTitle: "The fastest way to transport vehicles and cargo in the",
     heroBalkans: "Balkans",
-    heroTitleNew: "Get 5 Competitive Transport Quotes – Fast and Easy",
+    heroTitleNew: "Get Competitive Transport Quotes – Fast and Easy",
     heroDescription:
       "Connect with verified carriers, compare quotes, and ship your vehicles across borders with confidence. Simple, secure, and affordable.",
     heroDescriptionNew:
@@ -78,7 +78,7 @@ export const en = {
     benefit2Title: "Simple",
     benefit2Desc: "Everything in one place, no spam or wasted time",
     benefit3Title: "Verified Carriers",
-    benefit3Desc: "Ratings, reviews, and direct contact after acceptance",
+    benefit3Desc: "Ratings, reviews, and proven reputation",
 
     // Carrier CTA
     carrierCtaTitle: "Are you a Transport Provider?",
