@@ -14,8 +14,9 @@ const Header = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
-  const isDashboard = location.pathname.startsWith('/dashboard') || 
-                      location.pathname.startsWith('/listings') ||
+  const isDashboard = location.pathname.startsWith('/shipper-dashboard') || 
+                      location.pathname.startsWith('/search-deliveries') ||
+                      location.pathname.startsWith('/delivery-details') ||
                       location.pathname.startsWith('/create-listing') ||
                       location.pathname.startsWith('/carrier-dashboard');
 
@@ -63,10 +64,10 @@ const Header = () => {
         {isDashboard && (
           <nav className="hidden md:flex items-center gap-6">
             <Link
-              to="/dashboard"
+              to="/shipper-dashboard"
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary",
-                location.pathname === '/dashboard'
+                location.pathname === '/shipper-dashboard'
                   ? "text-primary"
                   : "text-muted-foreground"
               )}
@@ -74,10 +75,10 @@ const Header = () => {
               {t('common.dashboard')}
             </Link>
             <Link
-              to="/listings"
+              to="/search-deliveries"
               className={cn(
                 "flex items-center gap-2 px-3 py-1.5 rounded-full font-medium transition-colors",
-                location.pathname === '/listings'
+                location.pathname === '/search-deliveries'
                   ? "bg-primary text-primary-foreground"
                   : "bg-primary/10 text-primary hover:bg-primary/20"
               )}
@@ -173,14 +174,14 @@ const Header = () => {
             ) : (
               <>
                 <Link
-                  to="/dashboard"
+                  to="/shipper-dashboard"
                   className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {t('common.dashboard')}
                 </Link>
                 <Link
-                  to="/listings"
+                  to="/search-deliveries"
                   className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >

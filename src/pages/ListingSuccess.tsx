@@ -51,7 +51,7 @@ const ListingSuccess = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <Link to="/dashboard">
+                <Link to="/shipper-dashboard">
                   {t('success.viewDashboard')}
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>

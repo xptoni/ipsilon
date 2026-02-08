@@ -468,7 +468,7 @@ const ListingCard = ({
               </div>
 
               <Button asChild className="shrink-0">
-                <Link to={`/listings/${listing.id}`}>
+                <Link to={`/delivery-details/${listing.id}`}>
                   {t("listings.results.viewDetails")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
