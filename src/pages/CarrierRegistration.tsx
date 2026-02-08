@@ -18,7 +18,7 @@ import {
 import { ArrowLeft, ArrowRight, Check, Truck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 9;
 
 const countryCodes = [
   { code: "+385", country: "HR", flag: "🇭🇷" },
@@ -70,6 +70,35 @@ const vehicleCounts = [
   { id: "fleet", label: "carrierReg.vehiclesFleet" },
 ];
 
+const coverageAreas = [
+  { id: "local", label: "carrierReg.coverageLocal" },
+  { id: "domestic", label: "carrierReg.coverageDomestic" },
+  { id: "international", label: "carrierReg.coverageInternational" },
+];
+
+const countries = [
+  { code: "HR", name: "Croatia" },
+  { code: "SI", name: "Slovenia" },
+  { code: "BA", name: "Bosnia and Herzegovina" },
+  { code: "RS", name: "Serbia" },
+  { code: "ME", name: "Montenegro" },
+  { code: "XK", name: "Kosovo" },
+  { code: "MK", name: "North Macedonia" },
+  { code: "AT", name: "Austria" },
+  { code: "DE", name: "Germany" },
+  { code: "IT", name: "Italy" },
+  { code: "HU", name: "Hungary" },
+  { code: "UK", name: "United Kingdom" },
+  { code: "FR", name: "France" },
+  { code: "NL", name: "Netherlands" },
+  { code: "PL", name: "Poland" },
+  { code: "CZ", name: "Czech Republic" },
+  { code: "SK", name: "Slovakia" },
+  { code: "RO", name: "Romania" },
+  { code: "BG", name: "Bulgaria" },
+  { code: "GR", name: "Greece" },
+];
+
 interface FormData {
   fullName: string;
   email: string;
@@ -79,6 +108,9 @@ interface FormData {
   insurance: string[];
   categories: string[];
   vehicleCount: string;
+  coverageArea: string[];
+  baseCity: string;
+  baseCountry: string;
 }
 
 const CarrierRegistration = () => {
@@ -98,6 +130,9 @@ const CarrierRegistration = () => {
     insurance: [],
     categories: [],
     vehicleCount: "",
+    coverageArea: [],
+    baseCity: "",
+    baseCountry: "HR",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -141,6 +176,19 @@ const CarrierRegistration = () => {
       case 7:
         if (!formData.vehicleCount) {
           newErrors.vehicleCount = t("carrierReg.errorRequired");
+        }
+        break;
+      case 8:
+        if (formData.coverageArea.length === 0) {
+          newErrors.coverageArea = t("carrierReg.errorSelectOne");
+        }
+        break;
+      case 9:
+        if (!formData.baseCity.trim()) {
+          newErrors.baseCity = t("carrierReg.errorRequired");
+        }
+        if (!formData.baseCountry) {
+          newErrors.baseCountry = t("carrierReg.errorRequired");
         }
         break;
     }
@@ -418,6 +466,92 @@ const CarrierRegistration = () => {
             )}
           </div>
         );
+      case 8:
+        return (
+          <div className="space-y-4">
+            <Label>{t("carrierReg.coverageArea")} *</Label>
+            <div className="space-y-3 mt-2">
+              {coverageAreas.map((area) => (
+                <div
+                  key={area.id}
+                  className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer"
+                  onClick={() =>
+                    setFormData({
+                      ...formData,
+                      coverageArea: toggleArrayItem(formData.coverageArea, area.id),
+                    })
+                  }
+                >
+                  <Checkbox
+                    checked={formData.coverageArea.includes(area.id)}
+                    onCheckedChange={() =>
+                      setFormData({
+                        ...formData,
+                        coverageArea: toggleArrayItem(formData.coverageArea, area.id),
+                      })
+                    }
+                  />
+                  <Label className="cursor-pointer flex-1">
+                    {t(area.label)}
+                  </Label>
+                </div>
+              ))}
+            </div>
+            {errors.coverageArea && (
+              <p className="text-destructive text-sm mt-1">{errors.coverageArea}</p>
+            )}
+          </div>
+        );
+      case 9:
+        return (
+          <div className="space-y-4">
+            <Label>{t("carrierReg.baseLocation")} *</Label>
+            <div className="space-y-4 mt-2">
+              <div>
+                <Label htmlFor="baseCity" className="text-sm text-muted-foreground">
+                  {t("carrierReg.city")}
+                </Label>
+                <Input
+                  id="baseCity"
+                  value={formData.baseCity}
+                  onChange={(e) =>
+                    setFormData({ ...formData, baseCity: e.target.value })
+                  }
+                  placeholder={t("carrierReg.cityPlaceholder")}
+                  className="mt-1"
+                />
+                {errors.baseCity && (
+                  <p className="text-destructive text-sm mt-1">{errors.baseCity}</p>
+                )}
+              </div>
+              <div>
+                <Label htmlFor="baseCountry" className="text-sm text-muted-foreground">
+                  {t("carrierReg.country")}
+                </Label>
+                <Select
+                  value={formData.baseCountry}
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, baseCountry: value })
+                  }
+                >
+                  <SelectTrigger className="mt-1">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {countries.map((country) => (
+                      <SelectItem key={country.code} value={country.code}>
+                        {country.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.baseCountry && (
+                  <p className="text-destructive text-sm mt-1">{errors.baseCountry}</p>
+                )}
+              </div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
@@ -439,6 +573,10 @@ const CarrierRegistration = () => {
         return t("carrierReg.step6Title");
       case 7:
         return t("carrierReg.step7Title");
+      case 8:
+        return t("carrierReg.step8Title");
+      case 9:
+        return t("carrierReg.step9Title");
       default:
         return "";
     }
