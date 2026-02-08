@@ -13,7 +13,10 @@ import {
   Star,
   MapPin,
   Users,
-  Package
+  Package,
+  ListChecks,
+  Sparkles,
+  UserCheck
 } from "lucide-react";
 import {
   Select,
@@ -81,11 +84,22 @@ const Index = () => {
     },
   ];
 
-  const stats = [
-    { value: "50,000+", label: t('home.statsDeliveries') },
-    { value: "10,000+", label: t('home.statsCarriers') },
-    { value: "30+", label: t('home.statsCountries') },
-    { value: "4.8/5", label: t('home.statsRating') },
+  const benefits = [
+    { 
+      icon: ListChecks, 
+      title: t('home.benefit1Title'), 
+      description: t('home.benefit1Desc') 
+    },
+    { 
+      icon: Sparkles, 
+      title: t('home.benefit2Title'), 
+      description: t('home.benefit2Desc') 
+    },
+    { 
+      icon: UserCheck, 
+      title: t('home.benefit3Title'), 
+      description: t('home.benefit3Desc') 
+    },
   ];
 
   const categories = [
@@ -176,14 +190,19 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Trust Stats */}
+      {/* Benefits Section */}
       <section className="py-12 bg-primary text-primary-foreground">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold mb-1">{stat.value}</div>
-                <div className="text-primary-foreground/80 text-sm">{stat.label}</div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
+                  <benefit.icon className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-1">{benefit.title}</h3>
+                  <p className="text-primary-foreground/80 text-sm">{benefit.description}</p>
+                </div>
               </div>
             ))}
           </div>

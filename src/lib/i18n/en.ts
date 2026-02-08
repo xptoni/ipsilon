@@ -52,14 +52,14 @@ export const en = {
 
   // Homepage
   home: {
-    heroTrust: "Trusted by 50,000+ shippers across Europe",
+    heroTrust: "Fast, simple, and hassle-free",
     heroTitle: "The fastest way to transport vehicles and cargo in the",
     heroBalkans: "Balkans",
-    heroTitleNew: "Get Your Item Delivered Across Europe - Receive Multiple Quotes Fast",
+    heroTitleNew: "Get 5 Competitive Transport Quotes – Fast and Easy",
     heroDescription:
       "Connect with verified carriers, compare quotes, and ship your vehicles across borders with confidence. Simple, secure, and affordable.",
     heroDescriptionNew:
-      "Post what you need to move, receive competitive quotes from verified carriers, and choose the best option for your delivery.",
+      "Post what you need to move in 60 seconds, receive quotes from verified carriers, and choose the best option.",
     shipNow: "Ship Now",
     becomeCarrier: "Become a Carrier",
 
@@ -72,11 +72,13 @@ export const en = {
     deliveryPlaceholder: "City or postcode",
     getFreeQuotes: "Get Free Quotes",
 
-    // Stats
-    statsDeliveries: "Successful deliveries",
-    statsCarriers: "Verified carriers",
-    statsCountries: "Countries covered",
-    statsRating: "Average rating",
+    // Benefits section (replaces stats)
+    benefit1Title: "More Quotes",
+    benefit1Desc: "Compare prices and terms from multiple carriers",
+    benefit2Title: "Simple",
+    benefit2Desc: "Everything in one place, no spam or wasted time",
+    benefit3Title: "Verified Carriers",
+    benefit3Desc: "Ratings, reviews, and direct contact after acceptance",
 
     // Carrier CTA
     carrierCtaTitle: "Are you a Transport Provider?",
