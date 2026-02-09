@@ -17,7 +17,6 @@ const Header = () => {
   const isDashboard = location.pathname.startsWith('/shipper-dashboard') || 
                       location.pathname.startsWith('/search-deliveries') ||
                       location.pathname.startsWith('/delivery-details') ||
-                      location.pathname.startsWith('/create-listing') ||
                       location.pathname.startsWith('/carrier-dashboard');
 
   const navLinks = [
@@ -105,6 +104,12 @@ const Header = () => {
             </>
           ) : (
           <>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/search-deliveries" className="flex items-center gap-1.5">
+                  <Search className="h-4 w-4" />
+                  {t('common.browseListings')}
+                </Link>
+              </Button>
               <Button variant="ghost" onClick={() => setLoginModalOpen(true)}>
                 {t('common.login')}
               </Button>
