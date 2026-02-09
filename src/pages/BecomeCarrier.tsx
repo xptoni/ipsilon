@@ -5,9 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Truck, 
-  Bell, 
-  Filter, 
-  Users, 
+  Clock, 
   Shield, 
   TrendingUp,
   CheckCircle2,
@@ -19,34 +17,24 @@ const BecomeCarrier = () => {
 
   const benefits = [
     {
-      icon: Users,
+      icon: Clock,
       title: t("becomeCarrier.benefit1Title"),
       description: t("becomeCarrier.benefit1Desc"),
     },
     {
-      icon: Filter,
+      icon: TrendingUp,
       title: t("becomeCarrier.benefit2Title"),
       description: t("becomeCarrier.benefit2Desc"),
     },
     {
-      icon: Bell,
+      icon: Shield,
       title: t("becomeCarrier.benefit3Title"),
       description: t("becomeCarrier.benefit3Desc"),
     },
     {
-      icon: Shield,
+      icon: CheckCircle2,
       title: t("becomeCarrier.benefit4Title"),
       description: t("becomeCarrier.benefit4Desc"),
-    },
-    {
-      icon: TrendingUp,
-      title: t("becomeCarrier.benefit5Title"),
-      description: t("becomeCarrier.benefit5Desc"),
-    },
-    {
-      icon: Truck,
-      title: t("becomeCarrier.benefit6Title"),
-      description: t("becomeCarrier.benefit6Desc"),
     },
   ];
 
@@ -89,52 +77,20 @@ const BecomeCarrier = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Benefits Section */}
       <section className="py-16 bg-muted/50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">50K+</div>
-              <div className="text-muted-foreground">{t("becomeCarrier.statShippers")}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">1000+</div>
-              <div className="text-muted-foreground">{t("becomeCarrier.statListings")}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">30+</div>
-              <div className="text-muted-foreground">{t("becomeCarrier.statCountries")}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">4.8★</div>
-              <div className="text-muted-foreground">{t("becomeCarrier.statRating")}</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t("becomeCarrier.benefitsTitle")}
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t("becomeCarrier.benefitsSubtitle")}
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                     <benefit.icon className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {benefit.title}
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     {benefit.description}
                   </p>
                 </CardContent>
@@ -143,6 +99,7 @@ const BecomeCarrier = () => {
           </div>
         </div>
       </section>
+
 
       {/* Categories Section */}
       <section className="py-20 bg-muted/50">
