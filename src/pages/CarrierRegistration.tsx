@@ -15,10 +15,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, ArrowRight, Check, Truck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Truck, SkipForward } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import InfoCards from "@/components/carrier-registration/InfoCards";
 
-const TOTAL_STEPS = 9;
+const INTRO_STEPS = 5;
+const FORM_STEPS = 9;
+const TOTAL_STEPS = INTRO_STEPS + FORM_STEPS;
 
 const countryCodes = [
   { code: "+385", country: "HR", flag: "🇭🇷" },
@@ -138,9 +141,13 @@ const CarrierRegistration = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateStep = (step: number): boolean => {
+    // Info cards don't need validation
+    if (step <= INTRO_STEPS) return true;
+
+    const formStep = step - INTRO_STEPS;
     const newErrors: Record<string, string> = {};
 
-    switch (step) {
+    switch (formStep) {
       case 1:
         if (!formData.fullName.trim()) {
           newErrors.fullName = t("carrierReg.errorRequired");
@@ -256,8 +263,19 @@ const CarrierRegistration = () => {
     );
   }
 
+  const isIntroPhase = currentStep <= INTRO_STEPS;
+  const formStep = currentStep - INTRO_STEPS;
+
+  const handleSkipIntro = () => {
+    setCurrentStep(INTRO_STEPS + 1);
+  };
+
   const renderStep = () => {
-    switch (currentStep) {
+    if (isIntroPhase) {
+      return <InfoCards step={currentStep} />;
+    }
+
+    switch (formStep) {
       case 1:
         return (
           <div className="space-y-4">
@@ -558,27 +576,18 @@ const CarrierRegistration = () => {
   };
 
   const getStepTitle = () => {
-    switch (currentStep) {
-      case 1:
-        return t("carrierReg.step1Title");
-      case 2:
-        return t("carrierReg.step2Title");
-      case 3:
-        return t("carrierReg.step3Title");
-      case 4:
-        return t("carrierReg.step4Title");
-      case 5:
-        return t("carrierReg.step5Title");
-      case 6:
-        return t("carrierReg.step6Title");
-      case 7:
-        return t("carrierReg.step7Title");
-      case 8:
-        return t("carrierReg.step8Title");
-      case 9:
-        return t("carrierReg.step9Title");
-      default:
-        return "";
+    if (isIntroPhase) return "";
+    switch (formStep) {
+      case 1: return t("carrierReg.step1Title");
+      case 2: return t("carrierReg.step2Title");
+      case 3: return t("carrierReg.step3Title");
+      case 4: return t("carrierReg.step4Title");
+      case 5: return t("carrierReg.step5Title");
+      case 6: return t("carrierReg.step6Title");
+      case 7: return t("carrierReg.step7Title");
+      case 8: return t("carrierReg.step8Title");
+      case 9: return t("carrierReg.step9Title");
+      default: return "";
     }
   };
 
@@ -587,24 +596,46 @@ const CarrierRegistration = () => {
       <div className="min-h-[80vh] flex items-center justify-center p-4 bg-muted/30">
         <Card className="max-w-xl w-full">
           <CardHeader className="text-center">
+            {/* Progress dots - separate for intro and form phases */}
             <div className="flex items-center justify-center gap-2 mb-4">
-              {Array.from({ length: TOTAL_STEPS }).map((_, index) => (
-                <div
-                  key={index}
-                  className={`h-2 rounded-full transition-all ${
-                    index + 1 === currentStep
-                      ? "w-8 bg-primary"
-                      : index + 1 < currentStep
-                      ? "w-2 bg-primary"
-                      : "w-2 bg-muted-foreground/30"
-                  }`}
-                />
-              ))}
+              {isIntroPhase ? (
+                // Intro phase dots
+                Array.from({ length: INTRO_STEPS }).map((_, index) => (
+                  <div
+                    key={index}
+                    className={`h-2 rounded-full transition-all ${
+                      index + 1 === currentStep
+                        ? "w-8 bg-primary"
+                        : index + 1 < currentStep
+                        ? "w-2 bg-primary"
+                        : "w-2 bg-muted-foreground/30"
+                    }`}
+                  />
+                ))
+              ) : (
+                // Form phase dots
+                Array.from({ length: FORM_STEPS }).map((_, index) => (
+                  <div
+                    key={index}
+                    className={`h-2 rounded-full transition-all ${
+                      index + 1 === formStep
+                        ? "w-8 bg-primary"
+                        : index + 1 < formStep
+                        ? "w-2 bg-primary"
+                        : "w-2 bg-muted-foreground/30"
+                    }`}
+                  />
+                ))
+              )}
             </div>
-            <CardTitle className="text-xl">{getStepTitle()}</CardTitle>
-            <CardDescription>
-              {t("carrierReg.stepOf", { current: currentStep, total: TOTAL_STEPS })}
-            </CardDescription>
+            {!isIntroPhase && (
+              <>
+                <CardTitle className="text-xl">{getStepTitle()}</CardTitle>
+                <CardDescription>
+                  {t("carrierReg.stepOf", { current: formStep, total: FORM_STEPS })}
+                </CardDescription>
+              </>
+            )}
           </CardHeader>
           <CardContent className="space-y-6">
             {renderStep()}
@@ -640,6 +671,18 @@ const CarrierRegistration = () => {
                 )}
               </Button>
             </div>
+
+            {/* Skip intro link */}
+            {isIntroPhase && (
+              <div className="text-center">
+                <button
+                  onClick={handleSkipIntro}
+                  className="text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline transition-colors"
+                >
+                  {t("carrierIntro.skipIntro")}
+                </button>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

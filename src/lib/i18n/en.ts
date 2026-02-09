@@ -586,6 +586,46 @@ export const en = {
     step3Desc: "Browse listings, submit quotes, and grow your business.",
   },
 
+  // Carrier Intro Cards (before registration)
+  carrierIntro: {
+    card1Title: "Welcome to Ipsilon",
+    card1Subtitle: "Take 30 seconds to see how Ipsilon works for carriers.",
+    card1Bullets: [
+      "We'll quickly show you the key benefits for carriers.",
+      "At the end you'll find the registration form — no pressure.",
+      "Completely free to join and free to use."
+    ],
+    card2Title: "Smart Filters & Daily Opportunities",
+    card2Subtitle: "Never miss a good job again.",
+    card2Bullets: [
+      "Use powerful filters to find jobs that match your route, vehicle and availability.",
+      "New listings come in every day.",
+      "Save your search and get email alerts the moment a matching load appears — never miss a good opportunity again."
+    ],
+    card3Title: "Zero Commitment, You Stay in Control",
+    card3Subtitle: "No hidden fees, no obligations.",
+    card3Bullets: [
+      "There are no membership fees and no obligations.",
+      "You only accept jobs you want.",
+      "The price you quote is the amount you receive if the shipper accepts — nothing is taken from you."
+    ],
+    card4Title: "Build Your Reputation, Get More Work",
+    card4Subtitle: "Stand out and grow your business.",
+    card4Bullets: [
+      "Complete jobs and collect positive ratings from shippers.",
+      "The more good reviews you have, the more visible and preferred you become.",
+      "It's the simplest way to stand out and grow your transport business."
+    ],
+    card5Title: "We're Just Getting Started",
+    card5Subtitle: "Join early and be part of something big.",
+    card5Bullets: [
+      "Our team is focused on making Ipsilon the go-to platform in the region.",
+      "Many exciting partnerships are already in the pipeline.",
+      "Join early and be part of something that's about to take off."
+    ],
+    skipIntro: "Skip to registration",
+  },
+
   // Carrier Registration Wizard
   carrierReg: {
     // Step titles
