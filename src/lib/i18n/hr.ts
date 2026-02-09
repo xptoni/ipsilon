@@ -434,6 +434,46 @@ export const hr = {
     step3Desc: "Pregledavaj oglase, šalji ponude i razvijaj posao.",
   },
 
+  // Carrier Intro Cards
+  carrierIntro: {
+    card1Title: "Dobrodošli na Ipsilon",
+    card1Subtitle: "Uzmi 30 sekundi da vidiš kako Ipsilon funkcionira za prijevoznike.",
+    card1Bullets: [
+      "Brzo ćemo ti pokazati ključne prednosti za prijevoznike.",
+      "Na kraju te čeka obrazac za registraciju — bez pritiska.",
+      "Potpuno besplatno za pridruživanje i korištenje."
+    ],
+    card2Title: "Pametni filteri i dnevne prilike",
+    card2Subtitle: "Nikad više ne propusti dobar posao.",
+    card2Bullets: [
+      "Koristi moćne filtere za pronalazak poslova koji odgovaraju tvojoj ruti, vozilu i dostupnosti.",
+      "Novi oglasi stižu svaki dan.",
+      "Spremi pretragu i primaj email obavijesti čim se pojavi odgovarajući teret — nikad više ne propusti dobru priliku."
+    ],
+    card3Title: "Nula obveza, ti kontroliraš",
+    card3Subtitle: "Bez skrivenih naknada, bez obveza.",
+    card3Bullets: [
+      "Nema članarina niti obveza.",
+      "Prihvaćaš samo poslove koje želiš.",
+      "Cijena koju ponudiš je iznos koji primiš ako pošiljatelj prihvati — ništa ti se ne uzima."
+    ],
+    card4Title: "Gradi reputaciju, dobij više posla",
+    card4Subtitle: "Istaknite se i razvijte posao.",
+    card4Bullets: [
+      "Završi poslove i prikupi pozitivne ocjene od pošiljatelja.",
+      "Što više dobrih recenzija imaš, to si vidljiviji i poželjniji.",
+      "Najjednostavniji način da se istakneš i razviješ prijevoznički posao."
+    ],
+    card5Title: "Tek smo počeli",
+    card5Subtitle: "Pridruži se rano i budi dio nečeg velikog.",
+    card5Bullets: [
+      "Naš tim je fokusiran na to da Ipsilon postane vodeća platforma u regiji.",
+      "Mnoga uzbudljiva partnerstva su već u pripremi.",
+      "Pridruži se rano i budi dio nečeg što će uskoro poletjeti."
+    ],
+    skipIntro: "Preskoči na registraciju",
+  },
+
   footer: {
     tagline: "Najbrži način za transport vozila i tereta diljem Europe.",
     forShippers: "Za pošiljatelje",
