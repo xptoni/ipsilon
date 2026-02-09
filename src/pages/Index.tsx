@@ -223,7 +223,7 @@ const Index = () => {
               {t('home.carrierCtaDescription')}
             </p>
             <Button size="lg" asChild>
-              <Link to="/signup?type=carrier">
+              <Link to="/become-carrier">
                 {t('home.becomeCarrierButton')}
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
@@ -340,7 +340,7 @@ const Index = () => {
                 className="text-base px-8 bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" 
                 asChild
               >
-                <Link to="/signup?type=carrier">
+                <Link to="/become-carrier">
                   {t('home.registerAsCarrier')}
                 </Link>
               </Button>

@@ -109,7 +109,7 @@ const Header = () => {
                 {t('common.login')}
               </Button>
               <Button variant="outline" asChild>
-                <Link to="/signup?type=carrier">{t('header.becomeCarrier')}</Link>
+                <Link to="/become-carrier">{t('header.becomeCarrier')}</Link>
               </Button>
               <Button asChild>
                 <Link to="/create-listing">{t('header.getQuotes')}</Link>
@@ -161,7 +161,7 @@ const Header = () => {
                   {t('common.login')}
                 </button>
                 <Button variant="outline" asChild className="mt-2">
-                  <Link to="/signup?type=carrier" onClick={() => setMobileMenuOpen(false)}>
+                  <Link to="/become-carrier" onClick={() => setMobileMenuOpen(false)}>
                     {t('header.becomeCarrier')}
                   </Link>
                 </Button>
