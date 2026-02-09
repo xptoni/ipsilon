@@ -317,6 +317,45 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Popular Routes */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container">
+          <div className="text-center mb-10">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {t('home.popularRoutesTitle')}
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              {t('home.popularRoutesDescription')}
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {[
+              { from: "Genève", to: "Zagreb" },
+              { from: "Split", to: "Zagreb" },
+              { from: "München", to: "Split" },
+              { from: "Frankfurt", to: "Beograd" },
+              { from: "Zadar", to: "Osijek" },
+              { from: "Milano", to: "Zagreb" },
+            ].map((route, index) => (
+              <Link
+                key={index}
+                to="#"
+                className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all duration-300 group"
+              >
+                <MapPin className="h-5 w-5 text-primary shrink-0" />
+                <span className="font-medium text-foreground">
+                  {route.from}
+                </span>
+                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                <span className="font-medium text-foreground">
+                  {route.to}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-primary">
         <div className="container">
