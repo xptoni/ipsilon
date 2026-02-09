@@ -548,32 +548,19 @@ export const en = {
   becomeCarrier: {
     badge: "Join Our Carrier Network",
     heroTitle: "Grow Your Transport Business with Ipsilon",
-    heroDescription: "More and more people use Ipsilon to find transport for their cargo. From vehicles to furniture — create your account, fill out the questionnaire, and start earning today.",
-    ctaButton: "Create Account & Become a Carrier",
-    ctaTitle: "Ready to Start Earning?",
-    ctaDescription: "Join thousands of carriers who are already growing their business with Ipsilon. Registration takes just 5 minutes.",
-
-    // Stats
-    statShippers: "Active Shippers",
-    statListings: "Monthly Listings",
-    statCountries: "Countries Covered",
-    statRating: "Carrier Rating",
+    heroDescription: "More and more people use Ipsilon to find transport for their cargo. From vehicles to furniture, use ultra-optimized filters to discover jobs that fit you perfectly. Fill your empty cargo space and earn more.",
 
     // Benefits
     benefitsTitle: "Why Carriers Choose Ipsilon",
     benefitsSubtitle: "Everything you need to grow your transport business in one platform",
-    benefit1Title: "Growing Customer Base",
-    benefit1Desc: "Access thousands of shippers looking for reliable transport services across Europe. New listings are posted daily.",
-    benefit2Title: "Smart Filters & Saved Searches",
-    benefit2Desc: "Filter listings by route, cargo type, and more. Save your preferred searches to quickly find relevant jobs.",
-    benefit3Title: "Instant Email Notifications",
-    benefit3Desc: "Get notified immediately when a new listing matches your saved filters. Never miss a job opportunity again.",
-    benefit4Title: "Verified & Secure",
-    benefit4Desc: "All transactions are secure. Shippers pay deposits upfront, so you know the job is confirmed before you start.",
-    benefit5Title: "Build Your Reputation",
-    benefit5Desc: "Collect reviews from satisfied customers and build a strong profile that attracts more business.",
-    benefit6Title: "Flexible Work",
-    benefit6Desc: "Choose the jobs that fit your schedule and routes. You're in control of your workload.",
+    benefit1Title: "Fast & Simple",
+    benefit1Desc: "Registration in just 2 minutes, no lengthy paperwork.",
+    benefit2Title: "Full Control Over Pricing",
+    benefit2Desc: "You decide how much you want to earn.",
+    benefit3Title: "Reviews & Trust",
+    benefit3Desc: "Build your reputation with user ratings.",
+    benefit4Title: "No Obligations",
+    benefit4Desc: "Accept only the jobs that suit you.",
 
     // Categories
     categoriesTitle: "Transport Categories We Cover",
