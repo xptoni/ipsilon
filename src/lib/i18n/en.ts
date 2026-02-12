@@ -382,7 +382,7 @@ export const en = {
     noCompletedQuotes: "No completed jobs yet",
     noCompletedQuotesDesc: "Completed deliveries will be shown here",
     submittedOn: "Submitted on",
-    totalValue: "Total Value",
+    totalValue: "Total Earned",
   },
 
   // Listings / Search Deliveries
