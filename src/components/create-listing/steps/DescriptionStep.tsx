@@ -36,6 +36,16 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
       </div>
 
       <div className="space-y-4 max-w-lg mx-auto">
+        <div className="space-y-2">
+          <Label htmlFor="title">{t('wizard.titleLabel', 'What do you need transport for?')}</Label>
+          <Input
+            id="title"
+            placeholder={t('wizard.titlePlaceholder', 'e.g. BMW 3 Series')}
+            value={formData.title || ''}
+            onChange={(e) => onUpdate({ title: e.target.value })}
+          />
+        </div>
+
         {isVehicle && (
           <>
             <div className="grid grid-cols-2 gap-4">

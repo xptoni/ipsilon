@@ -151,27 +151,11 @@ const Header = () => {
               <Button variant="outline" asChild>
                 <Link to="/become-carrier">{t('header.becomeCarrier')}</Link>
               </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button>
-                    {t('header.getQuotes')}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  {serviceCategories.map((cat) => (
-                    <DropdownMenuItem key={cat.slug} asChild>
-                      <Link to={`/${cat.slug}`} className="cursor-pointer">
-                        {cat.label}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                  <DropdownMenuItem asChild>
-                    <Link to="/create-listing" className="cursor-pointer">
-                      {t('wizard.categories.other')}
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Button asChild>
+                <Link to="/create-listing">
+                  {t('header.getQuotes')}
+                </Link>
+              </Button>
             </>
           )}
         </div>
