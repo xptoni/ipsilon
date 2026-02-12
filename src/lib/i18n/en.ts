@@ -118,8 +118,44 @@ export const en = {
     feature3Title: "Rated & Reviewed",
     feature3Description: "Choose based on real reviews from other shippers.",
 
-    // CTA
-    ctaTitle: "Ready to ship?",
+  // Category Landing Pages
+  categoryLanding: {
+    cars: {
+      hero: "Get Competitive Car Transport Quotes – Fast and Easy",
+      subtitle: "Post your car transport request in 60 seconds, receive quotes from verified carriers, and choose the best deal.",
+    },
+    motorcycles: {
+      hero: "Affordable Motorcycle Transport – Get Quotes in Minutes",
+      subtitle: "Ship your motorcycle safely with verified carriers. Compare prices and book with confidence.",
+    },
+    furniture: {
+      hero: "Furniture Transport Made Simple – Get Free Quotes",
+      subtitle: "Moving furniture across Europe? Get competitive quotes from trusted carriers in minutes.",
+    },
+    appliances: {
+      hero: "Home Appliance Transport – Safe, Fast & Affordable",
+      subtitle: "Ship washing machines, fridges, and other appliances with verified carriers at the best price.",
+    },
+    boxes: {
+      hero: "Box & Parcel Transport – Compare Carrier Quotes",
+      subtitle: "Need to send boxes? Get instant quotes from carriers covering your route.",
+    },
+    pallets: {
+      hero: "Pallet Transport Quotes – Fast, Reliable & Affordable",
+      subtitle: "Ship pallets across Europe with verified carriers. Compare prices and book today.",
+    },
+    machinery: {
+      hero: "Machinery & Tools Transport – Get Expert Quotes",
+      subtitle: "Heavy machinery needs expert handling. Get quotes from experienced carriers now.",
+    },
+    boats: {
+      hero: "Boat Transport – Safe Shipping Across Europe",
+      subtitle: "Transport your boat with specialist carriers. Compare quotes and ship with confidence.",
+    },
+  },
+
+  // CTA
+  ctaTitle: "Ready to ship?",
     ctaDescription:
       "Join thousands of satisfied shippers and carriers across Europe.",
     postFirstListing: "Post Your First Listing",
