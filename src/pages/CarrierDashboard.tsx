@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,10 +18,19 @@ import { useTranslation } from "react-i18next";
 const CarrierDashboard = () => {
   const { t } = useTranslation();
 
-  const myQuotes = mockQuotes.filter((q) => q.carrierId === "carrier-1");
-  const pendingQuotes = myQuotes.filter((q) => q.status === "pending");
-  const bookedQuotes = myQuotes.filter((q) => q.status === "booked");
-  const completedQuotes = myQuotes.filter((q) => q.status === "completed");
+  const [quotes, setQuotes] = useState(() =>
+    mockQuotes.filter((q) => q.carrierId === "carrier-1")
+  );
+
+  const pendingQuotes = quotes.filter((q) => q.status === "pending");
+  const bookedQuotes = quotes.filter((q) => q.status === "booked");
+  const completedQuotes = quotes.filter((q) => q.status === "completed");
+
+  const handleCompleteDelivery = (quoteId: string) => {
+    setQuotes((prev) =>
+      prev.map((q) => (q.id === quoteId ? { ...q, status: "completed" as const } : q))
+    );
+  };
 
   const getListingForQuote = (listingId: string) => {
     return mockListings.find((l) => l.id === listingId);
@@ -90,7 +100,7 @@ const CarrierDashboard = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="text-2xl font-bold text-foreground">
-                {myQuotes.length}
+                {quotes.length}
               </div>
               <p className="text-sm text-muted-foreground">
                 {t("carrierDashboard.totalQuotes")}
@@ -130,7 +140,7 @@ const CarrierDashboard = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="text-2xl font-bold text-foreground">
-                €{myQuotes.reduce((sum, q) => sum + q.price, 0).toLocaleString()}
+                €{quotes.reduce((sum, q) => sum + q.price, 0).toLocaleString()}
               </div>
               <p className="text-sm text-muted-foreground">
                 {t("carrierDashboard.totalValue")}
@@ -192,6 +202,7 @@ const CarrierDashboard = () => {
                     formatDate={formatDate}
                     getQuoteStatusColor={getQuoteStatusColor}
                     getQuoteStatusLabel={getQuoteStatusLabel}
+                    onComplete={() => handleCompleteDelivery(quote.id)}
                     t={t}
                   />
                 ))
@@ -242,6 +253,7 @@ interface QuoteCardProps {
   formatDate: (date: string) => string;
   getQuoteStatusColor: (status: string) => string;
   getQuoteStatusLabel: (status: string) => string;
+  onComplete?: () => void;
   t: any;
 }
 
@@ -251,6 +263,7 @@ const QuoteCard = ({
   formatDate,
   getQuoteStatusColor,
   getQuoteStatusLabel,
+  onComplete,
   t,
 }: QuoteCardProps) => {
   if (!listing) return null;
@@ -286,6 +299,16 @@ const QuoteCard = ({
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
+            {onComplete && (
+              <Button
+                variant="default"
+                className="bg-success hover:bg-success/90 text-success-foreground"
+                onClick={onComplete}
+              >
+                <CheckCircle className="h-4 w-4 mr-2" />
+                {t("carrierDashboard.completeDelivery", "Complete Delivery")}
+              </Button>
+            )}
             <Button variant="outline" asChild>
               <Link to={`/carrier/delivery-details/${listing.id}`}>{t("common.viewDetails")}</Link>
             </Button>
