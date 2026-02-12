@@ -188,7 +188,7 @@ const CarrierDeliveryDetails = () => {
               <div>
                 <p className="text-sm text-muted-foreground">{t("carrierDeliveryDetails.origin")}</p>
                 <p className="font-medium text-foreground">
-                  New Bern, North Carolina, 28562-5304, United States
+                  Geneva, Switzerland
                 </p>
               </div>
             </div>
@@ -201,7 +201,7 @@ const CarrierDeliveryDetails = () => {
               <div>
                 <p className="text-sm text-muted-foreground">{t("carrierDeliveryDetails.destination")}</p>
                 <p className="font-medium text-foreground">
-                  Commerce, Texas, 75428-3354, United States
+                  Split, Croatia
                 </p>
               </div>
             </div>
@@ -277,6 +277,9 @@ const CarrierDeliveryDetails = () => {
                 {t("common.send")}
               </Button>
             </div>
+            <p className="text-xs text-muted-foreground mt-3 text-center">
+              {t("carrierDeliveryDetails.noQuestionHint", "No questions? Scroll down to submit your quote directly ↓")}
+            </p>
           </CardContent>
         </Card>
 
@@ -284,7 +287,7 @@ const CarrierDeliveryDetails = () => {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="text-lg">
-              {t("carrierDeliveryDetails.quotes")} ({quotes.length}/5)
+              {t("carrierDeliveryDetails.quotes")}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
