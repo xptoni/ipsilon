@@ -245,7 +245,7 @@ const HowItWorks = () => {
                 className="text-base px-8 bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
                 asChild
               >
-                <Link to="/become-carrier">
+                <Link to="/carrier-registration">
                   Become a Carrier
                 </Link>
               </Button>
