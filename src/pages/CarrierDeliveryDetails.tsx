@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -44,7 +44,13 @@ const mockVehicleDetails = {
   make: "Ford",
   model: "Fusion",
   operable: true,
-  transportMode: "open",
+};
+
+const carrierUsernames: Record<string, string> = {
+  "carrier-1": "matodostave55",
+  "carrier-2": "brziprijevoz22",
+  "carrier-3": "transportpro99",
+  "carrier-4": "cargomajstor11",
 };
 
 const mockRouteDetails = {
@@ -249,15 +255,6 @@ const CarrierDeliveryDetails = () => {
                   {mockVehicleDetails.operable ? t("common.yes") : t("common.no")}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <Truck className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">{t("carrierDeliveryDetails.transportMode")}:</span>
-                <span className="text-sm font-medium">
-                  {mockVehicleDetails.transportMode === "open"
-                    ? t("carrierDeliveryDetails.transportedOpen")
-                    : t("carrierDeliveryDetails.transportedEnclosed")}
-                </span>
-              </div>
             </div>
           </CardContent>
         </Card>
@@ -344,7 +341,7 @@ const CarrierDeliveryDetails = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  {t("carrierDashboard.submitQuote")}
+                  {t("listingDetail.submitYourQuote")}
                 </Button>
               </form>
             </CardContent>
@@ -385,11 +382,16 @@ const QuoteItem = ({
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <span className="text-sm font-semibold text-primary">
-                  {quote.carrierName.charAt(0)}
+                  {(carrierUsernames[quote.carrierId] || quote.carrierName).charAt(0)}
                 </span>
               </div>
               <div>
-                <span className="font-medium text-foreground text-sm">{quote.carrierName}</span>
+                <Link
+                  to={`/carrier/${carrierUsernames[quote.carrierId] || quote.carrierId}`}
+                  className="font-medium text-primary text-sm hover:underline"
+                >
+                  {carrierUsernames[quote.carrierId] || quote.carrierName}
+                </Link>
                 <div className="flex items-center gap-1">
                   <Star className="h-3 w-3 fill-warning text-warning" />
                   <span className="text-xs text-muted-foreground">{quote.carrierRating}</span>
