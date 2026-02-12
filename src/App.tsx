@@ -16,6 +16,7 @@ import BecomeCarrier from "./pages/BecomeCarrier";
 import CarrierRegistration from "./pages/CarrierRegistration";
 import CarrierProfile from "./pages/CarrierProfile";
 import CategoryLanding, { CATEGORY_SLUGS } from "./pages/CategoryLanding";
+import HowItWorks from "./pages/HowItWorks";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/homepage" element={<Index />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/login" element={<Login />} />
           <Route path="/shipper-dashboard" element={<ShipperDashboard />} />
           <Route path="/carrier-dashboard" element={<CarrierDashboard />} />
