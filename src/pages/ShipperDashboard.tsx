@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { 
   Plus, 
   Package, 
-  MapPin, 
   MessageSquare,
   ArrowRight
 } from "lucide-react";
@@ -101,27 +100,34 @@ const ShipperDashboard = () => {
             
             return (
               <Card key={listing.id} className="overflow-hidden hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex-1 space-y-2">
-                      <div className="flex items-center gap-3">
-                        <h3 className="font-display text-lg font-semibold text-foreground">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-4">
+                    <div className="h-16 w-16 rounded-lg overflow-hidden bg-muted shrink-0">
+                      <img 
+                        src="/placeholder.svg" 
+                        alt={listing.title}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-1">
+                        <h3 className="font-display text-lg font-semibold text-foreground truncate">
                           {listing.title}
                         </h3>
-                        <Badge variant="outline" className={getStatusColor(listing.status)}>
+                        <Badge variant="outline" className={`shrink-0 ${getStatusColor(listing.status)}`}>
                           {getStatusLabel(listing.status)}
                         </Badge>
                       </div>
 
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <MapPin className="h-4 w-4 text-primary shrink-0" />
                         <span>{listing.origin}</span>
-                        <ArrowRight className="h-3 w-3" />
+                        <ArrowRight className="h-3 w-3 shrink-0" />
                         <span>{listing.destination}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 shrink-0">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <MessageSquare className="h-4 w-4" />
                         {quotes.length} {quotes.length !== 1 ? t('shipperDashboard.quotes') : t('shipperDashboard.quote')}
