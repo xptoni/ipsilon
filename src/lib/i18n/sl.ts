@@ -45,6 +45,7 @@ export const sl = {
     backToHome: "Nazaj na domov",
     getQuotes: "Pridobi ponudbe",
     becomeCarrier: "Postani prevoznik",
+    services: "Storitve",
   },
 
   // Homepage
@@ -137,15 +138,15 @@ export const sl = {
     },
 
     categories: {
-      furniture: "Pohištvo",
-      boxes: "Škatle",
-      cars: "Avtomobili",
-      motorcycles: "Motorji",
-      vans: "Kombiji",
-      boats: "Čolni",
-      vehicleParts: "Avtodeli",
-      pets: "Hišni ljubljenčki",
-      other: "Drugo",
+      cars: "Prevoz avtomobilov",
+      motorcycles: "Prevoz motorjev",
+      furniture: "Prevoz pohištva",
+      appliances: "Prevoz gospodinjskih aparatov",
+      boxes: "Prevoz škatel",
+      pallets: "Prevoz palet",
+      machinery: "Prevoz strojev in orodja",
+      boats: "Prevoz čolnov",
+      other: "Prevoz ostalih stvari",
     },
 
     categoryTitle: "Kaj želite prepeljati?",

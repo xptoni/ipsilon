@@ -103,13 +103,14 @@ const Index = () => {
   ];
 
   const categories = [
-    { value: 'furniture', label: t('wizard.categories.furniture') },
-    { value: 'boxes', label: t('wizard.categories.boxes') },
     { value: 'cars', label: t('wizard.categories.cars') },
     { value: 'motorcycles', label: t('wizard.categories.motorcycles') },
-    { value: 'vans', label: t('wizard.categories.vans') },
+    { value: 'furniture', label: t('wizard.categories.furniture') },
+    { value: 'appliances', label: t('wizard.categories.appliances') },
+    { value: 'boxes', label: t('wizard.categories.boxes') },
+    { value: 'pallets', label: t('wizard.categories.pallets') },
+    { value: 'machinery', label: t('wizard.categories.machinery') },
     { value: 'boats', label: t('wizard.categories.boats') },
-    { value: 'pets', label: t('wizard.categories.pets') },
     { value: 'other', label: t('wizard.categories.other') },
   ];
 

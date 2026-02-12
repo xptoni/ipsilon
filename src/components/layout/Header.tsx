@@ -1,11 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Truck, Menu, X, Search } from "lucide-react";
+import { Truck, Menu, X, Search, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import LoginModal from "@/components/auth/LoginModal";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -24,6 +30,17 @@ const Header = () => {
     { href: '/', label: t('common.home') },
     { href: '/how-it-works', label: t('common.howItWorks') },
     { href: '/about', label: t('common.about') },
+  ];
+
+  const serviceCategories = [
+    { value: 'cars', label: t('wizard.categories.cars') },
+    { value: 'motorcycles', label: t('wizard.categories.motorcycles') },
+    { value: 'furniture', label: t('wizard.categories.furniture') },
+    { value: 'appliances', label: t('wizard.categories.appliances') },
+    { value: 'boxes', label: t('wizard.categories.boxes') },
+    { value: 'pallets', label: t('wizard.categories.pallets') },
+    { value: 'machinery', label: t('wizard.categories.machinery') },
+    { value: 'boats', label: t('wizard.categories.boats') },
   ];
 
   return (
@@ -57,6 +74,24 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary outline-none">
+                {t('header.services')}
+                <ChevronDown className="h-3.5 w-3.5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                {serviceCategories.map((cat) => (
+                  <DropdownMenuItem key={cat.value} asChild>
+                    <Link
+                      to={`/create-listing?category=${cat.value}`}
+                      className="cursor-pointer"
+                    >
+                      {cat.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         )}
 
@@ -99,12 +134,9 @@ const Header = () => {
               <Link to="/">{t('common.backToHome')}</Link>
             </Button>
           ) : isDashboard ? (
-            <>
-              <span className="text-sm text-muted-foreground">{t('common.welcome')}, Marko</span>
-              <Button variant="outline" size="sm" asChild>
-                <Link to="/">{t('common.logout')}</Link>
-              </Button>
-            </>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/">{t('common.logout')}</Link>
+            </Button>
           ) : (
           <>
               <Button variant="ghost" size="sm" asChild>
