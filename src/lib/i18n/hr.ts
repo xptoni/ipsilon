@@ -45,6 +45,7 @@ export const hr = {
     backToHome: "Natrag na početnu",
     getQuotes: "Dobij ponude",
     becomeCarrier: "Postani prijevoznik",
+    services: "Usluge",
   },
 
   // Homepage
@@ -140,15 +141,15 @@ export const hr = {
     },
 
     categories: {
-      furniture: "Namještaj",
-      boxes: "Kutije",
-      cars: "Automobili",
-      motorcycles: "Motocikli",
-      vans: "Kombiji",
-      boats: "Brodovi",
-      vehicleParts: "Dijelovi vozila",
-      pets: "Kućni ljubimci",
-      other: "Ostalo",
+      cars: "Prijevoz automobila",
+      motorcycles: "Prijevoz motocikala",
+      furniture: "Prijevoz namještaja",
+      appliances: "Prijevoz kućnih aparata",
+      boxes: "Prijevoz kutija",
+      pallets: "Prijevoz paleta",
+      machinery: "Prijevoz strojeva i alata",
+      boats: "Prijevoz brodova",
+      other: "Prijevoz ostalih stvari",
     },
 
     categoryTitle: "Što želite prevesti?",

@@ -48,6 +48,7 @@ export const en = {
     backToHome: "Back to Home",
     getQuotes: "Get Quotes",
     becomeCarrier: "Become a Carrier",
+    services: "Services",
   },
 
   // Homepage
@@ -150,15 +151,15 @@ export const en = {
 
     // Categories
     categories: {
-      furniture: "Furniture",
-      boxes: "Boxes",
-      cars: "Cars",
-      motorcycles: "Motorcycles",
-      vans: "Vans",
-      boats: "Boats",
-      vehicleParts: "Vehicle Parts",
-      pets: "Pets",
-      other: "Other",
+      cars: "Car Transport",
+      motorcycles: "Motorcycle Transport",
+      furniture: "Furniture Transport",
+      appliances: "Home Appliance Transport",
+      boxes: "Box Transport",
+      pallets: "Pallet Transport",
+      machinery: "Machinery & Tools Transport",
+      boats: "Boat Transport",
+      other: "Other Items Transport",
     },
 
     // Step 1
