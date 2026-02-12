@@ -172,12 +172,9 @@ const CarrierDeliveryDetails = () => {
 
         {/* Delivery Title */}
         <div className="mb-6">
-          <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+          <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground">
             {mockVehicleDetails.make} {mockVehicleDetails.model}
           </h1>
-          <Badge variant="secondary" className="text-sm">
-            {t(`cargo.${listing.cargoType}`)}
-          </Badge>
         </div>
 
         {/* Delivery Details Card */}
@@ -379,12 +376,7 @@ const QuoteItem = ({
             <div className="text-xl font-bold text-primary">€{quote.price}</div>
             
             {/* Provider Info */}
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-sm font-semibold text-primary">
-                  {(carrierUsernames[quote.carrierId] || quote.carrierName).charAt(0)}
-                </span>
-              </div>
+            <div>
               <div>
                 <Link
                   to={`/carrier/${carrierUsernames[quote.carrierId] || quote.carrierId}`}
