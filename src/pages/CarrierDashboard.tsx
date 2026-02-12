@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ArrowRight,
@@ -266,7 +268,18 @@ const QuoteCard = ({
   onComplete,
   t,
 }: QuoteCardProps) => {
+  const [showDialog, setShowDialog] = useState(false);
+  const [deliveryOk, setDeliveryOk] = useState<boolean | null>(null);
+  const [comment, setComment] = useState("");
+
   if (!listing) return null;
+
+  const handleConfirm = () => {
+    onComplete?.();
+    setShowDialog(false);
+    setDeliveryOk(null);
+    setComment("");
+  };
 
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
@@ -298,23 +311,94 @@ const QuoteCard = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
-            {onComplete && (
-              <Button
-                variant="default"
-                className="bg-success hover:bg-success/90 text-success-foreground"
-                onClick={onComplete}
-              >
-                <CheckCircle className="h-4 w-4 mr-2" />
-                {t("carrierDashboard.completeDelivery", "Complete Delivery")}
+          <div className="flex flex-col items-end gap-2 shrink-0">
+            <div className="flex items-center gap-3">
+              {onComplete && (
+                <Button
+                  variant="outline"
+                  className="border-success/40 text-success hover:bg-success/10"
+                  onClick={() => setShowDialog(true)}
+                >
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Mark as Delivered
+                </Button>
+              )}
+              <Button variant="outline" asChild>
+                <Link to={`/carrier/delivery-details/${listing.id}`}>{t("common.viewDetails")}</Link>
               </Button>
+            </div>
+            {onComplete && (
+              <p className="text-xs text-muted-foreground italic">
+                Click when the delivery is successfully completed
+              </p>
             )}
-            <Button variant="outline" asChild>
-              <Link to={`/carrier/delivery-details/${listing.id}`}>{t("common.viewDetails")}</Link>
-            </Button>
           </div>
         </div>
       </CardContent>
+
+      {/* Completion confirmation dialog */}
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Confirm Delivery Completion</DialogTitle>
+            <DialogDescription>
+              You're about to mark <span className="font-medium text-foreground">{listing.title}</span> ({listing.origin} → {listing.destination}) as delivered.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-2">
+            <div>
+              <p className="text-sm font-medium text-foreground mb-3">Did everything go well?</p>
+              <div className="flex gap-3">
+                <Button
+                  type="button"
+                  variant={deliveryOk === true ? "default" : "outline"}
+                  className={deliveryOk === true ? "bg-success hover:bg-success/90" : ""}
+                  onClick={() => setDeliveryOk(true)}
+                >
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Yes, all good
+                </Button>
+                <Button
+                  type="button"
+                  variant={deliveryOk === false ? "default" : "outline"}
+                  className={deliveryOk === false ? "bg-destructive hover:bg-destructive/90" : ""}
+                  onClick={() => setDeliveryOk(false)}
+                >
+                  <AlertCircle className="h-4 w-4 mr-2" />
+                  There was an issue
+                </Button>
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-foreground">
+                Comments <span className="text-muted-foreground font-normal">(optional)</span>
+              </label>
+              <Textarea
+                placeholder="Any notes about the delivery..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                className="mt-1.5"
+                rows={3}
+              />
+            </div>
+          </div>
+
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button variant="outline" onClick={() => setShowDialog(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConfirm}
+              disabled={deliveryOk === null}
+              className={deliveryOk === true ? "bg-success hover:bg-success/90" : ""}
+            >
+              Confirm Delivery
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 };
