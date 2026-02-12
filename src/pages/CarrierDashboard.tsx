@@ -142,7 +142,7 @@ const CarrierDashboard = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="text-2xl font-bold text-foreground">
-                €{quotes.reduce((sum, q) => sum + q.price, 0).toLocaleString()}
+                €{completedQuotes.reduce((sum, q) => sum + q.price, 0).toLocaleString()}
               </div>
               <p className="text-sm text-muted-foreground">
                 {t("carrierDashboard.totalValue")}
