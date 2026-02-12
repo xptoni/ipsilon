@@ -14,6 +14,7 @@ import CarrierDeliveryDetails from "./pages/CarrierDeliveryDetails";
 import ListingSuccess from "./pages/ListingSuccess";
 import BecomeCarrier from "./pages/BecomeCarrier";
 import CarrierRegistration from "./pages/CarrierRegistration";
+import CarrierProfile from "./pages/CarrierProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/carrier/delivery-details/:id" element={<CarrierDeliveryDetails />} />
           <Route path="/become-carrier" element={<BecomeCarrier />} />
           <Route path="/carrier-registration" element={<CarrierRegistration />} />
+          <Route path="/carrier/:username" element={<CarrierProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
