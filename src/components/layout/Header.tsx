@@ -83,7 +83,7 @@ const Header = () => {
                 {serviceCategories.map((cat) => (
                   <DropdownMenuItem key={cat.value} asChild>
                     <Link
-                      to={`/create-listing?category=${cat.value}`}
+                      to={`/transport/${cat.value}`}
                       className="cursor-pointer"
                     >
                       {cat.label}
@@ -151,9 +151,27 @@ const Header = () => {
               <Button variant="outline" asChild>
                 <Link to="/become-carrier">{t('header.becomeCarrier')}</Link>
               </Button>
-              <Button asChild>
-                <Link to="/create-listing">{t('header.getQuotes')}</Link>
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button>
+                    {t('header.getQuotes')}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  {serviceCategories.map((cat) => (
+                    <DropdownMenuItem key={cat.value} asChild>
+                      <Link to={`/transport/${cat.value}`} className="cursor-pointer">
+                        {cat.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuItem asChild>
+                    <Link to="/create-listing" className="cursor-pointer">
+                      {t('wizard.categories.other')}
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           )}
         </div>
