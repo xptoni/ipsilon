@@ -625,6 +625,9 @@ export const en = {
     step2Desc: "Our team reviews your application within 24 hours.",
     step3Title: "Start Earning",
     step3Desc: "Browse listings, submit quotes, and grow your business.",
+    ctaButton: "Create Account & Become a Carrier",
+    ctaTitle: "Ready to Start Earning?",
+    ctaDescription: "Join carriers already growing with Ipsilon. Registration takes just 2 minutes.",
   },
 
   // Carrier Intro Cards (before registration)
