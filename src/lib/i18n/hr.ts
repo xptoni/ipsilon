@@ -121,12 +121,12 @@ export const hr = {
   categoryLanding: {
     cars: { hero: "Konkurentne ponude za prijevoz automobila – brzo i jednostavno", subtitle: "Objavite zahtjev za prijevoz automobila u 60 sekundi, primite ponude od verificiranih prijevoznika i odaberite najbolju." },
     motorcycles: { hero: "Povoljni prijevoz motocikala – ponude u minutama", subtitle: "Prevezite motocikl sigurno s verificiranim prijevoznicima. Usporedite cijene i rezervirajte s povjerenjem." },
-    furniture: { hero: "Prijevoz namještaja jednostavno – besplatne ponude", subtitle: "Selite namještaj po Europi? Dobijte konkurentne ponude od pouzdanih prijevoznika u minutama." },
+    furniture: { hero: "Prijevoz namještaja jednostavno – besplatne ponude", subtitle: "Selite namještaj? Dobijte konkurentne ponude od pouzdanih prijevoznika u minutama." },
     appliances: { hero: "Prijevoz kućanskih aparata – sigurno, brzo i povoljno", subtitle: "Prevezite perilice, hladnjake i ostale aparate s verificiranim prijevoznicima po najboljoj cijeni." },
     boxes: { hero: "Prijevoz kutija i paketa – usporedite ponude", subtitle: "Trebate poslati kutije? Dobijte trenutne ponude od prijevoznika na vašoj ruti." },
-    pallets: { hero: "Prijevoz paleta – brzo, pouzdano i povoljno", subtitle: "Prevezite palete po Europi s verificiranim prijevoznicima. Usporedite cijene i rezervirajte danas." },
+    pallets: { hero: "Prijevoz paleta – brzo, pouzdano i povoljno", subtitle: "Prevezite palete s verificiranim prijevoznicima. Usporedite cijene i rezervirajte danas." },
     machinery: { hero: "Prijevoz strojeva i alata – stručne ponude", subtitle: "Teški strojevi zahtijevaju stručno rukovanje. Dobijte ponude od iskusnih prijevoznika odmah." },
-    boats: { hero: "Prijevoz brodova – sigurna dostava po Europi", subtitle: "Prevezite brod sa specijaliziranim prijevoznicima. Usporedite ponude i prevezite s povjerenjem." },
+    boats: { hero: "Prijevoz brodova – sigurna dostava sa specijalistima", subtitle: "Prevezite brod sa specijaliziranim prijevoznicima. Usporedite ponude i prevezite s povjerenjem." },
   },
 
   // Wizard

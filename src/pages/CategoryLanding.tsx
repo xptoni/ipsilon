@@ -50,8 +50,8 @@ const CategoryLanding = () => {
     );
   }
 
-  const heroText = t(`home.categoryLanding.${urlCategory}.hero`);
-  const subtitleText = t(`home.categoryLanding.${urlCategory}.subtitle`);
+  const heroText = t(`categoryLanding.${urlCategory}.hero`);
+  const subtitleText = t(`categoryLanding.${urlCategory}.subtitle`);
 
   const handleQuickQuote = (e: React.FormEvent) => {
     e.preventDefault();

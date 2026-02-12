@@ -118,12 +118,12 @@ export const sl = {
   categoryLanding: {
     cars: { hero: "Konkurenčne ponudbe za prevoz avtomobilov – hitro in enostavno", subtitle: "Objavite zahtevo za prevoz avtomobila v 60 sekundah, prejmite ponudbe od preverjenih prevoznikov in izberite najboljšo." },
     motorcycles: { hero: "Ugoden prevoz motorjev – ponudbe v minutah", subtitle: "Varno prepeljite motor s preverjenimi prevozniki. Primerjajte cene in rezervirajte z zaupanjem." },
-    furniture: { hero: "Prevoz pohištva enostavno – brezplačne ponudbe", subtitle: "Selite pohištvo po Evropi? Pridobite konkurenčne ponudbe od zaupanja vrednih prevoznikov v minutah." },
+    furniture: { hero: "Prevoz pohištva enostavno – brezplačne ponudbe", subtitle: "Selite pohištvo? Pridobite konkurenčne ponudbe od zaupanja vrednih prevoznikov v minutah." },
     appliances: { hero: "Prevoz gospodinjskih aparatov – varno, hitro in ugodno", subtitle: "Prepeljite pralne stroje, hladilnike in druge aparate s preverjenimi prevozniki po najboljši ceni." },
     boxes: { hero: "Prevoz škatel in paketov – primerjajte ponudbe", subtitle: "Potrebujete poslati škatle? Pridobite takojšnje ponudbe od prevoznikov na vaši poti." },
-    pallets: { hero: "Prevoz palet – hitro, zanesljivo in ugodno", subtitle: "Prepeljite palete po Evropi s preverjenimi prevozniki. Primerjajte cene in rezervirajte danes." },
+    pallets: { hero: "Prevoz palet – hitro, zanesljivo in ugodno", subtitle: "Prepeljite palete s preverjenimi prevozniki. Primerjajte cene in rezervirajte danes." },
     machinery: { hero: "Prevoz strojev in orodij – strokovne ponudbe", subtitle: "Težki stroji zahtevajo strokovno ravnanje. Pridobite ponudbe od izkušenih prevoznikov zdaj." },
-    boats: { hero: "Prevoz čolnov – varna dostava po Evropi", subtitle: "Prepeljite čoln s specializiranimi prevozniki. Primerjajte ponudbe in prepeljite z zaupanjem." },
+    boats: { hero: "Prevoz čolnov – varna dostava s specialisti", subtitle: "Prepeljite čoln s specializiranimi prevozniki. Primerjajte ponudbe in prepeljite z zaupanjem." },
   },
 
   // Wizard
