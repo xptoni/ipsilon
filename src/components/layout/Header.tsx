@@ -14,9 +14,10 @@ const Header = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
-  const isDashboard = location.pathname.startsWith('/shipper-dashboard') || 
+  const isShipperDashboard = location.pathname.startsWith('/shipper-dashboard') ||
+                             location.pathname.startsWith('/delivery-details');
+  const isDashboard = isShipperDashboard || 
                       location.pathname.startsWith('/search-deliveries') ||
-                      location.pathname.startsWith('/delivery-details') ||
                       location.pathname.startsWith('/carrier-dashboard');
 
   const navLinks = [
@@ -73,18 +74,20 @@ const Header = () => {
             >
               {t('common.dashboard')}
             </Link>
-            <Link
-              to="/search-deliveries"
-              className={cn(
-                "flex items-center gap-2 px-3 py-1.5 rounded-full font-medium transition-colors",
-                location.pathname === '/search-deliveries'
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-primary/10 text-primary hover:bg-primary/20"
-              )}
-            >
-              <Search className="h-4 w-4" />
-              {t('common.browseListings')}
-            </Link>
+            {!isShipperDashboard && (
+              <Link
+                to="/search-deliveries"
+                className={cn(
+                  "flex items-center gap-2 px-3 py-1.5 rounded-full font-medium transition-colors",
+                  location.pathname === '/search-deliveries'
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-primary/10 text-primary hover:bg-primary/20"
+                )}
+              >
+                <Search className="h-4 w-4" />
+                {t('common.browseListings')}
+              </Link>
+            )}
           </nav>
         )}
 
@@ -185,13 +188,15 @@ const Header = () => {
                 >
                   {t('common.dashboard')}
                 </Link>
-                <Link
-                  to="/search-deliveries"
-                  className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {t('common.browseListings')}
-                </Link>
+                {!isShipperDashboard && (
+                  <Link
+                    to="/search-deliveries"
+                    className="py-2 text-sm font-medium text-muted-foreground hover:text-primary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {t('common.browseListings')}
+                  </Link>
+                )}
                 <hr className="border-border" />
                 <Link
                   to="/"
