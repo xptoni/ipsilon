@@ -20,7 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 import InfoCards from "@/components/carrier-registration/InfoCards";
 
 const INTRO_STEPS = 5;
-const FORM_STEPS = 9;
+const FORM_STEPS = 10;
 const TOTAL_STEPS = INTRO_STEPS + FORM_STEPS;
 
 const countryCodes = [
@@ -105,6 +105,7 @@ const countries = [
 interface FormData {
   fullName: string;
   email: string;
+  password: string;
   countryCode: string;
   phoneNumber: string;
   userType: "individual" | "business" | "";
@@ -127,6 +128,7 @@ const CarrierRegistration = () => {
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
+    password: "",
     countryCode: "+385",
     phoneNumber: "",
     userType: "",
@@ -161,36 +163,43 @@ const CarrierRegistration = () => {
         }
         break;
       case 3:
+        if (!formData.password.trim()) {
+          newErrors.password = t("carrierReg.errorRequired");
+        } else if (formData.password.length < 8) {
+          newErrors.password = t("carrierReg.errorPasswordMin");
+        }
+        break;
+      case 4:
         if (!formData.phoneNumber.trim()) {
           newErrors.phoneNumber = t("carrierReg.errorRequired");
         }
         break;
-      case 4:
+      case 5:
         if (!formData.userType) {
           newErrors.userType = t("carrierReg.errorRequired");
         }
         break;
-      case 5:
+      case 6:
         if (formData.insurance.length === 0) {
           newErrors.insurance = t("carrierReg.errorSelectOne");
         }
         break;
-      case 6:
+      case 7:
         if (formData.categories.length === 0) {
           newErrors.categories = t("carrierReg.errorSelectOne");
         }
         break;
-      case 7:
+      case 8:
         if (!formData.vehicleCount) {
           newErrors.vehicleCount = t("carrierReg.errorRequired");
         }
         break;
-      case 8:
+      case 9:
         if (formData.coverageArea.length === 0) {
           newErrors.coverageArea = t("carrierReg.errorSelectOne");
         }
         break;
-      case 9:
+      case 10:
         if (!formData.baseCity.trim()) {
           newErrors.baseCity = t("carrierReg.errorRequired");
         }
@@ -321,6 +330,27 @@ const CarrierRegistration = () => {
         return (
           <div className="space-y-4">
             <div>
+              <Label htmlFor="password">{t("carrierReg.password")} *</Label>
+              <Input
+                id="password"
+                type="password"
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+                placeholder={t("carrierReg.passwordPlaceholder")}
+                className="mt-2"
+              />
+              {errors.password && (
+                <p className="text-destructive text-sm mt-1">{errors.password}</p>
+              )}
+            </div>
+          </div>
+        );
+      case 4:
+        return (
+          <div className="space-y-4">
+            <div>
               <Label>{t("carrierReg.phoneNumber")} *</Label>
               <div className="flex gap-2 mt-2">
                 <Select
@@ -355,7 +385,7 @@ const CarrierRegistration = () => {
             </div>
           </div>
         );
-      case 4:
+      case 5:
         return (
           <div className="space-y-4">
             <Label>{t("carrierReg.userType")} *</Label>
@@ -384,7 +414,7 @@ const CarrierRegistration = () => {
             )}
           </div>
         );
-      case 5:
+      case 6:
         return (
           <div className="space-y-4">
             <Label>{t("carrierReg.insuranceType")} *</Label>
@@ -420,7 +450,7 @@ const CarrierRegistration = () => {
             )}
           </div>
         );
-      case 6:
+      case 7:
         return (
           <div className="space-y-4">
             <Label>{t("carrierReg.transportCategories")} *</Label>
@@ -456,7 +486,7 @@ const CarrierRegistration = () => {
             )}
           </div>
         );
-      case 7:
+      case 8:
         return (
           <div className="space-y-4">
             <Label>{t("carrierReg.vehicleCount")} *</Label>
@@ -484,7 +514,7 @@ const CarrierRegistration = () => {
             )}
           </div>
         );
-      case 8:
+      case 9:
         return (
           <div className="space-y-4">
             <Label>{t("carrierReg.coverageArea")} *</Label>
@@ -520,7 +550,7 @@ const CarrierRegistration = () => {
             )}
           </div>
         );
-      case 9:
+      case 10:
         return (
           <div className="space-y-4">
             <Label>{t("carrierReg.baseLocation")} *</Label>
@@ -587,6 +617,7 @@ const CarrierRegistration = () => {
       case 7: return t("carrierReg.step7Title");
       case 8: return t("carrierReg.step8Title");
       case 9: return t("carrierReg.step9Title");
+      case 10: return t("carrierReg.step10Title");
       default: return "";
     }
   };
