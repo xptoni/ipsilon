@@ -14,7 +14,7 @@ import {
 // Mock carrier profile data
 const mockCarrierProfile = {
   id: "carrier-1",
-  username: "oppdla8",
+  username: "mlado55",
   userType: "company" as "company" | "individual",
   insurance: ["CMR", "GIT"],
   vehicleCount: "2-3",
@@ -111,7 +111,7 @@ const CarrierProfile = () => {
             <div className="space-y-4">
               <div className="space-y-1">
                 <h1 className="text-xl md:text-2xl font-semibold text-foreground">
-                  {carrier.username}
+                  <span className="text-muted-foreground font-normal">Username:</span> {carrier.username}
                 </h1>
                 <div className="flex flex-wrap gap-3 items-center">
                   <div className="flex items-center gap-2">
