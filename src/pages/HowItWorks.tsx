@@ -37,17 +37,29 @@ const HowItWorks = () => {
             <p className="text-xl md:text-2xl font-semibold text-primary mb-6">
               Simple. Transparent. Fair.
             </p>
-            <p className="text-lg text-muted-foreground mb-4">
-              Post your shipment, receive multiple competitive quotes from verified carriers, and choose the best option — all in one place.
+            <p className="text-lg text-muted-foreground mb-8">
+              Post your shipment, receive multiple competitive quotes from verified carriers, and choose the best option — <span className="text-foreground font-medium">all in one place.</span>
             </p>
-            <p className="text-muted-foreground">
-              We connect people who need to move goods with reliable carriers looking for loads.
-              <br />
-              Just better prices and more control.
-            </p>
-            <p className="text-muted-foreground mt-4">
-              Browse carrier profiles, check real ratings & reviews, and pick the one that fits your needs — with full transparency every step of the way.
-            </p>
+
+            <div className="grid sm:grid-cols-2 gap-4 mb-8 text-left">
+              <div className="p-5 rounded-xl bg-card border border-border flex items-start gap-3">
+                <FileText className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <p className="text-sm text-muted-foreground">
+                  We connect people who need to move goods with <span className="text-foreground font-medium">reliable carriers</span> looking for loads.
+                </p>
+              </div>
+              <div className="p-5 rounded-xl bg-card border border-border flex items-start gap-3">
+                <MessageSquare className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <p className="text-sm text-muted-foreground">
+                  Browse carrier profiles, check real <span className="text-foreground font-medium">ratings & reviews</span>, and pick the one that fits your needs.
+                </p>
+              </div>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20">
+              <CheckCircle className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Just better prices, more control & full transparency</span>
+            </div>
           </div>
         </div>
       </section>
