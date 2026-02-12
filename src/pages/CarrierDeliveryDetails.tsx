@@ -211,6 +211,13 @@ const CarrierDeliveryDetails = () => {
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-primary" />
                 <span className="text-sm text-muted-foreground">
+                  {t("carrierDeliveryDetails.preferredTimeframe", "Preferred timeframe")}:
+                </span>
+                <span className="text-sm font-medium">{t("carrierDeliveryDetails.withinAWeek", "Within a week")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-primary" />
+                <span className="text-sm text-muted-foreground">
                   {t("carrierDeliveryDetails.earliestDelivery")}:
                 </span>
                 <span className="text-sm font-medium">{mockRouteDetails.earliestDelivery}</span>

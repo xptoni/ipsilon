@@ -430,34 +430,27 @@ const ListingCard = ({
           <div className="flex-1 p-4">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <Badge variant="secondary">{t(`cargo.${listing.cargoType}`)}</Badge>
-                  <span className="text-xs text-muted-foreground">
-                    {formatDate(listing.pickupDate)}
-                  </span>
-                </div>
-
                 <h3 className="font-semibold text-foreground">
                   {listing.notes.split(",")[0].slice(0, 30)}
                 </h3>
 
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MapPin className="h-3 w-3 text-primary shrink-0" />
+                <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+                  <MapPin className="h-4 w-4 text-primary shrink-0" />
                   <span>{listing.origin}</span>
-                  <ArrowRight className="h-3 w-3" />
+                  <ArrowRight className="h-4 w-4 text-primary" />
                   <span>{listing.destination}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MessageSquare className="h-3 w-3" />
-                  <span>
+                <div className="flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-semibold text-foreground">
                     {listing.quotesCount} {t("listings.results.quotes")}
                   </span>
                 </div>
               </div>
 
               <Button asChild className="shrink-0">
-                <Link to={`/delivery-details/${listing.id}`}>
+                <Link to={`/carrier/delivery-details/${listing.id}`}>
                   {t("listings.results.viewDetails")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
