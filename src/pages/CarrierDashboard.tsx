@@ -20,7 +20,8 @@ const CarrierDashboard = () => {
 
   const myQuotes = mockQuotes.filter((q) => q.carrierId === "carrier-1");
   const pendingQuotes = myQuotes.filter((q) => q.status === "pending");
-  const acceptedQuotes = myQuotes.filter((q) => q.status === "accepted");
+  const bookedQuotes = myQuotes.filter((q) => q.status === "booked");
+  const completedQuotes = myQuotes.filter((q) => q.status === "completed");
 
   const getListingForQuote = (listingId: string) => {
     return mockListings.find((l) => l.id === listingId);
@@ -38,7 +39,9 @@ const CarrierDashboard = () => {
     switch (status) {
       case "pending":
         return "bg-warning/10 text-warning border-warning/20";
-      case "accepted":
+      case "booked":
+        return "bg-blue-500/10 text-blue-600 border-blue-500/20";
+      case "completed":
         return "bg-success/10 text-success border-success/20";
       case "rejected":
         return "bg-destructive/10 text-destructive border-destructive/20";
@@ -51,8 +54,10 @@ const CarrierDashboard = () => {
     switch (status) {
       case "pending":
         return t("status.pending");
-      case "accepted":
-        return t("status.accepted");
+      case "booked":
+        return t("status.booked");
+      case "completed":
+        return t("status.completed");
       case "rejected":
         return t("status.rejected");
       default:
@@ -82,7 +87,7 @@ const CarrierDashboard = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           <Card>
             <CardContent className="pt-6">
               <div className="text-2xl font-bold text-foreground">
@@ -105,11 +110,21 @@ const CarrierDashboard = () => {
           </Card>
           <Card>
             <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-success">
-                {acceptedQuotes.length}
+              <div className="text-2xl font-bold text-blue-600">
+                {bookedQuotes.length}
               </div>
               <p className="text-sm text-muted-foreground">
-                {t("carrierDashboard.accepted")}
+                {t("carrierDashboard.booked")}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="text-2xl font-bold text-success">
+                {completedQuotes.length}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {t("carrierDashboard.completed")}
               </p>
             </CardContent>
           </Card>
@@ -127,14 +142,18 @@ const CarrierDashboard = () => {
 
         {/* Quotes Tabs */}
         <Tabs defaultValue="pending" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6">
+          <TabsList className="grid w-full grid-cols-3 mb-6">
             <TabsTrigger value="pending" className="gap-2">
               <Clock className="h-4 w-4" />
               {t("carrierDashboard.pendingQuotes")} ({pendingQuotes.length})
             </TabsTrigger>
-            <TabsTrigger value="accepted" className="gap-2">
+            <TabsTrigger value="booked" className="gap-2">
+              <AlertCircle className="h-4 w-4" />
+              {t("carrierDashboard.bookedQuotes")} ({bookedQuotes.length})
+            </TabsTrigger>
+            <TabsTrigger value="completed" className="gap-2">
               <CheckCircle className="h-4 w-4" />
-              {t("carrierDashboard.acceptedQuotes")} ({acceptedQuotes.length})
+              {t("carrierDashboard.completedQuotes")} ({completedQuotes.length})
             </TabsTrigger>
           </TabsList>
 
@@ -163,10 +182,35 @@ const CarrierDashboard = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="accepted">
+          <TabsContent value="booked">
             <div className="grid gap-4">
-              {acceptedQuotes.length > 0 ? (
-                acceptedQuotes.map((quote) => (
+              {bookedQuotes.length > 0 ? (
+                bookedQuotes.map((quote) => (
+                  <QuoteCard
+                    key={quote.id}
+                    quote={quote}
+                    listing={getListingForQuote(quote.listingId)}
+                    formatDate={formatDate}
+                    getQuoteStatusColor={getQuoteStatusColor}
+                    getQuoteStatusLabel={getQuoteStatusLabel}
+                    t={t}
+                  />
+                ))
+              ) : (
+                <EmptyState
+                  icon={<AlertCircle className="h-12 w-12 text-muted-foreground" />}
+                  title={t("carrierDashboard.noBookedQuotes")}
+                  description={t("carrierDashboard.noBookedQuotesDesc")}
+                  t={t}
+                />
+              )}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="completed">
+            <div className="grid gap-4">
+              {completedQuotes.length > 0 ? (
+                completedQuotes.map((quote) => (
                   <QuoteCard
                     key={quote.id}
                     quote={quote}
@@ -180,8 +224,8 @@ const CarrierDashboard = () => {
               ) : (
                 <EmptyState
                   icon={<CheckCircle className="h-12 w-12 text-muted-foreground" />}
-                  title={t("carrierDashboard.noAcceptedQuotes")}
-                  description={t("carrierDashboard.noAcceptedQuotesDesc")}
+                  title={t("carrierDashboard.noCompletedQuotes")}
+                  description={t("carrierDashboard.noCompletedQuotesDesc")}
                   t={t}
                 />
               )}

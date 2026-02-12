@@ -45,7 +45,7 @@ export interface Quote {
   price: number;
   currency: string;
   notes: string;
-  status: 'pending' | 'accepted' | 'rejected';
+  status: 'pending' | 'accepted' | 'rejected' | 'booked' | 'completed';
   createdAt: string;
 }
 
@@ -185,7 +185,7 @@ export const mockQuotes: Quote[] = [
     price: 650,
     currency: 'EUR',
     notes: 'Can pick up on the 28th morning. Enclosed trailer available.',
-    status: 'pending',
+    status: 'booked',
     createdAt: '2024-12-20',
   },
   {
@@ -224,7 +224,7 @@ export const mockQuotes: Quote[] = [
     price: 890,
     currency: 'EUR',
     notes: 'Can transport the van on my return trip from Skopje.',
-    status: 'pending',
+    status: 'completed',
     createdAt: '2024-12-20',
   },
   {
