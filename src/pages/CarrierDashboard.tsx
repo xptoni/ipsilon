@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  MapPin,
   ArrowRight,
   Clock,
   Search,
@@ -258,36 +257,35 @@ const QuoteCard = ({
 
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
-      <CardContent className="p-6">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div className="flex-1 space-y-3">
-            <div className="flex items-center gap-3 flex-wrap">
-              <Badge variant="outline" className={getQuoteStatusColor(quote.status)}>
-                {getQuoteStatusLabel(quote.status)}
-              </Badge>
-              <span className="text-lg font-bold text-primary">€{quote.price}</span>
-              <Badge variant="secondary">{t(`cargo.${listing.cargoType}`)}</Badge>
-            </div>
-
-            <div className="flex items-center gap-2 text-foreground">
-              <MapPin className="h-4 w-4 text-primary shrink-0" />
-              <span className="font-medium">{listing.origin}</span>
-              <ArrowRight className="h-4 w-4 text-muted-foreground" />
-              <span className="font-medium">{listing.destination}</span>
-            </div>
-
-            <p className="text-sm text-muted-foreground">
-              {t("carrierDashboard.submittedOn")} {formatDate(quote.createdAt)}
-            </p>
-
-            {quote.notes && (
-              <p className="text-sm text-muted-foreground line-clamp-2">
-                {quote.notes}
-              </p>
-            )}
+      <CardContent className="p-4">
+        <div className="flex items-center gap-4">
+          <div className="h-16 w-16 rounded-lg overflow-hidden bg-muted shrink-0">
+            <img 
+              src="/placeholder.svg" 
+              alt={listing.title}
+              className="h-full w-full object-cover"
+            />
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-3 mb-1">
+              <h3 className="font-display text-lg font-semibold text-foreground truncate">
+                {listing.title}
+              </h3>
+              <Badge variant="outline" className={`shrink-0 ${getQuoteStatusColor(quote.status)}`}>
+                {getQuoteStatusLabel(quote.status)}
+              </Badge>
+              <span className="text-lg font-bold text-primary shrink-0">€{quote.price}</span>
+            </div>
+
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>{listing.origin}</span>
+              <ArrowRight className="h-3 w-3 shrink-0" />
+              <span>{listing.destination}</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
             <Button variant="outline" asChild>
               <Link to={`/carrier/delivery-details/${listing.id}`}>{t("common.viewDetails")}</Link>
             </Button>
