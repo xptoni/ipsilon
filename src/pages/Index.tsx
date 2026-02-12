@@ -119,47 +119,6 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-secondary via-background to-background">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.08),transparent_50%)]" />
-        
-        {/* Floating route lines - decorative background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-          {/* Route: Zagreb - München */}
-          <div className="absolute top-[15%] left-[5%] flex items-center gap-2 text-primary/[0.07] text-sm font-medium rotate-[-12deg]">
-            <span>Zagreb</span>
-            <span className="w-16 h-px bg-primary/[0.07]" />
-            <span>München</span>
-          </div>
-          {/* Route: Split - Osijek */}
-          <div className="absolute top-[35%] right-[3%] flex items-center gap-2 text-primary/[0.07] text-sm font-medium rotate-[8deg]">
-            <span>Split</span>
-            <span className="w-12 h-px bg-primary/[0.07]" />
-            <span>Osijek</span>
-          </div>
-          {/* Route: Gospić - Karlovac */}
-          <div className="absolute bottom-[30%] left-[8%] flex items-center gap-2 text-primary/[0.07] text-sm font-medium rotate-[5deg]">
-            <span>Gospić</span>
-            <span className="w-10 h-px bg-primary/[0.07]" />
-            <span>Karlovac</span>
-          </div>
-          {/* Route: Frankfurt - Beograd */}
-          <div className="absolute top-[22%] right-[8%] flex items-center gap-2 text-primary/[0.07] text-sm font-medium rotate-[-6deg]">
-            <span>Frankfurt</span>
-            <span className="w-20 h-px bg-primary/[0.07]" />
-            <span>Beograd</span>
-          </div>
-          {/* Route: Milano - Zagreb */}
-          <div className="absolute bottom-[18%] right-[12%] flex items-center gap-2 text-primary/[0.07] text-sm font-medium rotate-[3deg]">
-            <span>Milano</span>
-            <span className="w-14 h-px bg-primary/[0.07]" />
-            <span>Zagreb</span>
-          </div>
-          {/* Route: Wien - Split */}
-          <div className="absolute bottom-[45%] left-[15%] flex items-center gap-2 text-primary/[0.07] text-sm font-medium rotate-[-8deg]">
-            <span>Wien</span>
-            <span className="w-12 h-px bg-primary/[0.07]" />
-            <span>Split</span>
-          </div>
-        </div>
-
         <div className="container relative py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary animate-fade-in">

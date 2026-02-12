@@ -33,14 +33,14 @@ const Header = () => {
   ];
 
   const serviceCategories = [
-    { value: 'cars', label: t('wizard.categories.cars') },
-    { value: 'motorcycles', label: t('wizard.categories.motorcycles') },
-    { value: 'furniture', label: t('wizard.categories.furniture') },
-    { value: 'appliances', label: t('wizard.categories.appliances') },
-    { value: 'boxes', label: t('wizard.categories.boxes') },
-    { value: 'pallets', label: t('wizard.categories.pallets') },
-    { value: 'machinery', label: t('wizard.categories.machinery') },
-    { value: 'boats', label: t('wizard.categories.boats') },
+    { slug: 'car-transport', label: t('wizard.categories.cars') },
+    { slug: 'motorcycle-transport', label: t('wizard.categories.motorcycles') },
+    { slug: 'furniture-transport', label: t('wizard.categories.furniture') },
+    { slug: 'appliance-transport', label: t('wizard.categories.appliances') },
+    { slug: 'box-transport', label: t('wizard.categories.boxes') },
+    { slug: 'pallet-transport', label: t('wizard.categories.pallets') },
+    { slug: 'machinery-transport', label: t('wizard.categories.machinery') },
+    { slug: 'boat-transport', label: t('wizard.categories.boats') },
   ];
 
   return (
@@ -81,9 +81,9 @@ const Header = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
                 {serviceCategories.map((cat) => (
-                  <DropdownMenuItem key={cat.value} asChild>
+                  <DropdownMenuItem key={cat.slug} asChild>
                     <Link
-                      to={`/transport/${cat.value}`}
+                      to={`/${cat.slug}`}
                       className="cursor-pointer"
                     >
                       {cat.label}
@@ -159,8 +159,8 @@ const Header = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   {serviceCategories.map((cat) => (
-                    <DropdownMenuItem key={cat.value} asChild>
-                      <Link to={`/transport/${cat.value}`} className="cursor-pointer">
+                    <DropdownMenuItem key={cat.slug} asChild>
+                      <Link to={`/${cat.slug}`} className="cursor-pointer">
                         {cat.label}
                       </Link>
                     </DropdownMenuItem>

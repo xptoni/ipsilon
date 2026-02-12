@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, MapPin, Package, Truck } from "lucide-react";
@@ -13,16 +13,29 @@ import {
 import Layout from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 
-const VALID_CATEGORIES = [
-  "cars", "motorcycles", "furniture", "appliances",
-  "boxes", "pallets", "machinery", "boats", "other",
-];
+// Maps URL slug → internal category key
+export const SLUG_TO_CATEGORY: Record<string, string> = {
+  "car-transport": "cars",
+  "motorcycle-transport": "motorcycles",
+  "furniture-transport": "furniture",
+  "appliance-transport": "appliances",
+  "box-transport": "boxes",
+  "pallet-transport": "pallets",
+  "machinery-transport": "machinery",
+  "boat-transport": "boats",
+};
+
+export const CATEGORY_SLUGS = Object.keys(SLUG_TO_CATEGORY);
 
 const CategoryLanding = () => {
-  const { category: urlCategory } = useParams<{ category: string }>();
+  const location = useLocation();
+  const slug = location.pathname.replace("/", "");
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [quickCategory, setQuickCategory] = useState(urlCategory || "");
+
+  const categoryKey = SLUG_TO_CATEGORY[slug];
+
+  const [quickCategory, setQuickCategory] = useState(categoryKey || "");
   const [quickPickup, setQuickPickup] = useState("");
   const [quickDelivery, setQuickDelivery] = useState("");
 
@@ -38,9 +51,7 @@ const CategoryLanding = () => {
     { value: "other", label: t("wizard.categories.other") },
   ];
 
-  const isValid = urlCategory && VALID_CATEGORIES.includes(urlCategory);
-
-  if (!isValid) {
+  if (!categoryKey) {
     return (
       <Layout>
         <div className="container py-20 text-center">
@@ -50,8 +61,8 @@ const CategoryLanding = () => {
     );
   }
 
-  const heroText = t(`categoryLanding.${urlCategory}.hero`);
-  const subtitleText = t(`categoryLanding.${urlCategory}.subtitle`);
+  const heroText = t(`home.categoryLanding.${categoryKey}.hero`);
+  const subtitleText = t(`home.categoryLanding.${categoryKey}.subtitle`);
 
   const handleQuickQuote = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,7 +102,6 @@ const CategoryLanding = () => {
             </p>
           </div>
 
-          {/* Same form as homepage, with category pre-selected */}
           <div className="max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <form onSubmit={handleQuickQuote} className="bg-card border border-border rounded-2xl p-6 shadow-lg">
               <div className="grid sm:grid-cols-4 gap-4">
