@@ -2,30 +2,22 @@ import { useParams } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
   Star,
   Truck,
   ShieldCheck,
-  MapPin,
   Briefcase,
-  Package,
-  Globe,
   User,
 } from "lucide-react";
 
 // Mock carrier profile data
 const mockCarrierProfile = {
   id: "carrier-1",
-  username: "nikola-jovanovic",
-  fullName: "Nikola Jovanović",
-  userType: "individual" as const,
+  username: "oppdla8",
+  userType: "company" as "company" | "individual",
   insurance: ["CMR", "GIT"],
-  categories: ["Cars", "Motorcycles", "Commercial Vehicles"],
   vehicleCount: "2-3",
-  coverageArea: ["Domestic", "International"],
-  baseLocation: "Belgrade, Serbia",
   completedJobs: 156,
   rating: 4.8,
   bio: "Experienced vehicle transporter with over 8 years in the industry. Specializing in enclosed car transport across the Balkans and Central Europe. Every vehicle is treated as if it were my own — careful handling, GPS tracking, and full insurance coverage on every trip.",
@@ -33,15 +25,15 @@ const mockCarrierProfile = {
   reviews: [
     {
       id: "r1",
-      shipperName: "Marko P.",
+      shipperName: "user_mk291",
       rating: 5,
       comment:
-        "Excellent service! My BMW arrived in perfect condition. Nikola was communicative throughout the entire transport.",
+        "Excellent service! My BMW arrived in perfect condition. Very communicative throughout the entire transport.",
       date: "2025-01-15",
     },
     {
       id: "r2",
-      shipperName: "Ana M.",
+      shipperName: "user_ana84",
       rating: 5,
       comment:
         "Very professional. Picked up on time and delivered a day early. Highly recommended!",
@@ -49,7 +41,7 @@ const mockCarrierProfile = {
     },
     {
       id: "r3",
-      shipperName: "Ivan K.",
+      shipperName: "user_kvx02",
       rating: 4,
       comment:
         "Good transport, car arrived safely. Communication could have been slightly better during transit but overall a positive experience.",
@@ -57,18 +49,18 @@ const mockCarrierProfile = {
     },
     {
       id: "r4",
-      shipperName: "Stefan D.",
+      shipperName: "user_stf77",
       rating: 5,
       comment:
-        "Third time using Nikola's services. Consistently reliable and careful with vehicles. Fair pricing too.",
+        "Third time using this carrier. Consistently reliable and careful with vehicles. Fair pricing too.",
       date: "2024-12-05",
     },
     {
       id: "r5",
-      shipperName: "Jelena R.",
+      shipperName: "user_jidf66",
       rating: 5,
       comment:
-        "Transported my classic car from Belgrade to Munich. Was worried but Nikola took extra care. Perfect!",
+        "Transported my classic car internationally. Was worried but extra care was taken. Perfect!",
       date: "2024-11-18",
     },
   ],
@@ -97,12 +89,6 @@ const CarrierProfile = () => {
   const { username } = useParams();
   const carrier = mockCarrierProfile;
 
-  const initials = carrier.fullName
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
-
   const averageRating =
     carrier.reviews.reduce((sum, r) => sum + r.rating, 0) /
     carrier.reviews.length;
@@ -122,24 +108,11 @@ const CarrierProfile = () => {
         {/* Profile Header */}
         <Card>
           <CardContent className="p-6 md:p-8">
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <Avatar className="h-24 w-24 text-2xl border-4 border-primary/20">
-                <AvatarFallback className="bg-primary text-primary-foreground text-2xl font-bold">
-                  {initials}
-                </AvatarFallback>
-              </Avatar>
-
-              <div className="flex-1 space-y-3">
-                <div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-foreground">
-                    {carrier.fullName}
-                  </h1>
-                  <p className="text-muted-foreground flex items-center gap-1.5 mt-1">
-                    <MapPin className="h-4 w-4" />
-                    {carrier.baseLocation}
-                  </p>
-                </div>
-
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <h1 className="text-xl md:text-2xl font-semibold text-foreground">
+                  {carrier.username}
+                </h1>
                 <div className="flex flex-wrap gap-3 items-center">
                   <div className="flex items-center gap-2">
                     <StarRating rating={Math.round(averageRating)} />
@@ -159,20 +132,28 @@ const CarrierProfile = () => {
                     completed jobs
                   </div>
                 </div>
+              </div>
 
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary" className="gap-1">
-                    <User className="h-3 w-3" />
-                    {carrier.userType === "individual"
-                      ? "Individual"
-                      : "Business Company"}
-                  </Badge>
-                  {carrier.insurance.map((ins) => (
-                    <Badge key={ins} variant="outline" className="gap-1">
-                      <ShieldCheck className="h-3 w-3" />
-                      {ins}
-                    </Badge>
-                  ))}
+              <Separator />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
+                  <User className="h-5 w-5 text-primary shrink-0" />
+                  <div>
+                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">User type</p>
+                    <p className="font-semibold text-foreground">
+                      {carrier.userType === "individual" ? "Sole Trader" : "Company"}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
+                  <ShieldCheck className="h-5 w-5 text-primary shrink-0" />
+                  <div>
+                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Insurance</p>
+                    <p className="font-semibold text-foreground">
+                      {carrier.insurance.join(" + ")}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -191,52 +172,20 @@ const CarrierProfile = () => {
           </CardContent>
         </Card>
 
-        {/* Details Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card>
-            <CardContent className="p-5 flex items-start gap-3">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Package className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">
-                  Transport Categories
-                </p>
-                <p className="font-medium text-foreground text-sm mt-1">
-                  {carrier.categories.join(", ")}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-5 flex items-start gap-3">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Truck className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Fleet Size</p>
-                <p className="font-medium text-foreground text-sm mt-1">
-                  {carrier.vehicleCount} vehicles
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-5 flex items-start gap-3">
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Globe className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Coverage Area</p>
-                <p className="font-medium text-foreground text-sm mt-1">
-                  {carrier.coverageArea.join(", ")}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        {/* Fleet Size */}
+        <Card>
+          <CardContent className="p-5 flex items-start gap-3">
+            <div className="p-2 rounded-lg bg-primary/10">
+              <Truck className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Fleet Size</p>
+              <p className="font-medium text-foreground text-sm mt-1">
+                {carrier.vehicleCount} vehicles
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Reviews Section */}
         <Card>
