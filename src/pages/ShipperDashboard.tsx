@@ -6,13 +6,11 @@ import {
   Plus, 
   Package, 
   MapPin, 
-  Calendar, 
   MessageSquare,
-  Star,
   ArrowRight
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import { getListingsForShipper, getQuotesForListing, type Listing, type Quote } from "@/lib/mockData";
+import { getListingsForShipper, getQuotesForListing, type Listing } from "@/lib/mockData";
 import { useTranslation } from "react-i18next";
 
 const ShipperDashboard = () => {
@@ -37,14 +35,6 @@ const ShipperDashboard = () => {
       case 'completed': return t('status.completed');
       default: return status;
     }
-  };
-
-  const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    });
   };
 
   return (
@@ -112,49 +102,29 @@ const ShipperDashboard = () => {
             return (
               <Card key={listing.id} className="overflow-hidden hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                    {/* Listing Info */}
-                    <div className="flex-1 space-y-3">
-                      <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex-1 space-y-2">
+                      <div className="flex items-center gap-3">
+                        <h3 className="font-display text-lg font-semibold text-foreground">
+                          {listing.title}
+                        </h3>
                         <Badge variant="outline" className={getStatusColor(listing.status)}>
                           {getStatusLabel(listing.status)}
                         </Badge>
-                        <Badge variant="secondary">
-                          {t(`cargo.${listing.cargoType}`)}
-                        </Badge>
                       </div>
 
-                      <div className="flex items-center gap-2 text-foreground">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <MapPin className="h-4 w-4 text-primary shrink-0" />
-                        <span className="font-medium">{listing.origin}</span>
-                        <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                        <span className="font-medium">{listing.destination}</span>
-                      </div>
-
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          {formatDate(listing.pickupDate)}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Package className="h-4 w-4" />
-                          {listing.dimensions}
-                        </div>
+                        <span>{listing.origin}</span>
+                        <ArrowRight className="h-3 w-3" />
+                        <span>{listing.destination}</span>
                       </div>
                     </div>
 
-                    {/* Quotes Summary */}
                     <div className="flex items-center gap-4">
-                      <div className="text-right">
-                        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <MessageSquare className="h-4 w-4" />
-                          {quotes.length} {quotes.length !== 1 ? t('shipperDashboard.quotes') : t('shipperDashboard.quote')}
-                        </div>
-                        {quotes.length > 0 && (
-                          <div className="text-sm">
-                            {t('shipperDashboard.from')} <span className="font-semibold text-primary">€{Math.min(...quotes.map(q => q.price))}</span>
-                          </div>
-                        )}
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <MessageSquare className="h-4 w-4" />
+                        {quotes.length} {quotes.length !== 1 ? t('shipperDashboard.quotes') : t('shipperDashboard.quote')}
                       </div>
                       <Button variant="outline" asChild>
                         <Link to={`/delivery-details/${listing.id}`}>
@@ -163,28 +133,6 @@ const ShipperDashboard = () => {
                       </Button>
                     </div>
                   </div>
-
-                  {/* Quotes Preview */}
-                  {listing.status === 'active' && quotes.length > 0 && (
-                    <div className="mt-4 pt-4 border-t border-border">
-                      <p className="text-sm font-medium text-muted-foreground mb-3">
-                        {t('shipperDashboard.recentQuotes')}
-                      </p>
-                      <div className="grid gap-2">
-                        {quotes.slice(0, 3).map((quote) => (
-                          <QuotePreviewCard key={quote.id} quote={quote} listingId={listing.id} t={t} />
-                        ))}
-                        {quotes.length > 3 && (
-                          <Link 
-                            to={`/delivery-details/${listing.id}`}
-                            className="text-sm text-primary hover:underline"
-                          >
-                            {t('shipperDashboard.viewAllQuotes').replace('{count}', String(quotes.length))}
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  )}
                 </CardContent>
               </Card>
             );
@@ -212,38 +160,6 @@ const ShipperDashboard = () => {
         )}
       </div>
     </Layout>
-  );
-};
-
-const QuotePreviewCard = ({ quote, listingId, t }: { quote: Quote; listingId: string; t: any }) => {
-  return (
-    <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
-      <div className="flex items-center gap-3">
-        <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-          <span className="text-sm font-medium text-primary">
-            {quote.carrierName.charAt(0)}
-          </span>
-        </div>
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="font-medium text-foreground">{quote.carrierName}</span>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Star className="h-3 w-3 fill-warning text-warning" />
-              {quote.carrierRating}
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground">{quote.vehicleType}</p>
-        </div>
-      </div>
-      <div className="text-right">
-        <div className="font-semibold text-foreground">€{quote.price}</div>
-        <Button size="sm" variant="ghost" className="h-7 text-xs" asChild>
-          <Link to={`/delivery-details/${listingId}?quote=${quote.id}`}>
-            {t('common.view')}
-          </Link>
-        </Button>
-      </div>
-    </div>
   );
 };
 

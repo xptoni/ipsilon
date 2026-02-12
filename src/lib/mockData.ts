@@ -23,6 +23,7 @@ export interface Listing {
   id: string;
   shipperId: string;
   shipperName: string;
+  title: string;
   origin: string;
   destination: string;
   cargoType: 'car' | 'van' | 'truck' | 'other';
@@ -115,6 +116,7 @@ export const mockListings: Listing[] = [
     id: 'listing-1',
     shipperId: 'shipper-1',
     shipperName: 'Marko P.',
+    title: 'BMW 320d Sedan',
     origin: 'Belgrade, Serbia',
     destination: 'Munich, Germany',
     cargoType: 'car',
@@ -130,6 +132,7 @@ export const mockListings: Listing[] = [
     id: 'listing-2',
     shipperId: 'shipper-1',
     shipperName: 'Marko P.',
+    title: 'Mercedes Sprinter Van',
     origin: 'Skopje, North Macedonia',
     destination: 'Vienna, Austria',
     cargoType: 'van',
@@ -145,6 +148,7 @@ export const mockListings: Listing[] = [
     id: 'listing-3',
     shipperId: 'shipper-2',
     shipperName: 'Ana M.',
+    title: 'VW Golf 7',
     origin: 'Zagreb, Croatia',
     destination: 'Frankfurt, Germany',
     cargoType: 'car',
@@ -160,6 +164,7 @@ export const mockListings: Listing[] = [
     id: 'listing-4',
     shipperId: 'shipper-1',
     shipperName: 'Marko P.',
+    title: 'Audi Q5 SUV',
     origin: 'Belgrade, Serbia',
     destination: 'Stuttgart, Germany',
     cargoType: 'car',
