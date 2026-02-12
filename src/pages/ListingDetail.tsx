@@ -118,50 +118,67 @@ const ListingDetail = () => {
           </div>
         </div>
 
-        {/* Placeholder Image */}
-        <Card className="mb-6 overflow-hidden">
-          <div className="h-48 md:h-64 bg-muted flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <ImageIcon className="h-12 w-12 mx-auto mb-2" />
-              <p className="text-sm">{t("listingDetail.noPhotosYet", "No photos uploaded yet")}</p>
-            </div>
-          </div>
-        </Card>
-
-        {/* Route */}
+        {/* Route + Image */}
         <Card className="mb-6">
           <CardContent className="pt-6">
-            <div className="flex items-center gap-3 p-4 rounded-xl bg-secondary mb-4">
-              <MapPin className="h-5 w-5 text-primary shrink-0" />
-              <span className="font-semibold text-foreground">{listing.origin}</span>
-              <ArrowRight className="h-5 w-5 text-muted-foreground shrink-0" />
-              <span className="font-semibold text-foreground">{listing.destination}</span>
-            </div>
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-secondary mb-4">
+                  <MapPin className="h-5 w-5 text-primary shrink-0" />
+                  <span className="font-semibold text-foreground">{listing.origin}</span>
+                  <ArrowRight className="h-5 w-5 text-muted-foreground shrink-0" />
+                  <span className="font-semibold text-foreground">{listing.destination}</span>
+                </div>
 
-            {/* Details Grid - dimensions, weight, cargo type */}
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="flex items-center gap-3 p-4 rounded-lg border border-border">
-                <Package className="h-5 w-5 text-primary" />
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("createListing.dimensions")}</p>
-                  <p className="font-medium text-foreground">{listing.weight}</p>
+                {/* Details Grid */}
+                <div className="grid sm:grid-cols-3 gap-3 mb-3">
+                  <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
+                    <Package className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">{t("createListing.dimensions")}</p>
+                      <p className="font-medium text-sm text-foreground">{t("listingDetail.notProvided", "Not provided")}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
+                    <Scale className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">{t("listingDetail.weight")}</p>
+                      <p className="font-medium text-sm text-foreground">{listing.weight}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
+                    <Truck className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">{t("listingDetail.cargoType")}</p>
+                      <p className="font-medium text-sm text-foreground capitalize">
+                        {t(`cargo.${listing.cargoType}`)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Distance & Travel Time */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">{t("listingDetail.distance", "Distance")}</p>
+                      <p className="font-medium text-sm text-foreground">570 km</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
+                    <Truck className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">{t("listingDetail.travelTime", "Travel time")}</p>
+                      <p className="font-medium text-sm text-foreground">4h 26min</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-4 rounded-lg border border-border">
-                <Scale className="h-5 w-5 text-primary" />
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("listingDetail.weight")}</p>
-                  <p className="font-medium text-foreground">{listing.weight}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-4 rounded-lg border border-border">
-                <Truck className="h-5 w-5 text-primary" />
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("listingDetail.cargoType")}</p>
-                  <p className="font-medium text-foreground capitalize">
-                    {t(`cargo.${listing.cargoType}`)}
-                  </p>
-                </div>
+
+              {/* Small square image placeholder */}
+              <div className="w-28 h-28 shrink-0 rounded-lg bg-muted flex items-center justify-center">
+                <ImageIcon className="h-8 w-8 text-muted-foreground" />
               </div>
             </div>
 
