@@ -24,6 +24,7 @@ export interface ListingFormData {
   category: Category | null;
   
   // Step 2: Item Description
+  title?: string;
   make?: string;
   model?: string;
   year?: string;
