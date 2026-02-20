@@ -308,14 +308,17 @@ const CarrierRegistration = () => {
               )}
             </div>
             <div>
-              <Label htmlFor="username">{t("carrierReg.username", "Username")} *</Label>
+              <Label htmlFor="username">
+                {t("carrierReg.username", "Username")} *
+                <span className="text-muted-foreground font-normal text-xs ml-1">(this name will be displayed on your public profile)</span>
+              </Label>
               <Input
                 id="username"
                 value={formData.username}
                 onChange={(e) =>
                   setFormData({ ...formData, username: e.target.value })
                 }
-                placeholder="e.g. mato_transporti"
+                placeholder="e.g. matko15"
                 className="mt-2"
               />
               {errors.username && (
