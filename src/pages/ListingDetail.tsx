@@ -124,7 +124,7 @@ const ListingDetail = () => {
           <div className="flex items-start gap-3 p-4 rounded-lg bg-warning/10 border border-warning/20 mb-8">
             <AlertTriangle className="h-5 w-5 text-warning shrink-0 mt-0.5" />
             <p className="text-sm text-foreground">
-              {t("listingDetail.editWarning", "Nije moguće mijenjati ključne podatke listinga jer dane ponude ne bi bile valjane. Ukoliko želite promijeniti ključne stavke oglasa kao što je pick up/drop off lokacija, molimo da izbrišete ovaj listing i kreirate novi.")}
+              {t("listingDetail.editWarning", "You cannot change key listing details because existing quotes would no longer be valid. If you need to change essential details such as pickup/drop-off location, please delete this listing and create a new one.")}
             </p>
           </div>
 
@@ -135,18 +135,27 @@ const ListingDetail = () => {
             <CardContent>
               <form onSubmit={(e) => { e.preventDefault(); handleSaveEdit(); }} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="dimensions">{t("createListing.dimensions", "Dimensions")}</Label>
-                  <Input
-                    id="dimensions"
-                    placeholder={t("createListing.dimensionsPlaceholder", "e.g. 120 x 80 x 60 cm")}
-                    value={dimensions}
-                    onChange={(e) => setDimensions(e.target.value)}
-                  />
+                  <Label>{t("createListing.dimensions", "Dimensions")}</Label>
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="space-y-1">
+                      <Label htmlFor="length" className="text-xs text-muted-foreground">{t("createListing.length", "Length (cm)")}</Label>
+                      <Input id="length" type="number" placeholder="e.g. 120" />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="width" className="text-xs text-muted-foreground">{t("createListing.width", "Width (cm)")}</Label>
+                      <Input id="width" type="number" placeholder="e.g. 80" />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="height" className="text-xs text-muted-foreground">{t("createListing.height", "Height (cm)")}</Label>
+                      <Input id="height" type="number" placeholder="e.g. 60" />
+                    </div>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="weight">{t("listingDetail.weight", "Weight")}</Label>
                   <Input
                     id="weight"
+                    type="number"
                     placeholder={t("createListing.weightPlaceholder", "e.g. 25 kg")}
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
