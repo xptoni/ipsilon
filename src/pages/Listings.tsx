@@ -32,15 +32,15 @@ import { getActiveListings, type Listing } from "@/lib/mockData";
 import { useTranslation } from "react-i18next";
 
 const CATEGORIES = [
-  { id: "vehicles", labelKey: "listings.categories.vehicles" },
-  { id: "furniture", labelKey: "listings.categories.furniture" },
-  { id: "packages", labelKey: "listings.categories.packages" },
-  { id: "pallets", labelKey: "listings.categories.pallets" },
-  { id: "moving", labelKey: "listings.categories.moving" },
-  { id: "pets", labelKey: "listings.categories.pets" },
-  { id: "passengers", labelKey: "listings.categories.passengers" },
-  { id: "construction", labelKey: "listings.categories.construction" },
-  { id: "other", labelKey: "listings.categories.other" },
+  { id: "cars", labelKey: "wizard.categories.cars" },
+  { id: "motorcycles", labelKey: "wizard.categories.motorcycles" },
+  { id: "furniture", labelKey: "wizard.categories.furniture" },
+  { id: "appliances", labelKey: "wizard.categories.appliances" },
+  { id: "boxes", labelKey: "wizard.categories.boxes" },
+  { id: "pallets", labelKey: "wizard.categories.pallets" },
+  { id: "machinery", labelKey: "wizard.categories.machinery" },
+  { id: "boats", labelKey: "wizard.categories.boats" },
+  { id: "other", labelKey: "wizard.categories.other" },
 ];
 
 const RADIUS_OPTIONS = ["10", "30", "50", "100", "200"];
@@ -298,7 +298,7 @@ const Listings = () => {
         </Tabs>
 
         {/* Category Filters */}
-        <Card className="mb-6">
+        <Card className="mb-6 border-primary/30 shadow-sm bg-primary/[0.02]">
           <CardContent className="pt-6">
             <Label className="mb-3 block">{t("listings.filters.categories")}</Label>
             <div className="flex flex-wrap gap-3 mb-4">
