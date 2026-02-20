@@ -222,6 +222,9 @@ export const en = {
     descriptionPlaceholder: "Add any details about your item that carriers should know...",
     hasPurchaseLink: "Do you have a purchase link?",
     purchaseLinkPlaceholder: "https://...",
+    vehicle: "Vehicle",
+    multiVehicleHint: "Need transport for multiple vehicles?",
+    addMoreVehicle: "Add another vehicle",
 
     // Step 3
     photosTitle: "Upload photos of your item",

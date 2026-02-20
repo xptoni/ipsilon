@@ -19,6 +19,14 @@ export type TimeframeType =
   | 'flexible' 
   | 'no-date';
 
+export interface VehicleData {
+  title?: string;
+  make?: string;
+  model?: string;
+  year?: string;
+  description?: string;
+}
+
 export interface ListingFormData {
   // Step 1: Category
   category: Category | null;
@@ -33,6 +41,9 @@ export interface ListingFormData {
   description?: string;
   hasPurchaseLink: boolean;
   purchaseLink?: string;
+  
+  // Multi-vehicle support (cars/motorcycles only)
+  vehicles: VehicleData[];
   
   // Step 3: Photos
   photos: File[];
@@ -62,6 +73,7 @@ export const initialFormData: ListingFormData = {
   category: null,
   hasPurchaseLink: false,
   photos: [],
+  vehicles: [],
   pickupCountry: '',
   pickupCity: '',
   deliveryCountry: '',

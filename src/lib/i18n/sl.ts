@@ -182,6 +182,9 @@ export const sl = {
     descriptionPlaceholder: "Dodajte podrobnosti o pošiljki...",
     hasPurchaseLink: "Imate povezavo do nakupa?",
     purchaseLinkPlaceholder: "https://...",
+    vehicle: "Vozilo",
+    multiVehicleHint: "Potrebujete prevoz za več vozil?",
+    addMoreVehicle: "Dodajte še eno vozilo",
 
     photosTitle: "Dodajte fotografije",
     photosSubtitle: "Neobvezno, vendar pomaga pri natančnejših ponudbah",

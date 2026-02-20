@@ -185,6 +185,9 @@ export const hr = {
     descriptionPlaceholder: "Dodajte detalje o pošiljci...",
     hasPurchaseLink: "Imate li link za kupnju?",
     purchaseLinkPlaceholder: "https://...",
+    vehicle: "Vozilo",
+    multiVehicleHint: "Tražiš prijevoz za više vozila?",
+    addMoreVehicle: "Dodaj još jedno vozilo",
 
     photosTitle: "Dodajte fotografije",
     photosSubtitle: "Neobavezno, ali pomaže za točnije ponude",
