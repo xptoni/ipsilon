@@ -73,7 +73,8 @@ const Listings = () => {
   const [destinationInRadius, setDestinationInRadius] = useState(false);
 
   // Country search
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [pickupCountry, setPickupCountry] = useState("");
+  const [dropoffCountry, setDropoffCountry] = useState("");
 
   // Route search
   const [routeOrigin, setRouteOrigin] = useState("");
@@ -112,7 +113,8 @@ const Listings = () => {
     setLocalRadius("50");
     setOriginInRadius(true);
     setDestinationInRadius(false);
-    setSelectedCountry("");
+    setPickupCountry("");
+    setDropoffCountry("");
     setRouteOrigin("");
     setRouteDestination("");
     setMaxDeviation("30");
@@ -224,20 +226,37 @@ const Listings = () => {
           <TabsContent value="country" className="mt-4">
             <Card>
               <CardContent className="pt-6">
-                <div className="max-w-sm space-y-2">
-                  <Label>{t("listings.countrySearch.country")}</Label>
-                  <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-                    <SelectTrigger>
-                      <SelectValue placeholder={t("listings.countrySearch.selectCountry")} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {COUNTRIES.map((country) => (
-                        <SelectItem key={country} value={country}>
-                          {country}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>{t("listings.countrySearch.pickupCountry", "Pickup Country")}</Label>
+                    <Select value={pickupCountry} onValueChange={setPickupCountry}>
+                      <SelectTrigger>
+                        <SelectValue placeholder={t("listings.countrySearch.selectCountry")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {COUNTRIES.map((country) => (
+                          <SelectItem key={country} value={country}>
+                            {country}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("listings.countrySearch.dropoffCountry", "Drop-off Country")}</Label>
+                    <Select value={dropoffCountry} onValueChange={setDropoffCountry}>
+                      <SelectTrigger>
+                        <SelectValue placeholder={t("listings.countrySearch.selectCountry")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {COUNTRIES.map((country) => (
+                          <SelectItem key={country} value={country}>
+                            {country}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -301,7 +320,7 @@ const Listings = () => {
         <Card className="mb-6 border-primary/30 shadow-sm bg-primary/[0.02]">
           <CardContent className="pt-6">
             <Label className="mb-3 block">{t("listings.filters.categories")}</Label>
-            <div className="flex flex-wrap gap-3 mb-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
               {CATEGORIES.map((category) => (
                 <div key={category.id} className="flex items-center space-x-2">
                   <Checkbox
