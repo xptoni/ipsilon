@@ -19,10 +19,12 @@ const VehicleForm = ({
   vehicle,
   onChange,
   category,
+  placeholders,
 }: {
   vehicle: VehicleData;
   onChange: (data: Partial<VehicleData>) => void;
   category: Category;
+  placeholders: ReturnType<typeof getCategoryPlaceholders>;
 }) => {
   const { t } = useTranslation();
 
@@ -31,7 +33,7 @@ const VehicleForm = ({
       <div className="space-y-2">
         <Label>{t('wizard.titleLabel', 'What do you need transport for?')}</Label>
         <Input
-          placeholder={t('wizard.titlePlaceholder', 'e.g. BMW 3 Series')}
+          placeholder={placeholders.title}
           value={vehicle.title || ''}
           onChange={(e) => onChange({ title: e.target.value })}
         />
@@ -40,7 +42,7 @@ const VehicleForm = ({
         <div className="space-y-2">
           <Label>{t('wizard.make')}</Label>
           <Input
-            placeholder={t('wizard.makePlaceholder')}
+            placeholder={placeholders.make || ''}
             value={vehicle.make || ''}
             onChange={(e) => onChange({ make: e.target.value })}
           />
@@ -48,7 +50,7 @@ const VehicleForm = ({
         <div className="space-y-2">
           <Label>{t('wizard.model')}</Label>
           <Input
-            placeholder={t('wizard.modelPlaceholder')}
+            placeholder={placeholders.model || ''}
             value={vehicle.model || ''}
             onChange={(e) => onChange({ model: e.target.value })}
           />
@@ -57,7 +59,7 @@ const VehicleForm = ({
       <div className="space-y-2">
         <Label>{t('wizard.year')}</Label>
         <Input
-          placeholder={t('wizard.yearPlaceholder')}
+          placeholder={placeholders.year || 'e.g. 2020'}
           value={vehicle.year || ''}
           onChange={(e) => onChange({ year: e.target.value })}
         />
@@ -67,7 +69,7 @@ const VehicleForm = ({
           {t('wizard.description')} <span className="text-muted-foreground">({t('wizard.optional')})</span>
         </Label>
         <Textarea
-          placeholder={t('wizard.descriptionPlaceholder')}
+          placeholder={placeholders.description || ''}
           value={vehicle.description || ''}
           onChange={(e) => onChange({ description: e.target.value.slice(0, 500) })}
           rows={3}
@@ -119,10 +121,34 @@ const CollapsedVehicleCard = ({
   );
 };
 
+const getCategoryPlaceholders = (category: Category) => {
+  switch (category) {
+    case 'cars':
+      return { title: 'e.g. BMW 3 Series', make: 'e.g. BMW', model: 'e.g. 3 Series', year: 'e.g. 2020', description: 'e.g. Running condition, minor scratch on rear bumper...' };
+    case 'motorcycles':
+      return { title: 'e.g. Suzuki GSX-R 750', make: 'e.g. Suzuki', model: 'e.g. GSX-R 750', year: 'e.g. 2021', description: 'e.g. Sport bike, needs strapping points...' };
+    case 'furniture':
+      return { title: 'e.g. 3-seater leather sofa', description: 'e.g. Dimensions 220x90x85cm, needs careful handling...' };
+    case 'appliances':
+      return { title: 'e.g. Samsung fridge freezer', description: 'e.g. Must stay upright during transport, 85kg...' };
+    case 'boxes':
+      return { title: 'e.g. 5 moving boxes', description: 'e.g. 5 boxes, largest is 60x40x40cm, total ~50kg...' };
+    case 'pallets':
+      return { title: 'e.g. 2 Euro pallets with goods', description: 'e.g. Standard euro pallets, 800kg total, wrapped...' };
+    case 'machinery':
+      return { title: 'e.g. Industrial drill press', description: 'e.g. 300kg, disassembled, on wooden pallet...' };
+    case 'boats':
+      return { title: 'e.g. 18ft sailboat on trailer', description: 'e.g. Boat on its own trailer, total length 6.5m...' };
+    default:
+      return { title: 'e.g. Describe your item', description: 'Add any details carriers should know...' };
+  }
+};
+
 const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps) => {
   const { t } = useTranslation();
   const isVehicle = ['cars', 'motorcycles'].includes(category);
   const showPurchaseLink = ['furniture', 'appliances', 'machinery'].includes(category);
+  const placeholders = getCategoryPlaceholders(category);
 
   // For vehicles with multi-vehicle support
   const vehicles = formData.vehicles || [];
@@ -193,7 +219,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
         <Label htmlFor="title">{t('wizard.titleLabel', 'What do you need transport for?')}</Label>
         <Input
           id="title"
-          placeholder={t('wizard.titlePlaceholder', 'e.g. BMW 3 Series')}
+          placeholder={placeholders.title}
           value={formData.title || ''}
           onChange={(e) => onUpdate({ title: e.target.value })}
         />
@@ -204,7 +230,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
           <Label htmlFor="make">{t('wizard.make')}</Label>
           <Input
             id="make"
-            placeholder={t('wizard.makePlaceholder')}
+            placeholder={placeholders.make || ''}
             value={formData.make || ''}
             onChange={(e) => onUpdate({ make: e.target.value })}
           />
@@ -213,7 +239,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
           <Label htmlFor="model">{t('wizard.model')}</Label>
           <Input
             id="model"
-            placeholder={t('wizard.modelPlaceholder')}
+            placeholder={placeholders.model || ''}
             value={formData.model || ''}
             onChange={(e) => onUpdate({ model: e.target.value })}
           />
@@ -223,7 +249,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
         <Label htmlFor="year">{t('wizard.year')}</Label>
         <Input
           id="year"
-          placeholder={t('wizard.yearPlaceholder')}
+          placeholder={placeholders.year || 'e.g. 2020'}
           value={formData.year || ''}
           onChange={(e) => onUpdate({ year: e.target.value })}
         />
@@ -235,7 +261,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
         </Label>
         <Textarea
           id="description"
-          placeholder={t('wizard.descriptionPlaceholder')}
+          placeholder={placeholders.description || ''}
           value={formData.description || ''}
           onChange={(e) => onUpdate({ description: e.target.value.slice(0, 500) })}
           rows={4}
@@ -273,6 +299,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
                 vehicle={vehicle}
                 onChange={(data) => updateVehicle(index, data)}
                 category={category}
+                placeholders={placeholders}
               />
             </CardContent>
           </Card>
@@ -296,7 +323,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
         <Label htmlFor="title">{t('wizard.titleLabel', 'What do you need transport for?')}</Label>
         <Input
           id="title"
-          placeholder={t('wizard.titlePlaceholder', 'e.g. BMW 3 Series')}
+          placeholder={placeholders.title}
           value={formData.title || ''}
           onChange={(e) => onUpdate({ title: e.target.value })}
         />
@@ -308,7 +335,7 @@ const DescriptionStep = ({ category, formData, onUpdate }: DescriptionStepProps)
         </Label>
         <Textarea
           id="description"
-          placeholder={t('wizard.descriptionPlaceholder')}
+          placeholder={placeholders.description || ''}
           value={formData.description || ''}
           onChange={(e) => onUpdate({ description: e.target.value.slice(0, 500) })}
           rows={4}
