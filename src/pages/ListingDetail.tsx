@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,6 +25,8 @@ import {
   Scale,
   FileText,
   ImageIcon,
+  AlertTriangle,
+  Save,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import {
@@ -35,6 +37,7 @@ import {
 } from "@/lib/mockData";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { Label } from "@/components/ui/label";
 
 // Mock usernames for carriers (anonymous)
 const carrierUsernames: Record<string, string> = {
@@ -47,10 +50,12 @@ const carrierUsernames: Record<string, string> = {
 const ListingDetail = () => {
   const { t } = useTranslation();
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const listing = getListingById(id || "");
   const quotes = getQuotesForListing(id || "");
   const messages = getMessagesForListing(id || "");
+  const isEditMode = searchParams.get("edit") === "true";
 
   const isShipper = true;
 
@@ -58,6 +63,8 @@ const ListingDetail = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [paymentOpen, setPaymentOpen] = useState(false);
   const [newMessage, setNewMessage] = useState("");
+  const [dimensions, setDimensions] = useState(listing?.dimensions || "");
+  const [weight, setWeight] = useState(listing?.weight || "");
 
   if (!listing) {
     return (
@@ -90,6 +97,72 @@ const ListingDetail = () => {
     toast.success(t("listingDetail.messageSent"));
     setNewMessage("");
   };
+
+  const handleSaveEdit = () => {
+    toast.success(t("listingDetail.changesSaved", "Changes saved"));
+    navigate("/shipper-dashboard");
+  };
+
+  if (isEditMode) {
+    return (
+      <Layout hideFooter>
+        <div className="container py-8 max-w-2xl">
+          <Button
+            variant="ghost"
+            className="mb-6"
+            onClick={() => navigate("/shipper-dashboard")}
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            {t("listingDetail.backToDashboard")}
+          </Button>
+
+          <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+            {t("listingDetail.editListing", "Edit listing")} — {listing.title}
+          </h1>
+
+          {/* Warning explanation */}
+          <div className="flex items-start gap-3 p-4 rounded-lg bg-warning/10 border border-warning/20 mb-8">
+            <AlertTriangle className="h-5 w-5 text-warning shrink-0 mt-0.5" />
+            <p className="text-sm text-foreground">
+              {t("listingDetail.editWarning", "Nije moguće mijenjati ključne podatke listinga jer dane ponude ne bi bile valjane. Ukoliko želite promijeniti ključne stavke oglasa kao što je pick up/drop off lokacija, molimo da izbrišete ovaj listing i kreirate novi.")}
+            </p>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">{t("listingDetail.editDimensionsWeight", "Dimensions & weight")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={(e) => { e.preventDefault(); handleSaveEdit(); }} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="dimensions">{t("createListing.dimensions", "Dimensions")}</Label>
+                  <Input
+                    id="dimensions"
+                    placeholder={t("createListing.dimensionsPlaceholder", "e.g. 120 x 80 x 60 cm")}
+                    value={dimensions}
+                    onChange={(e) => setDimensions(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="weight">{t("listingDetail.weight", "Weight")}</Label>
+                  <Input
+                    id="weight"
+                    placeholder={t("createListing.weightPlaceholder", "e.g. 25 kg")}
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                  />
+                </div>
+                <Button type="submit" className="w-full gap-2">
+                  <Save className="h-4 w-4" />
+                  {t("common.save", "Save changes")}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout hideFooter>

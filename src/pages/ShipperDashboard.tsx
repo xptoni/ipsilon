@@ -9,11 +9,13 @@ import {
   Package, 
   MessageSquare,
   ArrowRight,
-  Pencil
+  Pencil,
+  Trash2
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { getListingsForShipper, getQuotesForListing, type Listing } from "@/lib/mockData";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 
 const ShipperDashboard = () => {
   const { t } = useTranslation();
@@ -80,12 +82,18 @@ const ShipperDashboard = () => {
                 {quotes.length} {quotes.length !== 1 ? t('shipperDashboard.quotes') : t('shipperDashboard.quote')}
               </div>
               {showEdit && (
-                <Button variant="outline" size="sm" asChild>
-                  <Link to={`/delivery-details/${listing.id}?edit=true`}>
-                    <Pencil className="h-3.5 w-3.5 mr-1.5" />
-                    {t('common.edit', 'Edit')}
-                  </Link>
-                </Button>
+                <>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to={`/delivery-details/${listing.id}?edit=true`}>
+                      <Pencil className="h-3.5 w-3.5 mr-1.5" />
+                      {t('common.edit', 'Edit')}
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="sm" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => toast.success(t('shipperDashboard.listingDeleted', 'Listing deleted'))}>
+                    <Trash2 className="h-3.5 w-3.5 mr-1.5" />
+                    {t('common.delete', 'Delete')}
+                  </Button>
+                </>
               )}
               <Button variant="outline" asChild>
                 <Link to={`/delivery-details/${listing.id}`}>
