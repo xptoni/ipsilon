@@ -1,15 +1,15 @@
 export type Category = 
-  | 'furniture' 
-  | 'boxes' 
   | 'cars' 
   | 'motorcycles' 
-  | 'vans' 
+  | 'furniture' 
+  | 'appliances' 
+  | 'boxes' 
+  | 'pallets' 
+  | 'machinery' 
   | 'boats' 
-  | 'vehicle-parts' 
-  | 'pets' 
   | 'other';
 
-export type PetType = 'dog' | 'cat' | 'other';
+
 
 export type TimeframeType = 
   | 'within-week' 
@@ -28,7 +28,7 @@ export interface ListingFormData {
   make?: string;
   model?: string;
   year?: string;
-  petType?: PetType;
+  petType?: string;
   petWeight?: string;
   description?: string;
   hasPurchaseLink: boolean;
@@ -74,14 +74,14 @@ export const initialFormData: ListingFormData = {
 };
 
 export const CATEGORIES: { id: Category; icon: string; labelKey: string }[] = [
-  { id: 'furniture', icon: 'Armchair', labelKey: 'wizard.categories.furniture' },
-  { id: 'boxes', icon: 'Package', labelKey: 'wizard.categories.boxes' },
   { id: 'cars', icon: 'Car', labelKey: 'wizard.categories.cars' },
   { id: 'motorcycles', icon: 'Bike', labelKey: 'wizard.categories.motorcycles' },
-  { id: 'vans', icon: 'Truck', labelKey: 'wizard.categories.vans' },
+  { id: 'furniture', icon: 'Armchair', labelKey: 'wizard.categories.furniture' },
+  { id: 'appliances', icon: 'Refrigerator', labelKey: 'wizard.categories.appliances' },
+  { id: 'boxes', icon: 'Package', labelKey: 'wizard.categories.boxes' },
+  { id: 'pallets', icon: 'Container', labelKey: 'wizard.categories.pallets' },
+  { id: 'machinery', icon: 'Cog', labelKey: 'wizard.categories.machinery' },
   { id: 'boats', icon: 'Ship', labelKey: 'wizard.categories.boats' },
-  { id: 'vehicle-parts', icon: 'Cog', labelKey: 'wizard.categories.vehicleParts' },
-  { id: 'pets', icon: 'PawPrint', labelKey: 'wizard.categories.pets' },
   { id: 'other', icon: 'MoreHorizontal', labelKey: 'wizard.categories.other' },
 ];
 
