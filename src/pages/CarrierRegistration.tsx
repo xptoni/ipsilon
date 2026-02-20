@@ -103,6 +103,7 @@ const countries = [
 
 interface FormData {
   fullName: string;
+  username: string;
   email: string;
   password: string;
   countryCode: string;
@@ -126,6 +127,7 @@ const CarrierRegistration = () => {
 
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
+    username: "",
     email: "",
     password: "",
     countryCode: "+385",
@@ -152,6 +154,9 @@ const CarrierRegistration = () => {
       case 1:
         if (!formData.fullName.trim()) {
           newErrors.fullName = t("carrierReg.errorRequired");
+        }
+        if (!formData.username.trim()) {
+          newErrors.username = t("carrierReg.errorRequired");
         }
         break;
       case 2:
@@ -300,6 +305,21 @@ const CarrierRegistration = () => {
               />
               {errors.fullName && (
                 <p className="text-destructive text-sm mt-1">{errors.fullName}</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="username">{t("carrierReg.username", "Username")} *</Label>
+              <Input
+                id="username"
+                value={formData.username}
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
+                placeholder="e.g. mato_transporti"
+                className="mt-2"
+              />
+              {errors.username && (
+                <p className="text-destructive text-sm mt-1">{errors.username}</p>
               )}
             </div>
           </div>
