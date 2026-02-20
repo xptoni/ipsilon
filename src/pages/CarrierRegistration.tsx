@@ -53,16 +53,15 @@ const insuranceTypes = [
 ];
 
 const transportCategories = [
-  { id: "cars", label: "carrierReg.catCars" },
-  { id: "motorcycles", label: "carrierReg.catMotorcycles" },
-  { id: "commercial", label: "carrierReg.catCommercial" },
-  { id: "machinery", label: "carrierReg.catMachinery" },
-  { id: "furniture", label: "carrierReg.catFurniture" },
-  { id: "boxes", label: "carrierReg.catBoxes" },
-  { id: "pallets", label: "carrierReg.catPallets" },
-  { id: "moves", label: "carrierReg.catMoves" },
-  { id: "pets", label: "carrierReg.catPets" },
-  { id: "debris", label: "carrierReg.catDebris" },
+  { id: "cars", label: "wizard.categories.cars" },
+  { id: "motorcycles", label: "wizard.categories.motorcycles" },
+  { id: "furniture", label: "wizard.categories.furniture" },
+  { id: "appliances", label: "wizard.categories.appliances" },
+  { id: "boxes", label: "wizard.categories.boxes" },
+  { id: "pallets", label: "wizard.categories.pallets" },
+  { id: "machinery", label: "wizard.categories.machinery" },
+  { id: "boats", label: "wizard.categories.boats" },
+  { id: "other", label: "wizard.categories.other" },
 ];
 
 const vehicleCounts = [

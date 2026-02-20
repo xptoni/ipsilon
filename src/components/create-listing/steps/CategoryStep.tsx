@@ -4,11 +4,11 @@ import {
   Package, 
   Car, 
   Bike, 
-  Truck, 
   Ship, 
   Cog, 
-  PawPrint, 
-  MoreHorizontal 
+  MoreHorizontal,
+  Refrigerator,
+  Container,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Category, CATEGORIES } from "../types";
@@ -23,11 +23,11 @@ const iconMap = {
   Package,
   Car,
   Bike,
-  Truck,
   Ship,
   Cog,
-  PawPrint,
   MoreHorizontal,
+  Refrigerator,
+  Container,
 };
 
 const CategoryStep = ({ selectedCategory, onSelect }: CategoryStepProps) => {
