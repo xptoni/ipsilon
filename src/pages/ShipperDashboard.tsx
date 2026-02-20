@@ -95,7 +95,7 @@ const ShipperDashboard = () => {
                   </Button>
                 </>
               )}
-              <Button variant="outline" asChild>
+              <Button asChild>
                 <Link to={`/delivery-details/${listing.id}`}>
                   {t('shipperDashboard.viewDetails')}
                 </Link>

@@ -27,6 +27,7 @@ import {
   ImageIcon,
   AlertTriangle,
   Save,
+  Upload,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import {
@@ -161,6 +162,20 @@ const ListingDetail = () => {
                     onChange={(e) => setWeight(e.target.value)}
                   />
                 </div>
+
+                {/* Photo upload */}
+                <div className="space-y-2">
+                  <Label>{t("listingDetail.uploadPhoto", "Photo")}</Label>
+                  <label
+                    htmlFor="photo-upload"
+                    className="flex flex-col items-center justify-center gap-2 p-6 border-2 border-dashed border-border rounded-lg cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-colors"
+                  >
+                    <Upload className="h-8 w-8 text-muted-foreground" />
+                    <span className="text-sm text-muted-foreground">{t("listingDetail.clickToUpload", "Click to upload a photo")}</span>
+                    <input id="photo-upload" type="file" accept="image/*" className="hidden" onChange={() => toast.success("Photo added")} />
+                  </label>
+                </div>
+
                 <Button type="submit" className="w-full gap-2">
                   <Save className="h-4 w-4" />
                   {t("common.save", "Save changes")}
