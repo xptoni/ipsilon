@@ -298,25 +298,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Trusted By */}
-      <section className="py-16 bg-background">
-        <div className="container">
-          <div className="text-center mb-8">
-            <p className="text-muted-foreground font-medium flex items-center justify-center gap-2">
-              <Users className="h-5 w-5" />
-              {t('home.trustedByTitle')}
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8 opacity-50">
-            {/* Placeholder for partner logos */}
-            <div className="h-8 w-32 bg-muted rounded" />
-            <div className="h-8 w-28 bg-muted rounded" />
-            <div className="h-8 w-36 bg-muted rounded" />
-            <div className="h-8 w-24 bg-muted rounded" />
-            <div className="h-8 w-32 bg-muted rounded" />
-          </div>
-        </div>
-      </section>
 
       {/* Popular Routes */}
       <section className="py-20 bg-secondary/30">
