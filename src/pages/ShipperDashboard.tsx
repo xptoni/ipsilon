@@ -10,8 +10,20 @@ import {
   MessageSquare,
   ArrowRight,
   Pencil,
-  Trash2
+  Trash2,
+  AlertTriangle
 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import Layout from "@/components/layout/Layout";
 import { getListingsForShipper, getQuotesForListing, type Listing } from "@/lib/mockData";
 import { useTranslation } from "react-i18next";
@@ -89,10 +101,34 @@ const ShipperDashboard = () => {
                       {t('common.edit', 'Edit')}
                     </Link>
                   </Button>
-                  <Button variant="outline" size="sm" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => toast.success(t('shipperDashboard.listingDeleted', 'Listing deleted'))}>
-                    <Trash2 className="h-3.5 w-3.5 mr-1.5" />
-                    {t('common.delete', 'Delete')}
-                  </Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="text-destructive hover:text-destructive hover:bg-destructive/10">
+                        <Trash2 className="h-3.5 w-3.5 mr-1.5" />
+                        {t('common.delete', 'Delete')}
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <div className="flex items-center gap-2">
+                          <AlertTriangle className="h-5 w-5 text-destructive" />
+                          <AlertDialogTitle>{t('shipperDashboard.deleteListingTitle', 'Delete Listing?')}</AlertDialogTitle>
+                        </div>
+                        <AlertDialogDescription>
+                          {t('shipperDashboard.deleteListingWarning', 'Are you sure you want to delete this listing? This action cannot be undone and all received quotes will be cancelled.')}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>{t('common.cancel', 'Cancel')}</AlertDialogCancel>
+                        <AlertDialogAction
+                          className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          onClick={() => toast.success(t('shipperDashboard.listingDeleted', 'Listing deleted'))}
+                        >
+                          {t('common.delete', 'Delete')}
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </>
               )}
               <Button asChild>
